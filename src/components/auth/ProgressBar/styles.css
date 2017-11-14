@@ -1,0 +1,13 @@
+@use postcss-short;
+
+.progress-bar {
+  text-align: center;
+  margin: 45px *;
+}
+
+.progress-seporator {
+  display: inline-block;
+  size: 15px 1px;
+  background: #dbdfe4;
+  margin: 9px 5px;
+}

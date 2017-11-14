@@ -1,0 +1,21 @@
+@use postcss-short;
+
+
+.company-list-wrap {
+  margin-bottom: 20px;
+}
+
+.company-list {
+  max-width: 360px;
+  margin: * auto;
+  border: solid 1px #dbdfe4;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.company-list-title {
+  font: normal 36px/36px 'Open Sans';
+  color: #000;
+  text-align: center;
+  margin-bottom: 40px;
+}

@@ -1,0 +1,27 @@
+@use postcss-short;
+@use postcss-clearfix;
+
+.item {
+  border-bottom: 1px solid #e6e8eb;
+  padding: 10px 0 10px 0;
+}
+
+.info {
+  display: inline-block;
+}
+
+.name {
+  margin: 10px 0 10px 0;
+  height: 25px;
+  font-size: 22px;
+  text-align: left;
+  color: #222222;
+}
+
+.date {
+  margin: 10px 0 10px 0;
+  height: 16px;
+  font-size: 14px;
+  text-align: left;
+  color: #6e7987;
+}
