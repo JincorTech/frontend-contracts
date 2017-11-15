@@ -18,7 +18,7 @@ const AppLayout: SFC<Props> = (props) => {
       </div>
       <div styleName='main'>
         <Topbar pathname={'/dashboard'}/>
-        <div styleName='children'>{props.children}</div>
+        <div>{props.children}</div>
       </div>
     </div>
   );

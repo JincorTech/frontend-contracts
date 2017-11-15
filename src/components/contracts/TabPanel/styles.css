@@ -1,0 +1,7 @@
+@use postcss-short;
+
+.tabs {
+  display: block;
+  border-bottom: 1px solid #e6e8eb;
+  margin-bottom: 11px;
+}

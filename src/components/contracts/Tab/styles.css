@@ -1,0 +1,18 @@
+.tab {
+  display: inline-block;
+  cursor: pointer;
+  margin-right: 25px;
+  font: normal 16px;
+  color: #6e7987;
+  padding: 15px 0;
+}
+
+.active {
+  composes: tab;
+  color: #222;
+  pointer-events: none;
+  border-bottom: 1px solid #222;
+}
+
+.name {
+}

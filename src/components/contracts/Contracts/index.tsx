@@ -3,17 +3,14 @@ import { SFC } from 'react';
 import * as CSSModules from 'react-css-modules';
 import ContractsList from '../ContractsList';
 import Button from '../Button';
+import TabPanel from '../TabPanel';
 
 
 const Contracts: SFC<{}> = ({}) => {
   return (
     <div styleName="content">
       <section styleName="list">
-        {/* <Tabs>
-          <span>Latest</span>
-          <span>Sort by name</span>
-          <span>Unsigned contracts</span>
-        </Tabs> */}
+        <TabPanel/>
         <ContractsList/>
       </section>
       <section styleName="add-contract">
