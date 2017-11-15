@@ -15,6 +15,7 @@ import InviteEmployees from './containers/auth/InviteEmployees';
 
 import AppLayout from './components/contracts/AppLayout';
 import Contracts from './components/contracts/Contracts';
+import ContractTypesForm from './components/contracts/ContractTypesForm';
 
 import ProfileEdit from './containers/profile/ProfileEdit';
 import ProfileView from './containers/profile/ProfileView';
@@ -62,7 +63,7 @@ const UserIsAdmin = UserAuthWrapper({
 
 export default (
   <Route path="/cmp" component={App}>
-    <IndexRedirect to="/cmp/app/profile"/>
+    <IndexRedirect to="/cmp/new"/>
 
     <Route path="auth" component={UserIsNotAuthenticated(AuthLayout)}>
       <Route path="signup" component={SignUp}/>
@@ -73,12 +74,13 @@ export default (
     </Route>
 
     <Route path="app" component={UserIsAuthenticated(AppLayout)}>
-      <Route path="profile" component={Contracts}/>
-      <Route path="profile/edit" component={UserIsAdmin(ProfileEdit)}/>
+      <Route path="contracts" component={Contracts}/>
       <Route path="employees" component={Employees}/>
       <Route path="search" component={Search}/>
       <Route path="messenger" component={Messenger}/>
     </Route>
+
+    <Route path="new" component={ContractTypesForm}/>
 
     <Redirect from="*" to="/cmp/auth/signin" />
   </Route>
