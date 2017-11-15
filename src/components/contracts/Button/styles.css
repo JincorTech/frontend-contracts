@@ -4,7 +4,7 @@
   text-align: center;
   box-sizing: border-box;
   width: 100%;
-  font: 500 15px Roboto;
+  font: 500 15px;
   color: #fff;
   background-color: #0080ff;
   border: none;
@@ -18,7 +18,7 @@
   }
 
   &.small {
-    font: normal 14px Roboto;
+    font-size: 14px;
     padding: 8px;
   }
 

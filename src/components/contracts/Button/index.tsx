@@ -25,21 +25,11 @@ const Button: SFC<Props> = (props) => {
   } = props;
 
   const getSize = (val) => {
-    switch (val) {
-      case 'small':
-        return 'small';
-      default:
-        return '';
-    }
+    return val === 'small' ? val : '';
   };
 
   const getStyle = (val) => {
-    switch (val) {
-      case 'secondary':
-        return 'secondary';
-      default:
-        return '';
-    }
+    return val === 'secondary' ? val : '';
   };
 
   const getClasses = () => (
