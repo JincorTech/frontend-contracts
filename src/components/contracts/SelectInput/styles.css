@@ -1,0 +1,12 @@
+.input {
+  padding: 15px 0;
+}
+
+.value {
+  position: absolute;
+  left: 0;
+}
+
+.button {
+  width: 100px;
+}
