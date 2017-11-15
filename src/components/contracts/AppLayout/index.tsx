@@ -10,14 +10,13 @@ export type ComponentProps = {}
 export type Props = RouteComponentProps<ComponentProps, {}>
 
 const AppLayout: SFC<Props> = (props) => {
-
   return (
     <div styleName='wrapper'>
       <div styleName='sidebar'>
         <Sidebar/>
       </div>
       <div styleName='main'>
-        <Topbar pathname={'/dashboard'}/>
+        <Topbar pathname={props.location.pathname}/>
         <div>{props.children}</div>
       </div>
     </div>

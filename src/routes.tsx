@@ -15,6 +15,7 @@ import InviteEmployees from './containers/auth/InviteEmployees';
 
 import AppLayout from './components/contracts/AppLayout';
 import Contracts from './components/contracts/Contracts';
+import FormLayout from './components/contracts/FormLayout';
 import ContractTypesForm from './components/contracts/ContractTypesForm';
 
 import ProfileEdit from './containers/profile/ProfileEdit';
@@ -80,7 +81,9 @@ export default (
       <Route path="messenger" component={Messenger}/>
     </Route>
 
-    <Route path="new" component={ContractTypesForm}/>
+    <Route path="form" component={FormLayout}>
+      <Route path="new" component={ContractTypesForm}/>
+    </Route>
 
     <Redirect from="*" to="/cmp/auth/signin" />
   </Route>

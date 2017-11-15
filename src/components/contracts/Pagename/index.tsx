@@ -1,14 +1,7 @@
 import * as React from 'react';
 
 const pages = {
-  '/dashboard': 'Dashboard',
-  '/dashboard/transactions': 'Transactions',
-  '/dashboard/referrals': 'Referral Program',
-  '/dashboard/send-tokens': 'Send Tokens',
-  '/dashboard/account': 'Account',
-  '/dashboard/verification': 'KYC Verification',
-  '/dashboard/verification/success': 'KYC Verification',
-  '/dashboard/verification/failure': 'KYC Verification'
+  '/cmp/app/contracts': 'Contracts'
 };
 
 const Pagename = ({ pathname }) => (<span>{pages[pathname]}</span>);
