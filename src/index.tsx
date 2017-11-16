@@ -10,7 +10,7 @@ import routes from './routes';
 import i18n from './i18n/i18n';
 
 import './assets/normalize.css';
-import './assets/fonts/OpenSans/stylesheet.css';
+import './assets/fonts/Roboto/stylesheet.css';
 import './assets/main.css';
 
 const history = syncHistoryWithStore(browserHistory, store);

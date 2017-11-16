@@ -1,20 +1,16 @@
 body {
-  font-family: 'Open Sans';
+  font-family: 'Roboto';
   font-size: 14px;
   font-weight: normal;
   font-style: normal;
   font-stretch: normal;
-  letter-spacing: -0.4px;
-  color: #000000;
+  color: #333;
 }
 
 a {
   text-decoration: none;
   cursor: pointer;
-}
-
-a:hover {
-  text-decoration: underline;
+  font: normal 15px Roboto;
 }
 
 div, header, section, aside {
