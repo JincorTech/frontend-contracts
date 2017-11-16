@@ -1,0 +1,50 @@
+@use postcss-short;
+
+.input {
+	font-size: 16px;
+  text-align: left;
+  color: #222;
+  background: transparent;
+  size: 100% 100%;
+  padding: 8px 12px 10px;
+  box-sizing: border-box;
+  transition: border-color linear 0.2s;
+
+  &::placeholder {
+    transition: color linear 0.2s;
+  }
+}
+
+.default {
+  composes: input;
+  border: solid 1px #dbdfe4;
+
+  &::placeholder {
+    color: #9da0a4;
+  }
+
+  &:focus {
+    outline: 0;
+    border-color: #0070e0;
+
+    &::placeholder {
+      color: #ebeced;
+    }
+  }
+}
+
+.invalid {
+  composes: input;
+  border: solid 1px #d0011b;
+  color: #d0011b;
+
+  &::placeholder {
+    color: #d0011b;
+  }
+
+  &:focus {
+    &::placeholder {
+      color: #ebeced;
+    }
+  }
+}

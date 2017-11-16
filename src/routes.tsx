@@ -18,6 +18,7 @@ import Contracts from './components/contracts/Contracts';
 import FormLayout from './components/contracts/FormLayout';
 import ContractTypesForm from './components/contracts/ContractTypesForm';
 import ChooseEmployeeForm from './components/contracts/ChooseEmployeeForm';
+import ChooseEmployeePopup from './components/contracts/ChooseEmployeePopup';
 
 import ProfileEdit from './containers/profile/ProfileEdit';
 import ProfileView from './containers/profile/ProfileView';
@@ -86,6 +87,8 @@ export default (
       <Route path="new" component={ContractTypesForm}/>
       <Route path="employee" component={ChooseEmployeeForm}/>
     </Route>
+
+    <Route path="popup" component={ChooseEmployeePopup}/>
 
     <Redirect from="*" to="/cmp/auth/signin" />
   </Route>
