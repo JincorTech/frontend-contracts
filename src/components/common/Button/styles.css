@@ -1,60 +1,30 @@
-@use postcss-short;
-
 .button {
-  font: 600 16px/22px 'Open Sans';
-  color: #000;
-  size: 100% 40px;
-  border-radius: 4px;
-  background-color: #a2a2a2;
+  display: block;
+  text-decoration: none;
   text-align: center;
-  cursor: pointer;
-  transition: background linear 0.1s;
-
-  &:disabled {
-    cursor: not-allowed;
-  }
-}
-
-.default {
-  composes: button;
+  box-sizing: border-box;
+  width: 100%;
+  font: 500 15px;
   color: #fff;
-  background-color: #0070e0;
+  background-color: #0080ff;
+  border: none;
+  border-radius: 4px;
+  padding: 11px;
 
   &:disabled {
-    background-color: #cdcecf !important;
+    background-color: #dbdfe4;
+    pointer-events: none;
+    cursor: dont-allow;
   }
 
-  &:hover {
-    background-color: color(#0070e0 shade(10%));
+  &.small {
+    font-size: 14px;
+    padding: 8px;
   }
 
-  &:active {
-    background-color: color(#0070e0 shade(20%));
+  &.secondary {
+    background-color: #fff;
+    color: #0080ff;
+    border: 1px solid #0080ff;
   }
-}
-
-.default-loaded {
-  composes: button;
-  background-color: color(#0070e0 shade(20%));
-  cursor: default !important;
-}
-
-.outline {
-  composes: button;
-  font: normal 16px/22px 'Open Sans';
-  background-color: transparent;
-  color: #0070e0;
-  border: 1px solid #dbdfe4;
-
-  &:disabled {
-    background-color: #cdcecf !important;
-  }
-
-  &:hover {
-    border: 1px solid #0070e0;
-  }
-}
-
-.outline-loaded {
-  composes: button;
 }

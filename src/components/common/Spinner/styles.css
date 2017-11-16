@@ -1,34 +1,49 @@
-@use postcss-short;
-@use postcss-for;
-@use postcss-calc;
-
-@keyframes spinner-animate {
-  0% { opacity: 1; }
-  100% { opacity: 0; }
-}
-
 .spinner {
+  margin: 0 auto;
+  width: 70px;
+  text-align: center;
+}
+
+.spinner > div {
+  width: 14px;
+  height: 14px;
+  margin: 0 4px;
+  background-color: #fff;
+  border-radius: 100%;
   display: inline-block;
-  position: relative;
-  size: 32px;
-  vertical-align: middle;
+  animation: sk-bouncedelay 1.4s infinite ease-in-out both;
 }
 
-.stick {
-  position: absolute 12px * * 15px;
-  size: 2px 8px;
-  background: #fff;
-  border-radius: 2px;
-  animation: spinner-animate 1s linear infinite;
+.spinner .bounceOne {
+  animation-delay: -0.32s;
 }
 
-@for $i from 0 to 330 by 30 {
-  .stick-$i {
-    composes: stick;
+.spinner .bounceTwo {
+  animation-delay: -0.16s;
+}
 
-    /* stylelint-disable function-whitespace-after */
-    transform: rotate($(i)deg) translate(0, -10px);
-    /* stylelint-enable */
-    animation-delay: calc(-0.5s + $i/360);
+@-webkit-keyframes sk-bouncedelay {
+  0%,
+  80%,
+  100% {
+    -webkit-transform: scale(0);
+  }
+
+  40% {
+    -webkit-transform: scale(1);
+  }
+}
+
+@keyframes sk-bouncedelay {
+  0%,
+  80%,
+  100% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+
+  40% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
   }
 }

@@ -1,8 +1,0 @@
-@use postcss-inline-svg;
-@use postcss-short;
-
-.logo {
-  display: inline-block;
-  size: 89px 38px;
-  background: svg-load('svg/logo.svg') center 1px no-repeat;
-}

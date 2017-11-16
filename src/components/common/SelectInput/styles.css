@@ -1,41 +1,20 @@
-@use postcss-center;
-@use postcss-short;
-
 .input {
-  position: relative;
-  font-size: 16px/22px;
-  text-align: left;
-  background: #fff;
-  size: 100% 45px;
-  border-radius: 4px;
-  padding: 10px 40px 12px 12px;
-  cursor: pointer;
-  transition: border-color linear 0.2s;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  padding: 15px 0;
+  width: 620px;
+  margin: 0 auto;
+  padding-bottom: 54px;
+  border-bottom: 1px solid #e6e8eb;
 }
 
-.input-default {
-  composes: input;
-  border: solid 1px #dbdfe4;
+.value {
+  float: left;
+  font-size: 32px;
+  color: #111111;
+  padding-top: 6px;
 }
 
-.input-invalid {
-  composes: input;
-  border: solid 1px #d0011b;
-}
-
-.placeholder-invalid {
-  color: #d0011b;
-}
-
-.placeholder-default {
-  color: #9da0a4;
-  top: center;
-}
-
-.icon {
-  top: center;
-  right: 5px;
+.button {
+  width: 100px;
+  height: 32px;
+  float: right;
 }

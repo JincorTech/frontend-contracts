@@ -1,129 +1,61 @@
 import * as React from 'react';
-import { Component, HTMLProps, MouseEvent } from 'react';
-import { render, unmountComponentAtNode } from 'react-dom';
-import * as classnames from 'classnames';
-import { I18nextProvider } from 'react-i18next';
+import { Component, HTMLProps } from 'react';
+import * as CSSModules from 'react-css-modules';
 
-const { popup, overlay, close } = require('./styles.css');
-
-import Icon from '../Icon';
-
-// TODO don't forget about dat
-import { Provider } from 'react-redux';
-import store from '../../../redux/store';
-import i18n from '../../../i18n/i18n';
-
-/**
- * Types
- */
 export type Props = HTMLProps<HTMLDivElement> & ComponentProps;
 
 export type ComponentProps = {
-  modalId: string
-  open?: boolean
-  hideClose?: boolean
-  onClose?: () => void
-};
+  title: string
+  open: boolean
+}
 
-/**
- * Component
- */
 class Popup extends Component<Props, {}> {
-  private portal: HTMLDivElement;
+  constructor(props) {
+    super(props);
 
-  /**
-   * Create portal element
-   */
-  public componentDidMount(): void {
-    const { modalId, open } = this.props;
-    const element = document.getElementById(modalId);
-
-    if (element) {
-      throw new Error('modalId parameter must be unique for each Popup component');
-    }
-
-    this.portal = document.createElement('div');
-    this.portal.id = this.props.modalId;
-
-    document.body.appendChild(this.portal);
-
-    this.renderModal();
-
-    if (open) {
-      document.body.style.overflow = 'hidden';
-    }
+    // this._handleBackdropClick = this._handleBackdropClick.bind(this);
   }
 
-  /**
-   * Remove portal element
-   */
-  public componentWillUnmount(): void {
-    unmountComponentAtNode(this.portal);
-    document.body.removeChild(this.portal);
-    document.body.style.overflow = '';
+  // componentWillReceiveProps(nextProps) {
+  //   if (nextProps.open) {
+  //     document.body.classList.add('popupOpened');
+  //   } else {
+  //     document.body.classList.remove('popupOpened');
+  //   }
+  // }
+
+  _handleBackdropClick(e) {
+    // if (this.popup.contains(e.target)) {
+    //   return;
+    // }
+
+    // this.props.close();
   }
 
-  /**
-   * Pass props to portal element
-   */
-  public componentWillReceiveProps(nextProps: Props): void {
-    const { open } = this.props;
-
-    if (!open && nextProps.open) {
-      document.body.style.overflow = 'hidden';
-    }
-
-    if (open && !nextProps.open) {
-      document.body.style.overflow = '';
-    }
-  }
-
-  public componentDidUpdate(): void {
-    this.renderModal();
-  }
-
-  private handleClick(e: MouseEvent<HTMLDivElement>): void {
-    e.stopPropagation();
-  }
-
-  /**
-   * Render popup content
-   */
-  private renderModal(): void {
+  render() {
     const {
-      open,
-      onClose,
-      hideClose,
+      title,
       children,
-      modalId,
-      className,
-      ...divProps
+      open
+      // close
     } = this.props;
 
-    render (
-      <I18nextProvider i18n={i18n}>
-        <Provider store={store}>
-          <div className="portal">
-            {open && <div className={overlay} onClick={onClose}>
-              {!hideClose && <Icon className={close} name="close-popup" />}
-
-              <div className={classnames(popup, className)} onClick={this.handleClick} {...divProps}>
-                {children}
-              </div>
-            </div>}
+    const renderPopup = () => (
+      <div styleName="background" onClick={this._handleBackdropClick}>
+        <div styleName="popup" ref={(popup) => { /*this.popup = popup;*/ }}>
+          {title && <div styleName="title">{title}</div>}
+          <div styleName="body">{children}</div>
+          <div styleName="footer">
+            <button styleName="close" type="button" onClick={() => {/*close()*/}}>
+              <img src={require('./images/close.svg')}/>
+            </button>
           </div>
-        </Provider>
-      </I18nextProvider>,
-      document.getElementById(modalId)
+        </div>
+      </div>
     );
-  }
 
-  /**
-   * Stop render
-   */
-  public render(): JSX.Element {
-    return null;
+    return open && renderPopup();
   }
 }
 
-export default Popup;
+export default CSSModules(Popup, require('./styles.css'));

@@ -1,25 +1,76 @@
 import * as React from 'react';
-import { SFC, HTMLProps } from 'react';
+import { SFC } from 'react';
+import { Link } from 'react-router';
 import * as CSSModules from 'react-css-modules';
 
 import Spinner from '../Spinner';
 
-type ButtonProps = HTMLProps<HTMLButtonElement> & {
+export type Props = {
   spinner?: boolean
-  bStyle?: 'default' | 'outline'
+  size?: number
+  styl?: string
+  href?: string
+  to?: string
 };
 
-const Button: SFC<ButtonProps> = (props) => {
-  const {spinner, disabled, children, bStyle = 'default', ...btnProps} = props;
+const Button: SFC<Props> = (props) => {
+  const {
+    children,
+    spinner,
+    size,
+    styl,
+    href,
+    to,
+    ...restProps
+  } = props;
 
-  return (
-    <button
-      styleName={spinner ? `${bStyle}-loaded` : bStyle}
-      disabled={spinner || disabled}
-      {...btnProps}>
-      {spinner ? <Spinner /> : children}
-    </button>
+  const getSize = (val) => {
+    return val === 'small' ? val : '';
+  };
+
+  const getStyle = (val) => {
+    return val === 'secondary' ? val : '';
+  };
+
+  const getClasses = () => (
+    `button ${getSize(size)} ${getStyle(styl)}`
   );
+
+  const renderElement = () => {
+    if (href) {
+      return (
+        <a
+          href={href}
+          styleName={getClasses()}
+          {...restProps}>
+          {spinner ? <Spinner /> : children}
+        </a>
+      );
+    }
+
+    if (to) {
+      return (
+        <Link
+          to={to}
+          styleName={getClasses()}
+          {...restProps}>
+          {spinner ? <Spinner /> : children}
+        </Link>
+      );
+    }
+
+    return (
+      <button
+        type="button"
+        styleName={getClasses()}
+        {...restProps}
+      >
+        {spinner ? <Spinner /> : children}
+      </button>
+    );
+  };
+
+  return renderElement();
 };
 
 export default CSSModules(Button, require('./styles.css'));
