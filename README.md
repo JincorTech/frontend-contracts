@@ -1,6 +1,6 @@
-# Jincor Frontend Company
+# Jincor Frontend Contracts
 
-[![Build Status](https://travis-ci.com/JincorTech/frontend-company.svg?token=zhVTspsPSE9j1Tuwzqe2&branch=develop)](https://travis-ci.com/JincorTech/frontend-company)
+(https://travis-ci.com/JincorTech/frontend-contracts)
 
 ----------------------------
 
