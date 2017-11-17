@@ -1,0 +1,32 @@
+.form {
+  width: 620px;
+  margin: 0 auto;
+}
+
+.avatar {
+  position: absolute;
+  margin: 3px 0 0 -54px;
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.list li {
+  counter-increment: step-counter;
+  margin-bottom: 10px;
+}
+
+.list li::before {
+  position: absolute;
+  content: counter(step-counter);
+  margin: 7px 5px 0 -30px;
+  font-size: 80%;
+  background-color: #00c8c8;
+  color: white;
+  font-weight: bold;
+  padding: 3px 8px;
+  border-radius: 50%;
+}

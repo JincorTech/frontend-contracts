@@ -10,6 +10,7 @@ import Contracts from './components/common/Contracts';
 import FormLayout from './components/common/FormLayout';
 import ContractTypesForm from './components/common/ContractTypesForm';
 import ChooseEmployeeForm from './components/common/ChooseEmployeeForm';
+import CreateContractForm from './components/common/CreateContractForm';
 import ChooseEmployeePopup from './components/common/ChooseEmployeePopup';
 
 // named routes
@@ -28,6 +29,7 @@ export default (
     <Route path="form" component={FormLayout}>
       <Route path="new" component={ContractTypesForm}/>
       <Route path="employee" component={ChooseEmployeeForm}/>
+      <Route path="contract" component={CreateContractForm}/>
     </Route>
 
     <Route path="popup" component={ChooseEmployeePopup}/>
