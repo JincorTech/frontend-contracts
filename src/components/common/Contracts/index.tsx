@@ -5,7 +5,6 @@ import ContractsList from '../ContractsList';
 import Button from '../Button';
 import TabPanel from '../TabPanel';
 
-
 const Contracts: SFC<{}> = ({}) => {
   return (
     <div styleName="content">

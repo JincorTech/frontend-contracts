@@ -24,7 +24,7 @@ const Button: SFC<Props> = (props) => {
 
   const getStyle = () => {
     return disabled ? 'disabled' : 'button';
-  }
+  };
 
   const renderElement = () => {
     if (href) {

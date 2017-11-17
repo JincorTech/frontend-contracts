@@ -7,7 +7,7 @@ export type Props = HTMLProps<HTMLDivElement> & ComponentProps;
 export type ComponentProps = {
   title: string
   open: boolean
-}
+};
 
 class Popup extends Component<Props, {}> {
   constructor(props) {

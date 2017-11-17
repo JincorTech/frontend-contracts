@@ -64,7 +64,7 @@ class Sidebar extends Component<Props, any> {
       </div>
     );
   }
-};
+}
 
 const StyledComponent = CSSModules(Sidebar, require('./styles.css'));
 

@@ -4,7 +4,7 @@ import * as CSSModules from 'react-css-modules';
 
 export type ComponentProps = {
   name: string
-}
+};
 
 const Tab: SFC<ComponentProps> = (props) => {
   return (

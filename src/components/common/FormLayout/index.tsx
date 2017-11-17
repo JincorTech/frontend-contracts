@@ -5,9 +5,9 @@ import * as CSSModules from 'react-css-modules';
 import Avatar from '../Avatar';
 
 export type ComponentProps = {
-}
+};
 
-export type Props = RouteComponentProps<ComponentProps, {}>
+export type Props = RouteComponentProps<ComponentProps, {}>;
 
 const FormLayout: SFC<Props> = (props) => {
   return (

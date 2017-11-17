@@ -1,7 +1,5 @@
 import * as React from 'react';
 import { Route, IndexRedirect, Redirect } from 'react-router';
-import { push } from 'react-router-redux';
-import { UserAuthWrapper } from 'redux-auth-wrapper';
 
 import App from './containers/app/App';
 
