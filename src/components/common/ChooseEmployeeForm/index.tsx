@@ -5,7 +5,7 @@ import SelectInput from '../SelectInput';
 
 const ChooseEmployeeForm: SFC<{}> = () => {
   return (
-    <div styleName="form">
+    <div>
       <div styleName="image"/>
       <span styleName="caption">Hey ya!</span>
       <span styleName="description">

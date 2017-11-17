@@ -14,7 +14,6 @@
 
 .disabled {
   composes: button;
-
   background-color: #dbdfe4;
   pointer-events: none;
   cursor: dont-allow;

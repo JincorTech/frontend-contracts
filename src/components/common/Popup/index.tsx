@@ -44,7 +44,7 @@ class Popup extends Component<Props, {}> {
       <div styleName="background" onClick={this._handleBackdropClick}>
         <div styleName="popup" ref={(popup) => { /*this.popup = popup;*/ }}>
           {title && <div styleName="title">{title}</div>}
-          <div styleName="body">{children}</div>
+          <div>{children}</div>
           <div styleName="footer">
             <button styleName="close" type="button" onClick={() => {/*close()*/}}>
               <img src={require('./images/close.svg')}/>

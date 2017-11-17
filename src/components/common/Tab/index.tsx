@@ -9,7 +9,7 @@ export type ComponentProps = {
 const Tab: SFC<ComponentProps> = (props) => {
   return (
     <div styleName="tab">
-      <span styleName="name">{props.name}</span>
+      <span>{props.name}</span>
     </div>
   );
 };

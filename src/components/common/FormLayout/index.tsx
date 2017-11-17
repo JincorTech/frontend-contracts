@@ -25,7 +25,7 @@ const FormLayout: SFC<Props> = (props) => {
           <Avatar src={'/src'} fullName={''} id={''}/>
         </div>
       </div>
-      <div styleName="content">
+      <div>
         <div>{props.children}</div>
       </div>
     </div>

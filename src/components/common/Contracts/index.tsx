@@ -7,7 +7,7 @@ import TabPanel from '../TabPanel';
 
 const Contracts: SFC<{}> = ({}) => {
   return (
-    <div styleName="content">
+    <div>
       <section styleName="list">
         <TabPanel/>
         <ContractsList/>
