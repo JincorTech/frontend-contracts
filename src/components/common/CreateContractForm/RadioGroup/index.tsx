@@ -6,7 +6,7 @@ export type Props = {
   groupId: string
   values: string[]
   labels: string[]
-}
+};
 
 const RadioGroup: SFC<Props> = (props) => {
   const {
@@ -20,7 +20,7 @@ const RadioGroup: SFC<Props> = (props) => {
   return (
     <div>
       {values.map((currentValue, index) => (
-        <div styleName="item">
+        <div key={index} styleName="item">
           <input type="radio" id={getButtonId(index)} value={currentValue} />
           <label htmlFor={getButtonId(index)}>
             <span>{labels[index] ? labels[index] : ''}</span>

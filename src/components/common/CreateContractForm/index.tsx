@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { SFC } from 'react';
 import * as CSSModules from 'react-css-modules';
 import SelectInput from '../SelectInput';
 import Avatar from '../Avatar';
@@ -76,6 +75,6 @@ class CreateContractForm extends React.Component<{}, {}> {
       </div>
     );
   }
-};
+}
 
 export default CSSModules(CreateContractForm, require('./styles.css'));

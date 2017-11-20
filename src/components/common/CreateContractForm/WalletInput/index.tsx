@@ -5,7 +5,7 @@ import * as CSSModules from 'react-css-modules';
 export type Props = {
   value: string
   description: string
-}
+};
 
 const WalletInput: SFC<Props> = (props) => {
   const {

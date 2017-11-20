@@ -4,7 +4,7 @@ import * as CSSModules from 'react-css-modules';
 
 export type Props = {
   text: string
-}
+};
 
 const Caption: SFC<Props> = (props) => {
   return (

@@ -5,7 +5,7 @@ import * as CSSModules from 'react-css-modules';
 export type Props = {
   description: string
   buttonText: string
-}
+};
 
 const DateInput: SFC<Props> = (props) => {
   const {
