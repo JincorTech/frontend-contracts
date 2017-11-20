@@ -2,28 +2,14 @@
 
 .input {
   height: 64px;
-	background-color: #f8f9fa;
+  background-color: #f8f9fa;
   border-radius: 4px 4px 0 0;
-  border-width: 0 0 1px 0;
+  border-width: 0 0 1px;
   padding-left: 25px;
 }
 
 .header {
-	font-size: 16px;
-  color: #111111;
+  font-size: 16px;
+  color: #111;
   padding: 20px 0 10px 25px;
-}
-
-.text {
-  font: normal 15px Roboto;
-  color: #6e7987;
-  text-align: center;
-  margin: 25px 0 40px;
-}
-
-.tip {
-  font: normal 10px Roboto;
-  color: #6e7987;
-  text-align: center;
-  margin: 10px 0 20px;
 }

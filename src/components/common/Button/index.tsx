@@ -6,9 +6,8 @@ import * as CSSModules from 'react-css-modules';
 import Spinner from '../Spinner';
 
 export type Props = {
+  disabled?: boolean
   spinner?: boolean
-  size?: number
-  styl?: string
   href?: string
   to?: string
 };
@@ -16,32 +15,23 @@ export type Props = {
 const Button: SFC<Props> = (props) => {
   const {
     children,
+    disabled,
     spinner,
-    size,
-    styl,
     href,
     to,
     ...restProps
   } = props;
 
-  const getSize = (val) => {
-    return val === 'small' ? val : '';
+  const getStyle = () => {
+    return disabled ? 'disabled' : 'button';
   };
-
-  const getStyle = (val) => {
-    return val === 'secondary' ? val : '';
-  };
-
-  const getClasses = () => (
-    `button ${getSize(size)} ${getStyle(styl)}`
-  );
 
   const renderElement = () => {
     if (href) {
       return (
         <a
           href={href}
-          styleName={getClasses()}
+          styleName={getStyle()}
           {...restProps}>
           {spinner ? <Spinner /> : children}
         </a>
@@ -52,7 +42,7 @@ const Button: SFC<Props> = (props) => {
       return (
         <Link
           to={to}
-          styleName={getClasses()}
+          styleName={getStyle()}
           {...restProps}>
           {spinner ? <Spinner /> : children}
         </Link>
@@ -62,7 +52,7 @@ const Button: SFC<Props> = (props) => {
     return (
       <button
         type="button"
-        styleName={getClasses()}
+        styleName={getStyle()}
         {...restProps}
       >
         {spinner ? <Spinner /> : children}

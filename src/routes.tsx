@@ -1,7 +1,5 @@
 import * as React from 'react';
 import { Route, IndexRedirect, Redirect } from 'react-router';
-import { push } from 'react-router-redux';
-import { UserAuthWrapper } from 'redux-auth-wrapper';
 
 import App from './containers/app/App';
 
@@ -11,6 +9,7 @@ import FormLayout from './components/common/FormLayout';
 import ContractTypesForm from './components/common/ContractTypesForm';
 import ChooseEmployeeForm from './components/common/ChooseEmployeeForm';
 import ChooseEmployeePopup from './components/common/ChooseEmployeePopup';
+import VerificationPopup from './components/common/VerificationPopup';
 
 // named routes
 export const routes = {
@@ -31,6 +30,7 @@ export default (
     </Route>
 
     <Route path="popup" component={ChooseEmployeePopup}/>
+    <Route path="verifypopup" component={VerificationPopup}/>
 
     <Redirect from="*" to="/cmp/auth/signin" />
   </Route>

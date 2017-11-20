@@ -5,9 +5,9 @@ import * as CSSModules from 'react-css-modules';
 import Avatar from '../Avatar';
 
 export type ComponentProps = {
-}
+};
 
-export type Props = RouteComponentProps<ComponentProps, {}>
+export type Props = RouteComponentProps<ComponentProps, {}>;
 
 const FormLayout: SFC<Props> = (props) => {
   return (
@@ -25,7 +25,7 @@ const FormLayout: SFC<Props> = (props) => {
           <Avatar src={'/src'} fullName={''} id={''}/>
         </div>
       </div>
-      <div styleName="content">
+      <div>
         <div>{props.children}</div>
       </div>
     </div>

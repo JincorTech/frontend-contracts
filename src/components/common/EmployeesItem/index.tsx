@@ -6,7 +6,7 @@ import Avatar from '../Avatar';
 export type ComponentProps = {
   name: string
   email: string
-}
+};
 
 const EmployeesItem: SFC<ComponentProps> = (props) => {
   return (

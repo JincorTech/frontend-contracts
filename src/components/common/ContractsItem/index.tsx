@@ -6,7 +6,7 @@ import Avatar from '../Avatar';
 export type ComponentProps = {
   name: string
   date: string
-}
+};
 
 const ContractsItem: SFC<ComponentProps> = (props) => {
   return (
