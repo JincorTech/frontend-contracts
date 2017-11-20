@@ -90,3 +90,24 @@
 	text-align: left;
 	color: #111111;
 }
+
+.sign-status {
+  display: block;
+  width: 134px;
+	height: 36px;
+	font-size: 32px;
+	line-height: 1.12;
+	text-align: left;
+  color: #111111;
+  margin-top: 30px;
+}
+
+.sign-description {
+  display: block;
+	width: 120px;
+	height: 16px;
+	font-size: 14px;
+	text-align: left;
+  color: #111111;
+  margin-top: 8px;
+}

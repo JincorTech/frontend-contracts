@@ -65,6 +65,8 @@ class CreateContractForm extends React.Component<{}, {}> {
           <li>
             <Caption text={'Signatures'} />
             <span styleName="section-description">To sign contract you need to request code from Google Authentificator. After your signing request for the signing of the contract will be sent to your employee.</span>
+            <span styleName="sign-status">Unsigned</span>
+            <span styleName="sign-description">Employer signature</span>
           </li>
         </ol>
       </div>
