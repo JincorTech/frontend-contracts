@@ -37,9 +37,10 @@
 }
 
 .list {
-  margin: 0;
+  margin-bottom: 60px;
   padding: 0;
   list-style-type: none;
+  border-bottom: 1px solid #e6e8eb;
 }
 
 .list li {
@@ -53,7 +54,7 @@
   margin-left: -64px;
   content: counter(step-counter);
   margin-right: 5px;
-  background-color: #00c8c8;
+  background-color: #dbdfe4;
   font-size: 16px;
 	font-weight: bold;
 	text-align: center;
@@ -110,4 +111,9 @@
 	text-align: left;
   color: #111111;
   margin-top: 8px;
+}
+
+.create-button {
+  width: 200px;
+  margin: 0 auto;
 }

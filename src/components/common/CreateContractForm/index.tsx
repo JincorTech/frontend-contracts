@@ -8,6 +8,7 @@ import Input from '../Input';
 import Caption from './Caption';
 import WalletInput from './WalletInput';
 import RadioGroup from './RadioGroup';
+import Button from '../Button';
 
 class CreateContractForm extends React.Component<{}, {}> {
   render() {
@@ -69,6 +70,9 @@ class CreateContractForm extends React.Component<{}, {}> {
             <span styleName="sign-description">Employer signature</span>
           </li>
         </ol>
+        <div styleName="create-button">
+          <Button disabled={true}>Create smart contract</Button>
+        </div>
       </div>
     );
   }
