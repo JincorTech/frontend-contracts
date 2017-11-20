@@ -1,0 +1,9 @@
+.caption {
+  height: 36px;
+  font-size: 16px;
+	line-height: 1.31;
+	text-align: left;
+  color: #111111;
+  border-bottom: 1px solid #e6e8eb;
+  margin-bottom: 20px;
+}

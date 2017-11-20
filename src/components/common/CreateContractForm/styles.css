@@ -5,7 +5,7 @@
 
 .avatar {
   position: absolute;
-  margin: 3px 0 0 -54px;
+  margin: 3px 0 0 -64px;
 }
 
 .input {
@@ -22,6 +22,16 @@
   padding: 0;
 }
 
+.small-text-input {
+	height: 19px;
+	font-size: 16px;
+	text-align: left;
+  color: #9da0a4;
+  border: none;
+  padding: 0;
+  margin-top: 15px;
+}
+
 .list {
   margin: 0;
   padding: 0;
@@ -31,18 +41,26 @@
 .list li {
   counter-increment: step-counter;
   margin-bottom: 60px;
+  clear: both;
 }
 
 .list li::before {
-  width: 36px;
-  position: absolute;
+  float: left;
+  margin-left: -64px;
   content: counter(step-counter);
-  margin-left: -54px;
+  margin-right: 5px;
   background-color: #00c8c8;
-  border-radius: 50%;
   font-size: 16px;
 	font-weight: bold;
 	text-align: center;
   color: #ffffff;
+  padding: 3px 8px;
+  border-radius: 50%;
+  width: 36px;
   padding: 9px 0;
+}
+
+.spacer {
+  clear: both;
+  margin-bottom: -30px;
 }
