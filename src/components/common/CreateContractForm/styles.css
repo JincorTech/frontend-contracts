@@ -22,6 +22,11 @@
   padding: 0;
 }
 
+.job-text-input {
+  composes: text-input;
+  margin-bottom: 15px;
+}
+
 .small-text-input {
 	height: 19px;
 	font-size: 16px;
@@ -29,7 +34,6 @@
   color: #9da0a4;
   border: none;
   padding: 0;
-  margin-top: 15px;
 }
 
 .list {
@@ -60,7 +64,29 @@
   padding: 9px 0;
 }
 
-.spacer {
+.wallets-spacer {
   clear: both;
   margin-bottom: -30px;
+}
+
+.spacer {
+  clear: both;
+}
+
+.period-dates {
+  margin-top: 30px;
+}
+
+.period-radio-group {
+  margin-bottom: 30px;
+}
+
+.section-description {
+  display: block;
+  width: 620px;
+	height: 44px;
+	font-size: 14px;
+	line-height: 1.57;
+	text-align: left;
+	color: #111111;
 }
