@@ -17,8 +17,8 @@ const RadioGroup: SFC<Props> = (props) => {
     <div>
       {values.map((currentValue, index) => (
         <div styleName="item">
-            <input type="radio" id={`radio-item-${index}`} value={currentValue}/>
-            <label htmlFor={`radio-item-${index}`}>
+          <input type="radio" id={`radio-item-${index}`} value={currentValue} />
+          <label htmlFor={`radio-item-${index}`}>
             <span>{labels[index] ? labels[index] : ''}</span>
           </label>
         </div>
