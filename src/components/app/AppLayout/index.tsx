@@ -3,7 +3,7 @@ import { SFC } from 'react';
 import { RouteComponentProps } from 'react-router';
 import * as CSSModules from 'react-css-modules';
 import Sidebar from '../Sidebar';
-import Topbar from '../Topbar';
+import Topbar from '../../form/Topbar';
 
 export type ComponentProps = {};
 

@@ -1,9 +1,9 @@
 import * as React from 'react';
 import * as CSSModules from 'react-css-modules';
 
-import Popup from '../Popup';
-import Input from '../Input';
-import Button from '../Button';
+import Popup from '../../common/Popup';
+import Input from '../../common/Input';
+import Button from '../../common/Button';
 
 const VerificationPopup = () => {
   return (

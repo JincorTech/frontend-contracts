@@ -3,13 +3,13 @@ import { Route, IndexRedirect, Redirect } from 'react-router';
 
 import App from './containers/app/App';
 
-import AppLayout from './components/common/AppLayout';
-import Contracts from './components/common/Contracts';
-import FormLayout from './components/common/FormLayout';
-import ContractTypesForm from './components/common/ContractTypesForm';
-import ChooseEmployeeForm from './components/common/ChooseEmployeeForm';
-import ChooseEmployeePopup from './components/common/ChooseEmployeePopup';
-import VerificationPopup from './components/common/VerificationPopup';
+import AppLayout from './components/app/AppLayout';
+import ContractsPage from './containers/contracts/ContractsPage';
+import FormLayout from './components/form/FormLayout';
+import ContractTypesForm from './containers/newContractWizard/ContractTypesForm';
+import ChooseEmployeeForm from './containers/newContractWizard/ChooseEmployeeForm';
+import ChooseEmployeePopup from './components/newContractWizard/ChooseEmployeePopup';
+import VerificationPopup from './components/verification/VerificationPopup';
 
 // named routes
 export const routes = {
@@ -21,7 +21,7 @@ export default (
     <IndexRedirect to="/ctr/app/contracts"/>
 
     <Route path="app" component={AppLayout}>
-      <Route path="contracts" component={Contracts}/>
+      <Route path="contracts" component={ContractsPage}/>
     </Route>
 
     <Route path="form" component={FormLayout}>

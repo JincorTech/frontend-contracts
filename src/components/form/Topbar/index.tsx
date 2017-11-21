@@ -2,7 +2,7 @@ import * as React from 'react';
 import { SFC } from 'react';
 import * as CSSModules from 'react-css-modules';
 
-import Pagename from '../Pagename';
+import Pagename from '../../common/Pagename';
 
 export type Props = {
   pathname: string;
