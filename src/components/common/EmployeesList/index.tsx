@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SFC } from 'react';
-import EmployeesItem from '../EmployeesItem';
+import EmployeesItem from './EmployeesItem';
 
 const EmployeesList: SFC<{}> = ({}) => {
   return (

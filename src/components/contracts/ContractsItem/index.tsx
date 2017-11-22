@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SFC } from 'react';
 import * as CSSModules from 'react-css-modules';
-import Avatar from '../Avatar';
+import Avatar from '../../common/Avatar';
 
 export type ComponentProps = {
   name: string

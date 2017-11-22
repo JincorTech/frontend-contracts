@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { SFC } from 'react';
 import * as CSSModules from 'react-css-modules';
-import ContractsList from '../ContractsList';
-import Button from '../Button';
-import TabPanel from '../TabPanel';
+import ContractsList from '../../../components/contracts/ContractsList';
+import Button from '../../../components/common/Button';
+import TabPanel from '../../../components/contracts/TabPanel';
 
-const Contracts: SFC<{}> = ({}) => {
+const ContractsPage: SFC<{}> = ({}) => {
   return (
     <div>
       <section styleName="list">
@@ -25,4 +25,4 @@ const Contracts: SFC<{}> = ({}) => {
   );
 };
 
-export default CSSModules(Contracts, require('./styles.css'));
+export default CSSModules(ContractsPage, require('./styles.css'));
