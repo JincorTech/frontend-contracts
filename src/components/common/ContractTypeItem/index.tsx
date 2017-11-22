@@ -6,7 +6,7 @@ export type ComponentProps = {
   name: string
   description: string
   disabled: boolean
-}
+};
 
 const ContractTypeItem: SFC<ComponentProps> = (props) => {
   return (

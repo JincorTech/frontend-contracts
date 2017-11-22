@@ -5,17 +5,17 @@ import * as CSSModules from 'react-css-modules';
 import Sidebar from '../Sidebar';
 import Topbar from '../Topbar';
 
-export type ComponentProps = {}
+export type ComponentProps = {};
 
-export type Props = RouteComponentProps<ComponentProps, {}>
+export type Props = RouteComponentProps<ComponentProps, {}>;
 
 const AppLayout: SFC<Props> = (props) => {
   return (
-    <div styleName='wrapper'>
-      <div styleName='sidebar'>
+    <div styleName="wrapper">
+      <div styleName="sidebar">
         <Sidebar/>
       </div>
-      <div styleName='main'>
+      <div styleName="main">
         <Topbar pathname={props.location.pathname}/>
         <div>{props.children}</div>
       </div>

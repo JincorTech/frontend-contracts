@@ -4,10 +4,14 @@ import * as CSSModules from 'react-css-modules';
 
 import Pagename from '../Pagename';
 
-const Topbar = ({ pathname }) => (
-  <div styleName='topbar'>
-    <div styleName='title'><Pagename pathname={pathname}/></div>
-    <div styleName='faq'></div>
+export type Props = {
+  pathname: string;
+};
+
+const Topbar: SFC<Props> = (pathname) => (
+  <div styleName="topbar">
+    <div styleName="title"><Pagename pathname={pathname}/></div>
+    <div styleName="faq"></div>
   </div>
 );
 

@@ -8,7 +8,7 @@
 
 .header {
   border-bottom: 1px solid #e6e8eb;
-  padding: 32px 0 32px 0;
+  padding: 32px 0;
 }
 
 .back {
@@ -35,8 +35,4 @@
   position: absolute;
   right: 0;
   margin: -36px 40px 0 0;
-}
-
-.content {
-
 }
