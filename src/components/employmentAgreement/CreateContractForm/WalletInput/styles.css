@@ -4,16 +4,16 @@
 }
 
 .value {
-	font-size: 32px;
-	text-align: left;
-  color: #111111;
+  font-size: 32px;
+  text-align: left;
+  color: #111;
   margin-bottom: 8px;
 }
 
 .description {
   font-size: 14px;
-	text-align: left;
-  color: #111111;
+  text-align: left;
+  color: #111;
   margin-bottom: 30px;
 }
 
@@ -22,12 +22,12 @@
 }
 
 .icon {
-	width: 16px;
-	height: 16px;
+  width: 16px;
+  height: 16px;
 }
 
 .text {
-	font-size: 16px;
-	text-align: right;
-	color: #9da0a4;
+  font-size: 16px;
+  text-align: right;
+  color: #9da0a4;
 }

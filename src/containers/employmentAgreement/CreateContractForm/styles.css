@@ -13,10 +13,10 @@
 }
 
 .text-input {
-	height: 36px;
-	font-size: 32px;
-	line-height: 1.12;
-	text-align: left;
+  height: 36px;
+  font-size: 32px;
+  line-height: 1.12;
+  text-align: left;
   color: #9da0a4;
   border: none;
   padding: 0;
@@ -28,9 +28,9 @@
 }
 
 .small-text-input {
-	height: 19px;
-	font-size: 16px;
-	text-align: left;
+  height: 19px;
+  font-size: 16px;
+  text-align: left;
   color: #9da0a4;
   border: none;
   padding: 0;
@@ -56,10 +56,9 @@
   margin-right: 5px;
   background-color: #dbdfe4;
   font-size: 16px;
-	font-weight: bold;
-	text-align: center;
-  color: #ffffff;
-  padding: 3px 8px;
+  font-weight: bold;
+  text-align: center;
+  color: #fff;
   border-radius: 50%;
   width: 36px;
   padding: 9px 0;
@@ -85,31 +84,31 @@
 .section-description {
   display: block;
   width: 620px;
-	height: 44px;
-	font-size: 14px;
-	line-height: 1.57;
-	text-align: left;
-	color: #111111;
+  height: 44px;
+  font-size: 14px;
+  line-height: 1.57;
+  text-align: left;
+  color: #111;
 }
 
 .sign-status {
   display: block;
   width: 134px;
-	height: 36px;
-	font-size: 32px;
-	line-height: 1.12;
-	text-align: left;
-  color: #111111;
+  height: 36px;
+  font-size: 32px;
+  line-height: 1.12;
+  text-align: left;
+  color: #111;
   margin-top: 30px;
 }
 
 .sign-description {
   display: block;
-	width: 120px;
-	height: 16px;
-	font-size: 14px;
-	text-align: left;
-  color: #111111;
+  width: 120px;
+  height: 16px;
+  font-size: 14px;
+  text-align: left;
+  color: #111;
   margin-top: 8px;
 }
 
