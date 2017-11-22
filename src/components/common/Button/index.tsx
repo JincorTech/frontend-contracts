@@ -14,24 +14,22 @@ export type Props = {
 
 const Button: SFC<Props> = (props) => {
   const {
-    children,
     disabled,
+    children,
     spinner,
     href,
     to,
     ...restProps
   } = props;
 
-  const getStyle = () => {
-    return disabled ? 'disabled' : 'button';
-  };
+  const getClass = () => disabled ? 'disabled' : 'button';
 
   const renderElement = () => {
     if (href) {
       return (
         <a
           href={href}
-          styleName={getStyle()}
+          styleName={getClass()}
           {...restProps}>
           {spinner ? <Spinner /> : children}
         </a>
@@ -42,7 +40,7 @@ const Button: SFC<Props> = (props) => {
       return (
         <Link
           to={to}
-          styleName={getStyle()}
+          styleName={getClass()}
           {...restProps}>
           {spinner ? <Spinner /> : children}
         </Link>
@@ -52,7 +50,7 @@ const Button: SFC<Props> = (props) => {
     return (
       <button
         type="button"
-        styleName={getStyle()}
+        styleName={getClass()}
         {...restProps}
       >
         {spinner ? <Spinner /> : children}
