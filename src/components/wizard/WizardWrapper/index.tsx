@@ -9,7 +9,7 @@ export type ComponentProps = {
 
 export type Props = RouteComponentProps<ComponentProps, {}>;
 
-const FormLayout: SFC<Props> = (props) => {
+const WizardWrapper: SFC<Props> = (props) => {
   return (
     <div styleName="layout">
       <div styleName="header">
@@ -32,4 +32,4 @@ const FormLayout: SFC<Props> = (props) => {
   );
 };
 
-export default CSSModules(FormLayout, require('./styles.css'));
+export default CSSModules(WizardWrapper, require('./styles.css'));

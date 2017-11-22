@@ -3,12 +3,12 @@ import { Route, IndexRedirect, Redirect } from 'react-router';
 
 import App from './containers/app/App';
 
-import AppLayout from './components/app/AppLayout';
+import AppWrapper from './components/app/AppWrapper';
 import ContractsPage from './containers/contracts/ContractsPage';
-import FormLayout from './components/form/FormLayout';
-import ContractTypesForm from './containers/newContractWizard/ContractTypesForm';
-import ChooseEmployeeForm from './containers/newContractWizard/ChooseEmployeeForm';
-import ChooseEmployeePopup from './components/newContractWizard/ChooseEmployeePopup';
+import WizardWrapper from './components/wizard/WizardWrapper';
+import ContractTypesForm from './containers/employmentAgreement/ContractTypesForm';
+import ChooseEmployeeForm from './containers/employmentAgreement/ChooseEmployeeForm';
+import ChooseEmployeePopup from './components/employmentAgreement/ChooseEmployeePopup';
 import VerificationPopup from './components/verification/VerificationPopup';
 
 // named routes
@@ -20,11 +20,11 @@ export default (
   <Route path="/ctr" component={App}>
     <IndexRedirect to="/ctr/app/contracts"/>
 
-    <Route path="app" component={AppLayout}>
+    <Route path="app" component={AppWrapper}>
       <Route path="contracts" component={ContractsPage}/>
     </Route>
 
-    <Route path="form" component={FormLayout}>
+    <Route path="form" component={WizardWrapper}>
       <Route path="new" component={ContractTypesForm}/>
       <Route path="employee" component={ChooseEmployeeForm}/>
     </Route>

@@ -3,13 +3,13 @@ import { SFC } from 'react';
 import { RouteComponentProps } from 'react-router';
 import * as CSSModules from 'react-css-modules';
 import Sidebar from '../Sidebar';
-import Topbar from '../../form/Topbar';
+import Topbar from '../Topbar';
 
 export type ComponentProps = {};
 
 export type Props = RouteComponentProps<ComponentProps, {}>;
 
-const AppLayout: SFC<Props> = (props) => {
+const AppWrapper: SFC<Props> = (props) => {
   return (
     <div styleName="wrapper">
       <div styleName="sidebar">
@@ -23,4 +23,4 @@ const AppLayout: SFC<Props> = (props) => {
   );
 };
 
-export default CSSModules(AppLayout, require('./styles.css'));
+export default CSSModules(AppWrapper, require('./styles.css'));
