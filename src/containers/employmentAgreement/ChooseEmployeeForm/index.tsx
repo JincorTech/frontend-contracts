@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SFC } from 'react';
 import * as CSSModules from 'react-css-modules';
-import SelectInput from '../../../components/common/SelectInput';
+import SelectInput from '../../../components/employmentAgreement/createContractForm/SelectInput';
 
 const ChooseEmployeeForm: SFC<{}> = () => {
   return (

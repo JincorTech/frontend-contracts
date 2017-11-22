@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SFC } from 'react';
 import * as CSSModules from 'react-css-modules';
-import Button from '../Button';
+import Button from '../../../common/Button';
 
 const SelectInput: SFC<{}> = () => {
   return (

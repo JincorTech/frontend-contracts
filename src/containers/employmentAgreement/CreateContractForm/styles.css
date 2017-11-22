@@ -1,0 +1,118 @@
+.form {
+  width: 620px;
+  margin: 64px auto;
+}
+
+.avatar {
+  position: absolute;
+  margin: 3px 0 0 -64px;
+}
+
+.input {
+  margin-bottom: 60px;
+}
+
+.text-input {
+  height: 36px;
+  font-size: 32px;
+  line-height: 1.12;
+  text-align: left;
+  color: #9da0a4;
+  border: none;
+  padding: 0;
+}
+
+.job-text-input {
+  composes: text-input;
+  margin-bottom: 15px;
+}
+
+.small-text-input {
+  height: 19px;
+  font-size: 16px;
+  text-align: left;
+  color: #9da0a4;
+  border: none;
+  padding: 0;
+}
+
+.list {
+  margin-bottom: 60px;
+  padding: 0;
+  list-style-type: none;
+  border-bottom: 1px solid #e6e8eb;
+}
+
+.list li {
+  counter-increment: step-counter;
+  margin-bottom: 60px;
+  clear: both;
+}
+
+.list li::before {
+  float: left;
+  margin-left: -64px;
+  content: counter(step-counter);
+  margin-right: 5px;
+  background-color: #dbdfe4;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  color: #fff;
+  border-radius: 50%;
+  width: 36px;
+  padding: 9px 0;
+}
+
+.wallets-spacer {
+  clear: both;
+  margin-bottom: -30px;
+}
+
+.spacer {
+  clear: both;
+}
+
+.period-dates {
+  margin-top: 30px;
+}
+
+.period-radio-group {
+  margin-bottom: 30px;
+}
+
+.section-description {
+  display: block;
+  width: 620px;
+  height: 44px;
+  font-size: 14px;
+  line-height: 1.57;
+  text-align: left;
+  color: #111;
+}
+
+.sign-status {
+  display: block;
+  width: 134px;
+  height: 36px;
+  font-size: 32px;
+  line-height: 1.12;
+  text-align: left;
+  color: #111;
+  margin-top: 30px;
+}
+
+.sign-description {
+  display: block;
+  width: 120px;
+  height: 16px;
+  font-size: 14px;
+  text-align: left;
+  color: #111;
+  margin-top: 8px;
+}
+
+.create-button {
+  width: 200px;
+  margin: 0 auto;
+}

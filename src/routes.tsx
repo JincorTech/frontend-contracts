@@ -9,6 +9,7 @@ import WizardWrapper from './components/wizard/WizardWrapper';
 import ContractTypesForm from './containers/employmentAgreement/ContractTypesForm';
 import ChooseEmployeeForm from './containers/employmentAgreement/ChooseEmployeeForm';
 import ChooseEmployeePopup from './components/employmentAgreement/ChooseEmployeePopup';
+import CreateContractForm from './containers/employmentAgreement/CreateContractForm';
 import VerificationPopup from './components/verification/VerificationPopup';
 
 // named routes
@@ -27,6 +28,7 @@ export default (
     <Route path="form" component={WizardWrapper}>
       <Route path="new" component={ContractTypesForm}/>
       <Route path="employee" component={ChooseEmployeeForm}/>
+      <Route path="contract" component={CreateContractForm}/>
     </Route>
 
     <Route path="popup" component={ChooseEmployeePopup}/>
