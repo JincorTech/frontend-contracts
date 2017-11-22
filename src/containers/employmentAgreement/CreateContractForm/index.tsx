@@ -1,13 +1,13 @@
 import * as React from 'react';
 import * as CSSModules from 'react-css-modules';
-import SelectInput from '../SelectInput';
-import Avatar from '../Avatar';
-import DateInput from './DateInput';
-import Input from '../Input';
-import Caption from './Caption';
-import WalletInput from './WalletInput';
-import RadioGroup from './RadioGroup';
-import Button from '../Button';
+import SelectInput from '../../../components/employmentAgreement/createContractForm/SelectInput';
+import Avatar from '../../../components/common/Avatar';
+import DateInput from '../../../components/employmentAgreement/createContractForm/DateInput';
+import Input from '../../../components/common/Input';
+import Caption from '../../../components/employmentAgreement/createContractForm/Caption';
+import WalletInput from '../../../components/employmentAgreement/createContractForm/WalletInput';
+import RadioGroup from '../../../components/employmentAgreement/createContractForm/RadioGroup';
+import Button from '../../../components/common/Button';
 
 class CreateContractForm extends React.Component<{}, {}> {
   render() {
