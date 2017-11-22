@@ -2,14 +2,14 @@ import * as React from 'react';
 import { SFC } from 'react';
 import { RouteComponentProps } from 'react-router';
 import * as CSSModules from 'react-css-modules';
-import Avatar from '../Avatar';
+import Avatar from '../../common/Avatar';
 
 export type ComponentProps = {
 };
 
 export type Props = RouteComponentProps<ComponentProps, {}>;
 
-const FormLayout: SFC<Props> = (props) => {
+const WizardWrapper: SFC<Props> = (props) => {
   return (
     <div styleName="layout">
       <div styleName="header">
@@ -32,4 +32,4 @@ const FormLayout: SFC<Props> = (props) => {
   );
 };
 
-export default CSSModules(FormLayout, require('./styles.css'));
+export default CSSModules(WizardWrapper, require('./styles.css'));

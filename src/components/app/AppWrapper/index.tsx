@@ -9,7 +9,7 @@ export type ComponentProps = {};
 
 export type Props = RouteComponentProps<ComponentProps, {}>;
 
-const AppLayout: SFC<Props> = (props) => {
+const AppWrapper: SFC<Props> = (props) => {
   return (
     <div styleName="wrapper">
       <div styleName="sidebar">
@@ -23,4 +23,4 @@ const AppLayout: SFC<Props> = (props) => {
   );
 };
 
-export default CSSModules(AppLayout, require('./styles.css'));
+export default CSSModules(AppWrapper, require('./styles.css'));
