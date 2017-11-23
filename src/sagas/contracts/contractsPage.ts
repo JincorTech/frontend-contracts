@@ -2,6 +2,7 @@ import { SagaIterator } from 'redux-saga';
 import { takeLatest, call, put, fork } from 'redux-saga/effects';
 import { Action } from '../../utils/actions';
 import { get } from '../../apiMock';
+import { Contract } from '../../redux/modules/contracts/contractsPage';
 
 import {
   fetchContracts
