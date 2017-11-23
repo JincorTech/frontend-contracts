@@ -1,15 +1,18 @@
 import * as React from 'react';
 import { SFC } from 'react';
 import ContractsItem from '../ContractsItem';
+import { Contract } from '../../../redux/modules/contracts/contractsPage';
 
-const ContractsList: SFC<{}> = ({}) => {
-  return (
-    <div>
-      <ContractsItem name={'Maxim Brook'} date={'01/10/2017'}/>
-      <ContractsItem name={'Mike Jefferson'} date={'01/10/2017'}/>
-      <ContractsItem name={'Claudia Bullock'} date={'01/10/2017'}/>
-    </div>
-  );
-};
+export type Props = {
+  contracts: Contract[];
+}
+
+const ContractsList: SFC<Props> = (props) => (
+  <div>
+    {props.contracts.map((contract, index) => {
+      return <ContractsItem key={index} name={contract.name} date={contract.date} />
+    })}
+  </div>
+);
 
 export default ContractsList;
