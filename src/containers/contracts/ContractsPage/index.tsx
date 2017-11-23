@@ -37,6 +37,8 @@ class ContractsPage extends Component<Props, {}>{
   public render() {
     const {
       contracts,
+      sorting,
+      filtering,
       changeSorting,
       changeFiltering
     } = this.props;
@@ -44,7 +46,7 @@ class ContractsPage extends Component<Props, {}>{
     return (
       <div>
         <section styleName="list">
-          <TabPanel changeSorting={changeSorting} changeFiltering={changeFiltering}/>
+          <TabPanel sorting={sorting} filtering={filtering} changeSorting={changeSorting} changeFiltering={changeFiltering}/>
           <ContractsList contracts={contracts}/>
         </section>
         <section styleName="add-contract">

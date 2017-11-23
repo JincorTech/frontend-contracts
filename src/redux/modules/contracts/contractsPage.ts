@@ -77,10 +77,16 @@ export default createReducer<State>({
   ),
 
   [CHANGE_SORTING]: (state: State, { payload }: Action<SortingType>): State => (
-    state.merge({ contracts: getSortedContracts(Array.from(state.contracts), payload) })
+    state.merge({
+      contracts: getSortedContracts(Array.from(state.contracts), payload),
+      sorting: payload
+    })
   ),
 
   [CHANGE_FILTERING]: (state: State, { payload }: Action<FilteringType>): State => (
-    state.merge({ contracts: getFilteredContracts(state.contracts, payload) })
+    state.merge({
+      contracts: getFilteredContracts(state.contracts, payload),
+      filtering: payload
+    })
   ),
 }, initialState);
