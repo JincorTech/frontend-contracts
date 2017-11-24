@@ -11,7 +11,6 @@ import {
   changeFiltering,
   StateMap as StateProps,
   SortingType,
-  Contract,
   FilteringType
 } from '../../../redux/modules/contracts/contractsPage';
 
@@ -29,7 +28,7 @@ export type DispatchProps = {
 /**
  * Component
  */
-class ContractsPage extends Component<Props, {}>{
+class ContractsPage extends Component<Props, {}> {
   public componentDidMount() {
     this.props.fetchContracts();
   }
@@ -61,7 +60,7 @@ class ContractsPage extends Component<Props, {}>{
       </div>
     );
   }
-};
+}
 
 /**
  * Export

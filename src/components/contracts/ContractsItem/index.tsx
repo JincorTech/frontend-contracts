@@ -13,7 +13,7 @@ const ContractsItem: SFC<ComponentProps> = (props) => {
 
   const printDate = (date: Date) => {
     return `${pad(date.getDay())}/${pad(date.getMonth() + 1)}/${pad(date.getFullYear())}`;
-  }
+  };
 
   return (
     <div styleName="item">

@@ -26,7 +26,7 @@ export type Contract = {
   name: string
   date: Date
   signed: boolean
-}
+};
 
 /**
  * Constants
@@ -57,11 +57,11 @@ const getSortingComparator = (sorting: SortingType) => {
   } else {
     return (a: Contract, b: Contract) => a.name < b.name ? 1 : -1;
   }
-}
+};
 
 const getSortedContracts = (contracts: Contract[], sorting: SortingType) => {
   return contracts.sort(getSortingComparator(sorting));
-}
+};
 
 const getFilteredContracts = (contracts: Contract[], filtering: FilteringType) => {
   if (filtering === FilteringType.Unsigned) {
@@ -69,7 +69,7 @@ const getFilteredContracts = (contracts: Contract[], filtering: FilteringType) =
   } else {
     return contracts;
   }
-}
+};
 
 export default createReducer<State>({
   [fetchContracts.SUCCESS]: (state: State, { payload }: Action<Contract[]>): State => (
@@ -88,5 +88,5 @@ export default createReducer<State>({
       contracts: getFilteredContracts(state.contracts, payload),
       filtering: payload
     })
-  ),
+  )
 }, initialState);

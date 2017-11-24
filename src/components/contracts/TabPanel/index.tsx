@@ -9,7 +9,7 @@ export type Props = {
   filtering: FilteringType
   changeSorting: (sorting: SortingType) => void
   changeFiltering: (filtering: FilteringType) => void
-}
+};
 
 const TabPanel: SFC<Props> = (props) => {
   const {
