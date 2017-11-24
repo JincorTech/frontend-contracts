@@ -4,11 +4,18 @@ import * as CSSModules from 'react-css-modules';
 
 export type ComponentProps = {
   name: string
+  isActive: boolean
+  onSelect: () => void
 };
 
 const Tab: SFC<ComponentProps> = (props) => {
+  const {
+    onSelect,
+    isActive
+  } = props;
+
   return (
-    <div styleName="tab">
+    <div styleName={isActive ? 'active' : 'tab'} onClick={onSelect}>
       <span>{props.name}</span>
     </div>
   );
