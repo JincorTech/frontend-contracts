@@ -63,14 +63,6 @@ const getSortedContracts = (contracts: Contract[], sorting: SortingType) => {
   return contracts.sort(getSortingComparator(sorting));
 };
 
-const getFilteredContracts = (contracts: Contract[], filtering: FilteringType) => {
-  if (filtering === FilteringType.Unsigned) {
-    return contracts.filter((contract: Contract) => !contract.signed);
-  } else {
-    return contracts;
-  }
-};
-
 export default createReducer<State>({
   [fetchContracts.SUCCESS]: (state: State, { payload }: Action<Contract[]>): State => (
     state.merge({ contracts: getSortedContracts(payload, SortingType.ByDate) })
@@ -85,7 +77,6 @@ export default createReducer<State>({
 
   [CHANGE_FILTERING]: (state: State, { payload }: Action<FilteringType>): State => (
     state.merge({
-      contracts: getFilteredContracts(state.contracts, payload),
       filtering: payload
     })
   )

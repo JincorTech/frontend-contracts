@@ -11,6 +11,7 @@ import {
   changeFiltering,
   StateMap as StateProps,
   SortingType,
+  Contract,
   FilteringType
 } from '../../../redux/modules/contracts/contractsPage';
 
@@ -42,11 +43,19 @@ class ContractsPage extends Component<Props, {}> {
       changeFiltering
     } = this.props;
 
+    const getFilteredContracts = (contracts: Contract[], filtering: FilteringType) => {
+      if (filtering === FilteringType.Unsigned) {
+        return contracts.filter((contract: Contract) => !contract.signed);
+      } else {
+        return contracts;
+      }
+    };
+
     return (
       <div>
         <section styleName="list">
           <TabPanel sorting={sorting} filtering={filtering} changeSorting={changeSorting} changeFiltering={changeFiltering}/>
-          <ContractsList contracts={contracts}/>
+          <ContractsList contracts={getFilteredContracts(contracts, filtering)}/>
         </section>
         <section styleName="add-contract">
           <Button>

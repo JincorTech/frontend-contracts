@@ -19,14 +19,16 @@ const TabPanel: SFC<Props> = (props) => {
     changeFiltering
   } = props;
 
+  const isFilteringActive = filtering === FilteringType.Unsigned;
+
   return (
     <div styleName="tabs">
       <Tab name={'Latest'} onSelect={() => changeSorting(SortingType.ByDate)}
         isActive={sorting === SortingType.ByDate}/>
       <Tab name={'Sort by name'} onSelect={() => changeSorting(SortingType.ByName)}
         isActive={sorting === SortingType.ByName}/>
-      <Tab name={'Unsigned contracts'} onSelect={() => changeFiltering(FilteringType.Unsigned)}
-        isActive={filtering === FilteringType.Unsigned}/>
+      <Tab name={'Unsigned contracts'} onSelect={() => changeFiltering(isFilteringActive ? FilteringType.All : FilteringType.Unsigned)}
+        isActive={isFilteringActive}/>
     </div>
   );
 };
