@@ -2,9 +2,11 @@ import { SagaIterator } from 'redux-saga';
 import { fork } from 'redux-saga/effects';
 
 import appSaga from './app/app';
+import contractsPageSaga from './contracts/contractsPage';
 
 export default function*(): SagaIterator {
   yield [
-    fork(appSaga)
+    fork(appSaga),
+    fork(contractsPageSaga)
   ];
 }
