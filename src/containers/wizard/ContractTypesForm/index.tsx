@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SFC } from 'react';
 import * as CSSModules from 'react-css-modules';
-import ContractTypeItem from '../../../components/employmentAgreement/ContractTypeItem';
+import ContractTypeItem from '../../../components/wizard/ContractTypeItem';
 
 const ContractTypesForm: SFC<{}> = () => {
   return (

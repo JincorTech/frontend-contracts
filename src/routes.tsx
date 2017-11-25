@@ -5,8 +5,8 @@ import App from './containers/app/App';
 
 import AppWrapper from './components/app/AppWrapper';
 import ContractsPage from './containers/contracts/ContractsPage';
-import WizardWrapper from './components/wizard/WizardWrapper';
-import ContractTypesForm from './containers/employmentAgreement/ContractTypesForm';
+import WizardWrapper from './containers/wizard/CreateContractWizard';
+import ContractTypesForm from './containers/wizard/ContractTypesForm';
 import ChooseEmployeeForm from './containers/employmentAgreement/ChooseEmployeeForm';
 import ChooseEmployeePopup from './components/employmentAgreement/ChooseEmployeePopup';
 import CreateContractForm from './containers/employmentAgreement/CreateContractForm';
@@ -25,8 +25,8 @@ export default (
       <Route path="contracts" component={ContractsPage}/>
     </Route>
 
-    <Route path="form" component={WizardWrapper}>
-      <Route path="new" component={ContractTypesForm}/>
+    <Route path="create" component={WizardWrapper}>
+      <Route path="type" component={ContractTypesForm}/>
       <Route path="employee" component={ChooseEmployeeForm}/>
       <Route path="contract" component={CreateContractForm}/>
     </Route>
