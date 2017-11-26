@@ -16,3 +16,8 @@
   text-align: right;
   color: #0080ff;
 }
+
+.input {
+  composes: value;
+  float: right;
+}

@@ -15,8 +15,9 @@ const DateInput: SFC<Props> = (props) => {
 
   return (
     <div styleName="date-input">
-      <span styleName="value">{description}</span>
-      <span styleName="button">{buttonText}</span>
+      <span styleName="value">{`${description}: `}</span>
+      <input styleName="input" type="date"/>
+      {/* <span styleName="button">{buttonText}</span> */}
     </div>
   );
 };
