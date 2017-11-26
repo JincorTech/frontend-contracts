@@ -27,3 +27,7 @@ export const get = (path: string) => {
       }
   }
 };
+
+export const post = (path: string) => {
+  
+}

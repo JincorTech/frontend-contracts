@@ -17,7 +17,7 @@
   font-size: 32px;
   line-height: 1.12;
   text-align: left;
-  color: #9da0a4;
+  color: #000;
   border: none;
   padding: 0;
 }
@@ -31,7 +31,7 @@
   height: 19px;
   font-size: 16px;
   text-align: left;
-  color: #9da0a4;
+  color: #000;
   border: none;
   padding: 0;
 }
@@ -55,6 +55,21 @@
   content: counter(step-counter);
   margin-right: 5px;
   background-color: #dbdfe4;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  color: #fff;
+  border-radius: 50%;
+  width: 36px;
+  padding: 9px 0;
+}
+
+.list li.filled-item::before {
+  float: left;
+  margin-left: -64px;
+  content: counter(step-counter);
+  margin-right: 5px;
+  background-color: #6e7987;
   font-size: 16px;
   font-weight: bold;
   text-align: center;
