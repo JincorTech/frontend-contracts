@@ -11,9 +11,9 @@ export const get = (path: string) => {
     case '/employees':
       return {
         data: [
-          { id: 'ID1', name: 'Maxim Brook', email: 'mbrook@yandex.ru' },
-          { id: 'ID2', name: 'Mike Jefferson', email: 'jeff@yandex.ru' },
-          { id: 'ID3', name: 'Claudia Bullock', email: 'bullock@yandex.ru' }
+          { id: '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf577', name: 'Maxim Brook', email: 'mbrook@yandex.ru' },
+          { id: '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf578', name: 'Mike Jefferson', email: 'jeff@yandex.ru' },
+          { id: '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf579', name: 'Claudia Bullock', email: 'bullock@yandex.ru' }
         ]
       }
   }

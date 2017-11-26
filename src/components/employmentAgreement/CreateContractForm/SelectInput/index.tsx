@@ -5,14 +5,20 @@ import Button from '../../../common/Button';
 
 export type Props = {
   onButtonClick?: () => void
+  text?: string
 }
 
 const SelectInput: SFC<Props> = (props) => {
+  const {
+    text,
+    onButtonClick
+  } = props;
+
   return (
     <div styleName="input">
-      <span styleName="value">Employee</span>
+      <span styleName="value">{text || 'Employee'}</span>
       <div styleName="button">
-        <Button onClick={props.onButtonClick}>Choose</Button>
+        <Button onClick={onButtonClick}>Choose</Button>
       </div>
     </div>
   );

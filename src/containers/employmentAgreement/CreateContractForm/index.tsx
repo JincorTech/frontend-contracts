@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as CSSModules from 'react-css-modules';
+import { connect } from 'react-redux';
 import SelectInput from '../../../components/employmentAgreement/createContractForm/SelectInput';
 import Avatar from '../../../components/common/Avatar';
 import DateInput from '../../../components/employmentAgreement/createContractForm/DateInput';
@@ -8,16 +9,53 @@ import Caption from '../../../components/employmentAgreement/createContractForm/
 import WalletInput from '../../../components/employmentAgreement/createContractForm/WalletInput';
 import RadioGroup from '../../../components/employmentAgreement/createContractForm/RadioGroup';
 import Button from '../../../components/common/Button';
+import ChooseEmployeePopup from '../ChooseEmployeePopup';
+import {
+  StateMap as StateProps,
+  openPopup,
+  closePopup,
+  chooseEmployee
+} from '../../../redux/modules/employmentAgreement/employmentAgreement';
+import { getEmployeeById } from '../../../helpers/common/store';
 
-class CreateContractForm extends React.Component<{}, {}> {
+export type Props = StateProps & DispatchProps & ComponentProps;
+
+export type ComponentProps = {}
+
+export type DispatchProps = {
+  openPopup: () => void
+  closePopup: () => void
+  chooseEmployee: (id: string) => void
+}
+
+
+class CreateContractForm extends React.Component<Props, {}> {
   render() {
+    const {
+      employees,
+      popupIsOpened,
+      openPopup,
+      closePopup,
+      chosenEmployeeId,
+      chooseEmployee
+    } = this.props;
+
+    const getEmployeeName = (id: string) => {
+      const employee = getEmployeeById(employees, id);
+      if (!employee) {
+        return '';
+      }
+
+      return employee.name;
+    }
+
     return (
       <div styleName="form">
         <div styleName="avatar">
-          <Avatar src={null} fullName={'Marcus Sullivan'} id={'4a516c0a-2c02-4a9f-9e2a-da6bc5ecf577'} />
+          <Avatar src={null} fullName={getEmployeeName(chosenEmployeeId)} id={chosenEmployeeId} />
         </div>
         <div styleName="input">
-          <SelectInput />
+          <SelectInput text={getEmployeeName(chosenEmployeeId)} onButtonClick={openPopup}/>
         </div>
         <ol styleName="list">
           <li>
@@ -72,9 +110,19 @@ class CreateContractForm extends React.Component<{}, {}> {
         <div styleName="create-button">
           <Button disabled={true}>Create smart contract</Button>
         </div>
+        <ChooseEmployeePopup open={popupIsOpened} onClose={closePopup} employees={employees} onSelect={chooseEmployee}/>
       </div>
     );
   }
 }
 
-export default CSSModules(CreateContractForm, require('./styles.css'));
+const StyledComponent = CSSModules(CreateContractForm, require('./styles.css'));
+
+export default connect<StateProps, DispatchProps, ComponentProps>(
+  (state) => state.employmentAgreement.employmentAgreement,
+  {
+    openPopup,
+    closePopup,
+    chooseEmployee
+  }
+)(StyledComponent);
