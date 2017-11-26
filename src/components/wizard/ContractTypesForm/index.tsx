@@ -3,14 +3,18 @@ import { SFC } from 'react';
 import * as CSSModules from 'react-css-modules';
 import ContractTypeItem from '../../../components/wizard/ContractTypeItem';
 
-const ContractTypesForm: SFC<{}> = () => {
+export type Props = {
+  onNext: () => void
+}
+
+const ContractTypesForm: SFC<Props> = (props) => {
   return (
     <div styleName="types">
       <div styleName="header">
         <div styleName="caption">New smart contract</div>
         <div styleName="subcaption">Select type of smart contract to create:</div>
       </div>
-      <ContractTypeItem name={'Employment Agreement'} description={'Smart contract for Employment Agreement'} disabled={false}/>
+      <ContractTypeItem name={'Employment Agreement'} description={'Smart contract for Employment Agreement'} disabled={false} onClick={props.onNext}/>
       <ContractTypeItem name={'Supply Contract'} description={'Soon'} disabled={true}/>
       <ContractTypeItem name={'Service Agreement'} description={'Soon'} disabled={true}/>
       <ContractTypeItem name={'Purchase & Sale Agreement'} description={'Soon'} disabled={true}/>

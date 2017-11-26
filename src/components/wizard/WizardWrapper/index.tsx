@@ -4,18 +4,12 @@ import { RouteComponentProps } from 'react-router';
 import * as CSSModules from 'react-css-modules';
 import Avatar from '../../../components/common/Avatar';
 
-import ContractTypesForm from '../../../containers/wizard/ContractTypesForm';
-import ChooseEmployeeForm from '../../../containers/employmentAgreement/ChooseEmployeeForm';
-import ChooseEmployeePopup from '../../../components/employmentAgreement/ChooseEmployeePopup';
-import CreateContractForm from '../../../containers/employmentAgreement/CreateContractForm';
-import VerificationPopup from '../../../components/verification/VerificationPopup';
-
 export type ComponentProps = {
 };
 
 export type Props = RouteComponentProps<ComponentProps, {}>;
 
-const CreateContractWizard: SFC<Props> = (props) => {
+const WizardWrapper: SFC<Props> = (props) => {
   return (
     <div styleName="layout">
       <div styleName="header">
@@ -38,4 +32,4 @@ const CreateContractWizard: SFC<Props> = (props) => {
   );
 };
 
-export default CSSModules(CreateContractWizard, require('./styles.css'));
+export default CSSModules(WizardWrapper, require('./styles.css'));

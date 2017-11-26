@@ -7,46 +7,49 @@ export type Props = HTMLProps<HTMLDivElement> & ComponentProps;
 export type ComponentProps = {
   title: string
   open: boolean
+  close: () => void
 };
 
 class Popup extends Component<Props, {}> {
+  private popup: any;
+
   constructor(props) {
     super(props);
 
-    // this._handleBackdropClick = this._handleBackdropClick.bind(this);
+    this._handleBackdropClick = this._handleBackdropClick.bind(this);
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   if (nextProps.open) {
-  //     document.body.classList.add('popupOpened');
-  //   } else {
-  //     document.body.classList.remove('popupOpened');
-  //   }
-  // }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.open) {
+      document.body.classList.add('popupOpened');
+    } else {
+      document.body.classList.remove('popupOpened');
+    }
+  }
 
   _handleBackdropClick(e) {
-    // if (this.popup.contains(e.target)) {
-    //   return;
-    // }
+    if (this.popup.contains(e.target)) {
+      return;
+    }
 
-    // this.props.close();
+    this.props.close();
   }
 
   render() {
     const {
       title,
       children,
-      open
-      // close
+      open,
+      close
     } = this.props;
 
     const renderPopup = () => (
       <div styleName="background" onClick={this._handleBackdropClick}>
-        <div styleName="popup" ref={(popup) => { /*this.popup = popup;*/ }}>
+        <div styleName="popup" ref={(popup) => { this.popup = popup; }}>
           {title && <div styleName="title">{title}</div>}
           <div>{children}</div>
           <div styleName="footer">
-            <button styleName="close" type="button" onClick={() => {/*close()*/}}>
+            <button styleName="close" type="button" onClick={() => { close() }}>
               <img src={require('./images/close.svg')}/>
             </button>
           </div>

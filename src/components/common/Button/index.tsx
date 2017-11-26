@@ -10,6 +10,7 @@ export type Props = {
   spinner?: boolean
   href?: string
   to?: string
+  onClick?: () => void
 };
 
 const Button: SFC<Props> = (props) => {

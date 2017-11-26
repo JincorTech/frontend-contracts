@@ -3,12 +3,16 @@ import { SFC } from 'react';
 import * as CSSModules from 'react-css-modules';
 import Button from '../../../common/Button';
 
-const SelectInput: SFC<{}> = () => {
+export type Props = {
+  onButtonClick?: () => void
+}
+
+const SelectInput: SFC<Props> = (props) => {
   return (
     <div styleName="input">
       <span styleName="value">Employee</span>
       <div styleName="button">
-        <Button>Choose</Button>
+        <Button onClick={props.onButtonClick}>Choose</Button>
       </div>
     </div>
   );

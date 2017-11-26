@@ -4,6 +4,8 @@ import { loadingBarReducer } from 'react-redux-loading-bar';
 
 import app from './modules/app/app';
 import contractsPage from './modules/contracts/contractsPage';
+import employmentAgreementWizard from './modules/wizard/employmentAgreementWizard';
+import employmentAgreement from './modules/employmentAgreement/employmentAgreement';
 
 export default combineReducers({
   routing: routerReducer,
@@ -19,5 +21,13 @@ export default combineReducers({
 
   contracts: combineReducers({
     contractsPage
+  }),
+
+  wizard: combineReducers({
+    employmentAgreementWizard
+  }),
+
+  employmentAgreement: combineReducers({
+    employmentAgreement
   })
 });

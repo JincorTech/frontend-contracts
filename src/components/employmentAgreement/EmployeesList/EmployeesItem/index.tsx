@@ -1,16 +1,17 @@
 import * as React from 'react';
 import { SFC } from 'react';
 import * as CSSModules from 'react-css-modules';
-import Avatar from '../../Avatar';
+import Avatar from '../../../../components/common/Avatar';
 
 export type ComponentProps = {
   name: string
   email: string
+  onSelect: () => void
 };
 
 const EmployeesItem: SFC<ComponentProps> = (props) => {
   return (
-    <div styleName="item">
+    <div styleName="item" onClick={props.onSelect}>
       <Avatar styleName="avatar" src={null} fullName={props.name} id={'4a516c0a-2c02-4a9f-9e2a-da6bc5ecf577'}/>
       <div styleName="info">
         <div styleName="name">{props.name}</div>

@@ -1,15 +1,27 @@
 import * as React from 'react';
 import * as CSSModules from 'react-css-modules';
+import { SFC } from 'react';
 
 import Popup from '../../common/Popup';
 import Input from '../../common/Input';
 import Button from '../../common/Button';
 
-const VerificationPopup = () => {
+export type Props = {
+  open: boolean
+  onClose: () => void
+}
+
+const VerificationPopup: SFC<Props> = (props) => {
+  const {
+    open,
+    onClose
+  } = props;
+
   return (
     <Popup
       title=""
-      open={true}>
+      open={open}
+      close={onClose}>
       <div styleName="popup">
         <div styleName="header">
           Two-Step Verification
