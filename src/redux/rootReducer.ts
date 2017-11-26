@@ -6,6 +6,7 @@ import app from './modules/app/app';
 import contractsPage from './modules/contracts/contractsPage';
 import employmentAgreementWizard from './modules/wizard/employmentAgreementWizard';
 import employmentAgreement from './modules/employmentAgreement/employmentAgreement';
+import chooseEmployeePopup from './modules/employmentAgreement/chooseEmployeePopup';
 
 export default combineReducers({
   routing: routerReducer,
@@ -28,6 +29,7 @@ export default combineReducers({
   }),
 
   employmentAgreement: combineReducers({
-    employmentAgreement
+    employmentAgreement,
+    chooseEmployeePopup
   })
 });

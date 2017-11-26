@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { SFC } from 'react';
 import EmployeesItem from './EmployeesItem';
+import * as CSSModules from 'react-css-modules';
 import { Employee } from '../../../redux/modules/employmentAgreement/employmentAgreement';
 
 export type Props = {
@@ -12,7 +13,7 @@ const EmployeesList: SFC<Props> = (props) => {
   const { employees } = props;
 
   return (
-    <div>
+    <div styleName="list">
       {employees.map((employee) => {
         return <EmployeesItem onSelect={() => { props.onSelect(employee.id) }} key={employee.id} name={employee.name} email={employee.email}/>
       })}
@@ -20,4 +21,6 @@ const EmployeesList: SFC<Props> = (props) => {
   );
 };
 
-export default EmployeesList;
+const StyledComponent = CSSModules(EmployeesList, require('./styles.css'));
+
+export default StyledComponent;
