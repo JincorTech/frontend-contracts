@@ -20,11 +20,13 @@ export type StateMap = {
  * Constants
  */
 export const NEXT_STEP = 'wizard/employmentAgreementWizard/NEXT_STEP';
+export const PREV_STEP = 'wizard/employmentAgreementWizard/PREV_STEP';
 
 /**
  * Action creators
  */
 export const nextStep = createAction<void>(NEXT_STEP);
+export const prevStep = createAction<void>(PREV_STEP);
 
 /**
  * Reducer
@@ -36,5 +38,8 @@ const initialState: State = from<StateMap>({
 export default createReducer<State>({
   [NEXT_STEP]: (state: State): State => (
     state.merge({ currentStep: state.currentStep + 1 })
+  ),
+  [PREV_STEP]: (state: State): State => (
+    state.merge({ currentStep: state.currentStep === 0 ? state.currentStep : state.currentStep - 1 })
   )
 }, initialState);

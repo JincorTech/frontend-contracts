@@ -5,7 +5,7 @@ import App from './containers/app/App';
 
 import AppWrapper from './components/app/AppWrapper';
 import ContractsPage from './containers/contracts/ContractsPage';
-import WizardWrapper from './components/wizard/WizardWrapper';
+import WizardWrapper from './containers/wizard/WizardWrapper';
 import employmentAgreementWizard from "./containers/wizard/EmploymentAgreementWizard";
 
 import ContractTypesForm from './components/wizard/ContractTypesForm';

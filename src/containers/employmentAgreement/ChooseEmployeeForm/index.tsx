@@ -11,6 +11,7 @@ import {
 } from '../../../redux/modules/employmentAgreement/employmentAgreement';
 import SelectInput from '../../../components/employmentAgreement/createContractForm/SelectInput';
 import ChooseEmployeePopup from '../../../containers/employmentAgreement/ChooseEmployeePopup';
+import { getEmployeeById } from '../../../helpers/common/store';
 
 export type Props = StateProps & DispatchProps & ComponentProps;
 
@@ -37,13 +38,16 @@ class ChooseEmployeeForm extends Component<Props, {}> {
       closePopup,
       onNext,
       employees,
-      chooseEmployee
+      chooseEmployee,
+      chosenEmployeeId
     } = this.props;
   
     const handleSelect = (id: string) => {
       chooseEmployee(id);
       onNext();
     }
+
+    const chosenEmployee = getEmployeeById(employees, chosenEmployeeId);
 
     return (
       <div>
@@ -53,7 +57,7 @@ class ChooseEmployeeForm extends Component<Props, {}> {
           This is smart contract creation interface. To start creating new contract,
           choose the employee and tap next button.
         </span>
-        <SelectInput onButtonClick={() => openPopup()}/>
+        <SelectInput text={chosenEmployee ? chosenEmployee.name : ''} onButtonClick={() => openPopup()}/>
         <ChooseEmployeePopup open={popupIsOpened} onClose={closePopup} employees={employees} onSelect={handleSelect}/>
       </div>
     );

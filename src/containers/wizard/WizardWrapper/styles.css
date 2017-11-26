@@ -16,6 +16,7 @@
   left: 0;
   margin: -8px 0 auto 12px;
   width: 180px;
+  cursor: pointer;
 }
 
 .icon {
