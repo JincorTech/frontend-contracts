@@ -59,7 +59,6 @@ class CreateContractForm extends React.Component<Props, any> {
   }
 
   handleChange(event) {
-    console.log('!!! state', this.state);
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
