@@ -90,6 +90,17 @@ export const get = (path: string) => {
   }
 };
 
-export const post = (path: string) => {
-  
+export const post = (path: string, body: any) => {
+  switch (path) {
+    case '/api/contracts/':
+      console.log('!!! POST CONTRACT. BODY:', body);
+      return {
+        'status': 200,
+        'data': {
+            'contractId': 'ea77cf482f1b5c97d9bac0ec5603b12a7bae54e2',
+            'createdAt': '01/10/2017',
+            'verificationId': '1c7d2871-8af6-4e2d-a9a5-b5e7ab41a53e'
+        }
+      }
+  }
 }

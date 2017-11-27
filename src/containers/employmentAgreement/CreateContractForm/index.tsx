@@ -30,7 +30,7 @@ export type DispatchProps = {
   openPopup: () => void
   closePopup: () => void
   chooseEmployee: (id: string) => void
-  postContract: () => void
+  postContract: (contractBody: any) => void
   closeVerifyPopup: () => void
   verifyContract: () => void
 }
@@ -40,13 +40,13 @@ class CreateContractForm extends React.Component<Props, any> {
   constructor(props) {
     super(props);
     this.state = {
-      startDate: '',
+      contractDate: '',
       contractNumber: '',
       jobTitle: '',
       roleDescription: '',
       employmentType: 'full',
       agreementPeriod: 'fixed',
-      startAgreemntDate: '',
+      startAgreementDate: '',
       endAgreementDate: '',
       salaryAmount: '',
       paymentsDay: '',
@@ -69,7 +69,8 @@ class CreateContractForm extends React.Component<Props, any> {
   }
 
   handleSubmit(event) {
-    this.props.postContract();
+    const contract = { ...this.state, employeeId: this.props.chosenEmployeeId };
+    this.props.postContract(contract);
     event.preventDefault();
   }
 
@@ -111,7 +112,7 @@ class CreateContractForm extends React.Component<Props, any> {
         </div>
         <ol styleName="list">
           <li styleName={getFilledStyle(this.state.startDate)}>
-            <DateInput name={'startDate'} value={this.state.startDate} onChange={this.handleChange} description={'Start date'} buttonText={'Pick date'} />
+            <DateInput name={'contractDate'} value={this.state.contractDate} onChange={this.handleChange} description={'Contract date'} buttonText={'Pick date'} />
           </li>
           <li styleName={getFilledStyle(this.state.contractNumber)}>
             <Input name={'contractNumber'} value={this.state.contractNumber} onChange={this.handleChange} styleName="text-input" placeholder={'Contract number'} />
@@ -138,7 +139,7 @@ class CreateContractForm extends React.Component<Props, any> {
             </div>
             <div styleName="spacer" />
             <div styleName="period-dates">
-              <DateInput name={'startAgreemntDate'} value={this.state.startAgreemntDate} onChange={this.handleChange} description={'Start date'} buttonText={'Pick start date'} />
+              <DateInput name={'startAgreementDate'} value={this.state.startAgreementDate} onChange={this.handleChange} description={'Start date'} buttonText={'Pick start date'} />
               <DateInput name={'endAgreementDate'} value={this.state.endAgreementDate} onChange={this.handleChange} description={'End date'} buttonText={'Pick end date'} />
             </div>
             <div styleName="spacer" />
