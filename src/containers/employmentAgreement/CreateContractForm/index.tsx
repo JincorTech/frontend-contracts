@@ -18,7 +18,8 @@ import {
   chooseEmployee,
   verifyContract,
   closeVerifyPopup,
-  postContract
+  postContract,
+  fetchEmployees
 } from '../../../redux/modules/employmentAgreement/employmentAgreement';
 import { StateMap as FormStateProps, change } from '../../../redux/modules/employmentAgreement/createContractForm';
 import { getEmployeeById } from '../../../helpers/common/store';
@@ -28,7 +29,14 @@ export type StateProps = CommonStateProps & { fields: FormStateProps };
 
 export type Props = StateProps & DispatchProps & ComponentProps;
 
-export type ComponentProps = {}
+export type RouterParams = {
+  routeParams?: {
+    contractId: string
+  }
+}
+
+export type ComponentProps = RouterParams & {
+}
 
 export type DispatchProps = {
   openPopup: () => void
@@ -49,12 +57,17 @@ class CreateContractForm extends React.Component<Props, any> {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentDidMount() {
+    // fetchEmployees();
+    // fetchContract(this.props.routeParams.contractId);
+  }
+
   handleChange(event) {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
     
-    if (target.type === 'number' && value !== '' && (+value > +target.max || !parseFloat(value))) {
+    if (target.type === 'number' && value !== '' && (+value > +target.max || (target.min && +value < +target.min) || !parseFloat(value))) {
       return;
     }
 
@@ -169,8 +182,8 @@ class CreateContractForm extends React.Component<Props, any> {
           </li>
           <li styleName={getFilledStyle(6)}>
             <Caption text={'Compensation'} />
-            <Input name={'salaryAmount'} type="number" max={9999999999} value={fields.salaryAmount} onChange={this.handleChange} styleName="text-input" placeholder={'Salary amount'} />
-            <DateInput name={'paymentsDay'} value={fields.paymentsDay} onChange={this.handleChange} description={'Day of payments'} buttonText={'Pick date'} />
+            <Input name={'salaryAmount'} type="number" max={9999999999} value={fields.salaryAmount} onChange={this.handleChange} styleName="salary-text-input" placeholder={'Salary amount'} />
+            <Input name={'paymentsDay'} type="number" min={1} max={31} value={fields.paymentsDay} onChange={this.handleChange} styleName="text-input" placeholder={'Day of payments'}/>
           </li>
           <li styleName={getFilledStyle(7)}>
             <Caption text={'Additional сlauses'} />

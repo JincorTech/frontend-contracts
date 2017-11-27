@@ -87,6 +87,32 @@ export const get = (path: string) => {
           { id: '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf518', name: 'Claudia Bullock', email: 'bullock@yandex.ru' }
         ]
       }
+    case '/api/contracts/6174b0f53573874343a4d915d4f5b6876a9a15e5/':
+      return {
+          'status': 200,
+          'data': {
+              'contractId': '6174b0f53573874343a4d915d4f5b6876a9a15e5',
+              'employeeId': 'e316a9e8cba9131b675bfec0f0a662eea5fca517',
+              'startDate': '10/21/2017',
+              'contractNumber': '192',
+              'jobTitle': 'Graphics Designer',
+              'jobDescription': 'Design of all graphics materials for company',
+              'typeOfEmployment': 'full',
+              'periodOfAgreement': 'fixed',
+              'periodStartDate': '10/21/2017',
+              'periodEndDate': '10/21/2018',
+              'compensation': '',
+              'salaryAmount': {
+                  'currency': 'ETH',
+                  'amount': '300'
+              },
+              'dayOfPayments': '25',
+              'additionalClauses': '',
+              'isSignedByEmployee': true,
+              'createdAt': '01/10/2017',
+              'signedAt': '01/10/2017'
+          }
+      }
   }
 };
 

@@ -27,6 +27,11 @@
   margin-bottom: 15px;
 }
 
+.salary-text-input {
+  composes: text-input;
+  margin-bottom: 30px;
+}
+
 .small-text-input {
   height: 19px;
   font-size: 16px;

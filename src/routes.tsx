@@ -13,6 +13,7 @@ import ChooseEmployeeForm from './containers/employmentAgreement/ChooseEmployeeF
 import ChooseEmployeePopup from './containers/employmentAgreement/ChooseEmployeePopup';
 import CreateContractForm from './containers/employmentAgreement/CreateContractForm';
 import VerificationPopup from './components/verification/VerificationPopup';
+import ContractInfoWrapper from './containers/employmentAgreement/ContractInfoWrapper';
 
 // named routes
 export const routes = {
@@ -27,11 +28,14 @@ export default (
       <Route path="contracts" component={ContractsPage}/>
     </Route>
 
+    <Route path="contracts" component={ContractInfoWrapper}>
+      <Route path=":contractId" component={CreateContractForm}/>
+    </Route>
+
     <Route path="create" component={WizardWrapper}>
       <Route path="new" component={employmentAgreementWizard}/>
       <Route path="type" component={ContractTypesForm}/>
       <Route path="employee" component={ChooseEmployeeForm}/>
-      <Route path="contract" component={CreateContractForm}/>
     </Route>
 
     <Route path="popup" component={ChooseEmployeePopup}/>

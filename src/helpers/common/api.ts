@@ -16,13 +16,29 @@ export const transformContracts = (data): Contract[] => {
   });
 }
 
-export const transformContractBody = (data) => {
+export const transformContractBodyGet = (data) => {
+  return {
+    employeeId: data.employeeId,
+    contractDate: data.startDate,
+    contractNumber: data.contractNumber,
+    jobTitle: data.jobTitle,
+    roleDescription: data.jobDescription,
+    employmentType: data.typeOfEmployment,
+    agreementPeriod: data.periodOfAgreement,
+    startAgreementDate: data.periodStartDate,
+    endAgreementDate: data.periodEndDate,
+    salaryAmount: data.salaryAmount.amount,
+    paymentsDay: data.dayOfPayments,
+    additionalClauses: data.additionalClauses,
+    isSignedByEmployee: data.isSignedByEmployee,
+    createdAt: data.createdAt,
+    signedAt: data.signedAt
+  }
+}
+
+export const transformContractBodyPost = (data) => {
   const formatDate = (date: string) => {
     return moment(date, AppDateFormat).format(ApiDateFormat);
-  }
-
-  const getDay = (date: string) => {
-    return moment(date, AppDateFormat).date();
   }
 
   return {
@@ -39,7 +55,7 @@ export const transformContractBody = (data) => {
         currency: 'ETH',
         amount: data.salaryAmount
     },
-    dayOfPayments: getDay(data.paymentsDay),
+    dayOfPayments: data.paymentsDay,
     additionalClauses: data.additionalClauses
   }
 }

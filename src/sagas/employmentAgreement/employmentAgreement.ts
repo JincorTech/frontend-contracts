@@ -2,7 +2,7 @@ import { SagaIterator } from 'redux-saga';
 import { takeLatest, call, put, fork, select } from 'redux-saga/effects';
 import { Action } from '../../utils/actions';
 import { get, post } from '../../apiMock';
-import { transformContractBody } from '../../helpers/common/api';
+import { transformContractBodyPost } from '../../helpers/common/api';
 
 import {
   fetchEmployees,
@@ -34,7 +34,7 @@ function* fetchEmployeesSaga(): SagaIterator {
  */
 function* postContractIterator({ payload }): SagaIterator {
   try {
-    const { data } = yield call(post, '/api/contracts/', transformContractBody(payload));
+    const { data } = yield call(post, '/api/contracts/', transformContractBodyPost(payload));
     yield put(postContract.success(data));
   } catch (e) {
     yield put(postContract.failure(e));
