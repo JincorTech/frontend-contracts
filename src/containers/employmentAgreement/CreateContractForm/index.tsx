@@ -21,6 +21,7 @@ import {
   postContract
 } from '../../../redux/modules/employmentAgreement/employmentAgreement';
 import { getEmployeeById } from '../../../helpers/common/store';
+import { required, minLength, maxLength } from '../../../utils/validators';
 
 export type Props = StateProps & DispatchProps & ComponentProps;
 
@@ -62,6 +63,10 @@ class CreateContractForm extends React.Component<Props, any> {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
+    
+    if (target.type === 'number' && value !== '' && (+value > +target.max || !parseFloat(value))) {
+      return;
+    }
 
     this.setState({
       [name]: value
@@ -101,7 +106,6 @@ class CreateContractForm extends React.Component<Props, any> {
       return value !== '' ? 'filled-item' : '';
     }
 
-    
     return (
       <form onSubmit={this.handleSubmit} styleName="form">
         <div styleName="avatar">
@@ -115,7 +119,7 @@ class CreateContractForm extends React.Component<Props, any> {
             <DateInput name={'contractDate'} value={this.state.contractDate} onChange={this.handleChange} description={'Contract date'} buttonText={'Pick date'} />
           </li>
           <li styleName={getFilledStyle(this.state.contractNumber)}>
-            <Input name={'contractNumber'} value={this.state.contractNumber} onChange={this.handleChange} styleName="text-input" placeholder={'Contract number'} />
+            <Input name={'contractNumber'} type="number" max={999999} value={this.state.contractNumber} onChange={this.handleChange} styleName="text-input" placeholder={'Contract number'} />
           </li>
           <li styleName="filled-item">
             <Caption text={'Wallets'} />
@@ -124,8 +128,8 @@ class CreateContractForm extends React.Component<Props, any> {
             <div styleName="wallets-spacer" />
           </li>
           <li styleName={getFilledStyle(this.state.jobTitle)}>
-            <Input name={'jobTitle'} value={this.state.jobTitle} onChange={this.handleChange} styleName="job-text-input" placeholder={'Job title'} />
-            <Input name={'roleDescription'} value={this.state.roleDescription} onChange={this.handleChange} styleName="small-text-input" placeholder={'Role desription'} />
+            <Input name={'jobTitle'} value={this.state.jobTitle} maxLength={100} onChange={this.handleChange} styleName="job-text-input" placeholder={'Job title'} />
+            <Input name={'roleDescription'} value={this.state.roleDescription} maxLength={100} onChange={this.handleChange} styleName="small-text-input" placeholder={'Role desription'} />
           </li>
           <li styleName="filled-item">
             <Caption text={'Type of employment'} />
@@ -146,12 +150,12 @@ class CreateContractForm extends React.Component<Props, any> {
           </li>
           <li styleName={getFilledStyle(this.state.salaryAmount)}>
             <Caption text={'Compensation'} />
-            <Input name={'salaryAmount'} value={this.state.salaryAmount} onChange={this.handleChange} styleName="text-input" placeholder={'Salary amount'} />
+            <Input name={'salaryAmount'} type="number" max={9999999999} value={this.state.salaryAmount} onChange={this.handleChange} styleName="text-input" placeholder={'Salary amount'} />
             <DateInput name={'paymentsDay'} value={this.state.paymentsDay} onChange={this.handleChange} description={'Day of payments'} buttonText={'Pick date'} />
           </li>
           <li styleName={getFilledStyle(this.state.additionalClauses)}>
             <Caption text={'Additional сlauses'} />
-            <Input name={'additionalClauses'} value={this.state.additionalClauses} onChange={this.handleChange} styleName="small-text-input" placeholder={'Place for additional text'} />
+            <Input name={'additionalClauses'} value={this.state.additionalClauses} maxLength={100} onChange={this.handleChange} styleName="small-text-input" placeholder={'Place for additional text'} />
           </li>
           <li>
             <Caption text={'Signatures'} />
