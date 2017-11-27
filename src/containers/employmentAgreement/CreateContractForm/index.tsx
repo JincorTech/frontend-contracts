@@ -132,6 +132,8 @@ class CreateContractForm extends React.Component<Props, any> {
       false
     ];
 
+    const validateSubmitButton = stepsValidationResult.slice(0, -1).every((value) => value);
+
     // Render
 
     return (
@@ -193,7 +195,7 @@ class CreateContractForm extends React.Component<Props, any> {
           </li>
         </ol>
         <div styleName="create-button">
-          <Button isSubmit={true} disabled={false} value={'Create smart contract'}/>
+          <Button isSubmit={true} disabled={!validateSubmitButton} value={'Create smart contract'}/>
         </div>
         <ChooseEmployeePopup open={popupIsOpened} onClose={closePopup} employees={employees} onSelect={chooseEmployee}/>
         <VerificationPopup open={verifyPopupIsOpened} onClose={closeVerifyPopup} onSubmit={verifyContract}/>
