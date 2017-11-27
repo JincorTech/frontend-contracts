@@ -97,9 +97,19 @@ export const post = (path: string, body: any) => {
       return {
         'status': 200,
         'data': {
-            'contractId': 'ea77cf482f1b5c97d9bac0ec5603b12a7bae54e2',
-            'createdAt': '01/10/2017',
-            'verificationId': '1c7d2871-8af6-4e2d-a9a5-b5e7ab41a53e'
+          'contractId': 'ea77cf482f1b5c97d9bac0ec5603b12a7bae54e2',
+          'createdAt': '01/10/2017',
+          'verificationId': '1c7d2871-8af6-4e2d-a9a5-b5e7ab41a53e'
+        }
+      }
+    case '/api/contracts/ea77cf482f1b5c97d9bac0ec5603b12a7bae54e2/actions/verify/':
+      console.log('!!! POST VERIFY. BODY:', body);
+      return {
+        'status': 200,
+        'data': {
+          'contractId': '6174b0f53573874343a4d915d4f5b6876a9a15e5',
+          'employeeId': 'e316a9e8cba9131b675bfec0f0a662eea5fca517',
+          'signedAt': '01/10/2017'
         }
       }
   }

@@ -11,7 +11,9 @@ export type StateMap = {
   popupIsOpened: boolean
   chosenEmployeeId: string
   verifyPopupIsOpened: boolean
-  verificationId: string
+  verificationId: string,
+  contractId: string,
+  createdAt: string
 };
 
 export type Employee = {
@@ -38,7 +40,7 @@ export const openPopup = createAction<void>(OPEN_POPUP);
 export const closePopup = createAction<void>(CLOSE_POPUP);
 export const fetchEmployees = createAsyncAction<void, Employee[]>(FETCH_EMPLOYEES);
 export const chooseEmployee = createAction<string>(CHOOSE_EMPLOYEE);
-export const postContract = createAsyncAction<any, string>(POST_CONTRACT);
+export const postContract = createAsyncAction<any, any>(POST_CONTRACT);
 export const verifyContract = createAsyncAction<any, void>(VERIFY_CONTRACT);
 export const closeVerifyPopup = createAction<void>(CLOSE_VERIFY_POPUP);
 
@@ -50,7 +52,9 @@ const initialState: State = from<StateMap>({
   popupIsOpened: false,
   chosenEmployeeId: null,
   verifyPopupIsOpened: false,
-  verificationId: ''
+  verificationId: '',
+  contractId: '',
+  createdAt: ''
 });
 
 export default createReducer<State>({
@@ -70,8 +74,8 @@ export default createReducer<State>({
     state.merge({ chosenEmployeeId: payload, popupIsOpened: false })
   ),
 
-  [postContract.SUCCESS]: (state: State, { payload }: Action<string>): State => (
-    state.merge({ verifyPopupIsOpened: true, verificationId: payload })
+  [postContract.SUCCESS]: (state: State, { payload }: Action<any>): State => (
+    state.merge({ verifyPopupIsOpened: true, ...payload })
   ),
 
   [verifyContract.SUCCESS]: (state: State, {}: Action<void>): State => (

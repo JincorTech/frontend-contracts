@@ -1,5 +1,5 @@
 import { SagaIterator } from 'redux-saga';
-import { takeLatest, call, put, fork } from 'redux-saga/effects';
+import { takeLatest, call, put, fork, select } from 'redux-saga/effects';
 import { Action } from '../../utils/actions';
 import { get, post } from '../../apiMock';
 import { transformContractBody } from '../../helpers/common/api';
@@ -35,7 +35,7 @@ function* fetchEmployeesSaga(): SagaIterator {
 function* postContractIterator({ payload }): SagaIterator {
   try {
     const { data } = yield call(post, '/api/contracts/', transformContractBody(payload));
-    yield put(postContract.success(data.verificationId));
+    yield put(postContract.success(data));
   } catch (e) {
     yield put(postContract.failure(e));
   }
@@ -51,10 +51,17 @@ function* postContractSaga(): SagaIterator {
 /**
  * Verify contract
  */
-function* verifyContractIterator(): SagaIterator {
+const getContractState = (state) => state.employmentAgreement.employmentAgreement;
+
+function* verifyContractIterator({ payload }): SagaIterator {
   try {
-    // const { data } = yield call(post, '/api/contracts/{CONTRACT_ID}');
-    yield put(verifyContract.success());
+    const { verificationId, contractId } = yield select(getContractState);
+    const { data } = yield call(post, `/api/contracts/${contractId}/actions/verify/`, {
+      verificationId: verificationId,
+      verificationCode: payload
+    });
+
+    yield put(verifyContract.success(data));
   } catch (e) {
     yield put(verifyContract.failure(e));
   }
