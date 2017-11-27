@@ -7,6 +7,7 @@ import contractsPage from './modules/contracts/contractsPage';
 import employmentAgreementWizard from './modules/wizard/employmentAgreementWizard';
 import employmentAgreement from './modules/employmentAgreement/employmentAgreement';
 import chooseEmployeePopup from './modules/employmentAgreement/chooseEmployeePopup';
+import createContractForm from './modules/employmentAgreement/createContractForm';
 
 export default combineReducers({
   routing: routerReducer,
@@ -30,6 +31,7 @@ export default combineReducers({
 
   employmentAgreement: combineReducers({
     employmentAgreement,
-    chooseEmployeePopup
+    chooseEmployeePopup,
+    createContractForm
   })
 });

@@ -12,7 +12,7 @@ import Button from '../../../components/common/Button';
 import ChooseEmployeePopup from '../ChooseEmployeePopup';
 import VerificationPopup from '../../../components/verification/VerificationPopup';
 import {
-  StateMap as StateProps,
+  StateMap as CommonStateProps,
   openPopup,
   closePopup,
   chooseEmployee,
@@ -20,8 +20,11 @@ import {
   closeVerifyPopup,
   postContract
 } from '../../../redux/modules/employmentAgreement/employmentAgreement';
+import { StateMap as FormStateProps, change } from '../../../redux/modules/employmentAgreement/createContractForm';
 import { getEmployeeById } from '../../../helpers/common/store';
 import { required, minLength, maxLength } from '../../../utils/validators';
+
+export type StateProps = CommonStateProps & { fields: FormStateProps };
 
 export type Props = StateProps & DispatchProps & ComponentProps;
 
@@ -34,28 +37,15 @@ export type DispatchProps = {
   postContract: (contractBody: any) => void
   closeVerifyPopup: () => void
   verifyContract: () => void
+  change: (payload: { name: string, value: string }) => void
 }
 
 
 class CreateContractForm extends React.Component<Props, any> {
   constructor(props) {
     super(props);
-    this.state = {
-      contractDate: '',
-      contractNumber: '',
-      jobTitle: '',
-      roleDescription: '',
-      employmentType: 'full',
-      agreementPeriod: 'fixed',
-      startAgreementDate: '',
-      endAgreementDate: '',
-      salaryAmount: '',
-      paymentsDay: '',
-      additionalClauses: ''
-    };
 
     this.handleChange = this.handleChange.bind(this);
-
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -68,13 +58,11 @@ class CreateContractForm extends React.Component<Props, any> {
       return;
     }
 
-    this.setState({
-      [name]: value
-    });
+    this.props.change({ name: name, value: value});
   }
 
   handleSubmit(event) {
-    const contract = { ...this.state, employeeId: this.props.chosenEmployeeId };
+    const contract = { ...this.props.fields, employeeId: this.props.chosenEmployeeId };
     this.props.postContract(contract);
     event.preventDefault();
   }
@@ -90,7 +78,8 @@ class CreateContractForm extends React.Component<Props, any> {
       chooseEmployee,
       postContract,
       closeVerifyPopup,
-      verifyContract
+      verifyContract,
+      fields
     } = this.props;
 
     const getEmployeeName = (id: string) => {
@@ -111,24 +100,24 @@ class CreateContractForm extends React.Component<Props, any> {
     const defaultValidate = (value) => value && value !== '';
 
     const validateAgreementPeriod = () => {
-      return periodIsPermanent() || (this.state.startAgreementDate && this.state.endAgreementDate);
+      return !!(periodIsPermanent() || (fields.startAgreementDate && fields.endAgreementDate));
     }
 
     const validateCompensation = () => {
-      return this.state.salaryAmount && this.state.paymentsDay;
+      return !!(fields.salaryAmount && fields.paymentsDay);
     }
 
-    const periodIsPermanent = () => this.state.agreementPeriod === "permanent";
+    const periodIsPermanent = () => fields.agreementPeriod === "permanent";
 
-    const stepsValidationResult = [
-      defaultValidate(this.state.contractDate),
-      defaultValidate(this.state.contractNumber),
+    const stepsValidationResult: boolean[] = [
+      defaultValidate(fields.contractDate),
+      defaultValidate(fields.contractNumber),
       true,
-      defaultValidate(this.state.jobTitle),
+      defaultValidate(fields.jobTitle),
       true,
       validateAgreementPeriod(),
       validateCompensation(),
-      defaultValidate(this.state.additionalClauses),
+      defaultValidate(fields.additionalClauses),
       false
     ];
 
@@ -146,10 +135,10 @@ class CreateContractForm extends React.Component<Props, any> {
         </div>
         <ol styleName="list">
           <li styleName={getFilledStyle(0)}>
-            <DateInput name={'contractDate'} value={this.state.contractDate} onChange={this.handleChange} description={'Contract date'} buttonText={'Pick date'} />
+            <DateInput name={'contractDate'} value={fields.contractDate} onChange={this.handleChange} description={'Contract date'} buttonText={'Pick date'} />
           </li>
           <li styleName={getFilledStyle(1)}>
-            <Input name={'contractNumber'} type="number" max={999999} value={this.state.contractNumber} onChange={this.handleChange} styleName="text-input" placeholder={'Contract number'} />
+            <Input name={'contractNumber'} type="number" max={999999} value={fields.contractNumber} onChange={this.handleChange} styleName="text-input" placeholder={'Contract number'} />
           </li>
           <li styleName={getFilledStyle(2)}>
             <Caption text={'Wallets'} />
@@ -158,34 +147,34 @@ class CreateContractForm extends React.Component<Props, any> {
             <div styleName="wallets-spacer" />
           </li>
           <li styleName={getFilledStyle(3)}>
-            <Input name={'jobTitle'} value={this.state.jobTitle} maxLength={100} onChange={this.handleChange} styleName="job-text-input" placeholder={'Job title'} />
-            <Input name={'roleDescription'} value={this.state.roleDescription} maxLength={100} onChange={this.handleChange} styleName="small-text-input" placeholder={'Role desription'} />
+            <Input name={'jobTitle'} value={fields.jobTitle} maxLength={100} onChange={this.handleChange} styleName="job-text-input" placeholder={'Job title'} />
+            <Input name={'roleDescription'} value={fields.roleDescription} maxLength={100} onChange={this.handleChange} styleName="small-text-input" placeholder={'Role desription'} />
           </li>
           <li styleName={getFilledStyle(4)}>
             <Caption text={'Type of employment'} />
-            <RadioGroup name={'employmentType'} value={this.state.employmentType} onChange={this.handleChange} groupId={'type-of-employment'} values={['full', 'part']} labels={['Full time', 'Part time']} />
+            <RadioGroup name={'employmentType'} value={fields.employmentType} onChange={this.handleChange} groupId={'type-of-employment'} values={['full', 'part']} labels={['Full time', 'Part time']} />
             <div styleName="spacer" />
           </li>
           <li styleName={getFilledStyle(5)}>
             <Caption text={'Period of agreement'} />
             <div styleName="period-radio-group">
-              <RadioGroup name={'agreementPeriod'} value={this.state.agreementPeriod} onChange={this.handleChange} groupId={'period-of-agreement'} values={['fixed', 'permanent']} labels={['Fixed period', 'Permanent agreement']} />
+              <RadioGroup name={'agreementPeriod'} value={fields.agreementPeriod} onChange={this.handleChange} groupId={'period-of-agreement'} values={['fixed', 'permanent']} labels={['Fixed period', 'Permanent agreement']} />
             </div>
             <div styleName="spacer" />
             <div styleName="period-dates">
-              <DateInput disabled={periodIsPermanent()} name={'startAgreementDate'} value={this.state.startAgreementDate} onChange={this.handleChange} description={'Start date'} buttonText={'Pick start date'} />
-              <DateInput disabled={periodIsPermanent()} name={'endAgreementDate'} value={this.state.endAgreementDate} onChange={this.handleChange} description={'End date'} buttonText={'Pick end date'} />
+              <DateInput disabled={periodIsPermanent()} name={'startAgreementDate'} value={fields.startAgreementDate} onChange={this.handleChange} description={'Start date'} buttonText={'Pick start date'} />
+              <DateInput disabled={periodIsPermanent()} name={'endAgreementDate'} value={fields.endAgreementDate} onChange={this.handleChange} description={'End date'} buttonText={'Pick end date'} />
             </div>
             <div styleName="spacer" />
           </li>
           <li styleName={getFilledStyle(6)}>
             <Caption text={'Compensation'} />
-            <Input name={'salaryAmount'} type="number" max={9999999999} value={this.state.salaryAmount} onChange={this.handleChange} styleName="text-input" placeholder={'Salary amount'} />
-            <DateInput name={'paymentsDay'} value={this.state.paymentsDay} onChange={this.handleChange} description={'Day of payments'} buttonText={'Pick date'} />
+            <Input name={'salaryAmount'} type="number" max={9999999999} value={fields.salaryAmount} onChange={this.handleChange} styleName="text-input" placeholder={'Salary amount'} />
+            <DateInput name={'paymentsDay'} value={fields.paymentsDay} onChange={this.handleChange} description={'Day of payments'} buttonText={'Pick date'} />
           </li>
           <li styleName={getFilledStyle(7)}>
             <Caption text={'Additional сlauses'} />
-            <Input name={'additionalClauses'} value={this.state.additionalClauses} maxLength={100} onChange={this.handleChange} styleName="small-text-input" placeholder={'Place for additional text'} />
+            <Input name={'additionalClauses'} value={fields.additionalClauses} maxLength={100} onChange={this.handleChange} styleName="small-text-input" placeholder={'Place for additional text'} />
           </li>
           <li styleName={getFilledStyle(8)}>
             <Caption text={'Signatures'} />
@@ -207,13 +196,19 @@ class CreateContractForm extends React.Component<Props, any> {
 const StyledComponent = CSSModules(CreateContractForm, require('./styles.css'));
 
 export default connect<StateProps, DispatchProps, ComponentProps>(
-  (state) => state.employmentAgreement.employmentAgreement,
+  (state) => {
+    return {
+      ...state.employmentAgreement.employmentAgreement,
+      fields: state.employmentAgreement.createContractForm
+    }
+  },
   {
     openPopup,
     closePopup,
     chooseEmployee,
     verifyContract,
     closeVerifyPopup,
-    postContract
+    postContract,
+    change
   }
 )(StyledComponent);
