@@ -102,9 +102,37 @@ class CreateContractForm extends React.Component<Props, any> {
       return employee.name;
     }
 
-    const getFilledStyle = (value) => {
-      return value !== '' ? 'filled-item' : '';
+    const getFilledStyle = (step: number) => {
+      return stepsValidationResult[step] ? 'filled-item' : '';
     }
+
+    // Validation
+
+    const defaultValidate = (value) => value && value !== '';
+
+    const validateAgreementPeriod = () => {
+      return periodIsPermanent() || (this.state.startAgreementDate && this.state.endAgreementDate);
+    }
+
+    const validateCompensation = () => {
+      return this.state.salaryAmount && this.state.paymentsDay;
+    }
+
+    const periodIsPermanent = () => this.state.agreementPeriod === "permanent";
+
+    const stepsValidationResult = [
+      defaultValidate(this.state.contractDate),
+      defaultValidate(this.state.contractNumber),
+      true,
+      defaultValidate(this.state.jobTitle),
+      true,
+      validateAgreementPeriod(),
+      validateCompensation(),
+      defaultValidate(this.state.additionalClauses),
+      false
+    ];
+
+    // Render
 
     return (
       <form onSubmit={this.handleSubmit} styleName="form">
@@ -115,49 +143,49 @@ class CreateContractForm extends React.Component<Props, any> {
           <SelectInput text={getEmployeeName(chosenEmployeeId)} onButtonClick={openPopup}/>
         </div>
         <ol styleName="list">
-          <li styleName={getFilledStyle(this.state.startDate)}>
+          <li styleName={getFilledStyle(0)}>
             <DateInput name={'contractDate'} value={this.state.contractDate} onChange={this.handleChange} description={'Contract date'} buttonText={'Pick date'} />
           </li>
-          <li styleName={getFilledStyle(this.state.contractNumber)}>
+          <li styleName={getFilledStyle(1)}>
             <Input name={'contractNumber'} type="number" max={999999} value={this.state.contractNumber} onChange={this.handleChange} styleName="text-input" placeholder={'Contract number'} />
           </li>
-          <li styleName="filled-item">
+          <li styleName={getFilledStyle(2)}>
             <Caption text={'Wallets'} />
             <WalletInput value={'0x29D7d1d865…86B'} description={'Company wallet address'} />
             <WalletInput value={'0x32D9d1v909…91F'} description={'Employee wallet address'} />
             <div styleName="wallets-spacer" />
           </li>
-          <li styleName={getFilledStyle(this.state.jobTitle)}>
+          <li styleName={getFilledStyle(3)}>
             <Input name={'jobTitle'} value={this.state.jobTitle} maxLength={100} onChange={this.handleChange} styleName="job-text-input" placeholder={'Job title'} />
             <Input name={'roleDescription'} value={this.state.roleDescription} maxLength={100} onChange={this.handleChange} styleName="small-text-input" placeholder={'Role desription'} />
           </li>
-          <li styleName="filled-item">
+          <li styleName={getFilledStyle(4)}>
             <Caption text={'Type of employment'} />
             <RadioGroup name={'employmentType'} value={this.state.employmentType} onChange={this.handleChange} groupId={'type-of-employment'} values={['full', 'part']} labels={['Full time', 'Part time']} />
             <div styleName="spacer" />
           </li>
-          <li styleName="filled-item">
+          <li styleName={getFilledStyle(5)}>
             <Caption text={'Period of agreement'} />
             <div styleName="period-radio-group">
               <RadioGroup name={'agreementPeriod'} value={this.state.agreementPeriod} onChange={this.handleChange} groupId={'period-of-agreement'} values={['fixed', 'permanent']} labels={['Fixed period', 'Permanent agreement']} />
             </div>
             <div styleName="spacer" />
             <div styleName="period-dates">
-              <DateInput name={'startAgreementDate'} value={this.state.startAgreementDate} onChange={this.handleChange} description={'Start date'} buttonText={'Pick start date'} />
-              <DateInput name={'endAgreementDate'} value={this.state.endAgreementDate} onChange={this.handleChange} description={'End date'} buttonText={'Pick end date'} />
+              <DateInput disabled={periodIsPermanent()} name={'startAgreementDate'} value={this.state.startAgreementDate} onChange={this.handleChange} description={'Start date'} buttonText={'Pick start date'} />
+              <DateInput disabled={periodIsPermanent()} name={'endAgreementDate'} value={this.state.endAgreementDate} onChange={this.handleChange} description={'End date'} buttonText={'Pick end date'} />
             </div>
             <div styleName="spacer" />
           </li>
-          <li styleName={getFilledStyle(this.state.salaryAmount)}>
+          <li styleName={getFilledStyle(6)}>
             <Caption text={'Compensation'} />
             <Input name={'salaryAmount'} type="number" max={9999999999} value={this.state.salaryAmount} onChange={this.handleChange} styleName="text-input" placeholder={'Salary amount'} />
             <DateInput name={'paymentsDay'} value={this.state.paymentsDay} onChange={this.handleChange} description={'Day of payments'} buttonText={'Pick date'} />
           </li>
-          <li styleName={getFilledStyle(this.state.additionalClauses)}>
+          <li styleName={getFilledStyle(7)}>
             <Caption text={'Additional сlauses'} />
             <Input name={'additionalClauses'} value={this.state.additionalClauses} maxLength={100} onChange={this.handleChange} styleName="small-text-input" placeholder={'Place for additional text'} />
           </li>
-          <li>
+          <li styleName={getFilledStyle(8)}>
             <Caption text={'Signatures'} />
             <span styleName="section-description">To sign contract you need to request code from Google Authentificator. After your signing request for the signing of the contract will be sent to your employee.</span>
             <span styleName="sign-status">Unsigned</span>
