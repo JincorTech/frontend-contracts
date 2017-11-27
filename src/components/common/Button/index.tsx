@@ -10,7 +10,9 @@ export type Props = {
   spinner?: boolean
   href?: string
   to?: string
+  isSubmit?: boolean
   onClick?: () => void
+  value?: string
 };
 
 const Button: SFC<Props> = (props) => {
@@ -20,11 +22,14 @@ const Button: SFC<Props> = (props) => {
     spinner,
     href,
     to,
+    isSubmit,
+    onClick,
+    value,
     ...restProps
   } = props;
 
   const getClass = () => disabled ? 'disabled' : 'button';
-
+  
   const renderElement = () => {
     if (href) {
       return (
@@ -48,10 +53,21 @@ const Button: SFC<Props> = (props) => {
       );
     }
 
+    if (isSubmit) {
+      return (
+        <input type="submit"
+          styleName={getClass()}
+          value={value}
+          {...restProps}
+        />
+      );
+    }
+
     return (
       <button
         type="button"
         styleName={getClass()}
+        onClick={onClick}
         {...restProps}
       >
         {spinner ? <Spinner /> : children}

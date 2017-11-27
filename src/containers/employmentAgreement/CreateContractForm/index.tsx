@@ -69,7 +69,7 @@ class CreateContractForm extends React.Component<Props, any> {
   }
 
   handleSubmit(event) {
-    // alert('A name was submitted: ' + this.state.value);
+    this.props.postContract();
     event.preventDefault();
   }
 
@@ -100,8 +100,9 @@ class CreateContractForm extends React.Component<Props, any> {
       return value !== '' ? 'filled-item' : '';
     }
 
+    
     return (
-      <div styleName="form">
+      <form onSubmit={this.handleSubmit} styleName="form">
         <div styleName="avatar">
           <Avatar src={null} fullName={getEmployeeName(chosenEmployeeId)} id={chosenEmployeeId} />
         </div>
@@ -159,11 +160,11 @@ class CreateContractForm extends React.Component<Props, any> {
           </li>
         </ol>
         <div styleName="create-button">
-          <Button disabled={false} onClick={postContract}>Create smart contract</Button>
+          <Button isSubmit={true} disabled={false} value={'Create smart contract'}/>
         </div>
         <ChooseEmployeePopup open={popupIsOpened} onClose={closePopup} employees={employees} onSelect={chooseEmployee}/>
         <VerificationPopup open={verifyPopupIsOpened} onClose={closeVerifyPopup} onSubmit={verifyContract}/>
-      </div>
+      </form>
     );
   }
 }
