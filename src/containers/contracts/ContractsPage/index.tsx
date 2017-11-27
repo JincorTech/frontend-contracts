@@ -45,7 +45,7 @@ class ContractsPage extends Component<Props, {}> {
 
     const getFilteredContracts = (contracts: Contract[], filtering: FilteringType) => {
       if (filtering === FilteringType.Unsigned) {
-        return contracts.filter((contract: Contract) => !contract.signed);
+        return contracts.filter((contract: Contract) => !contract.signedAt);
       } else {
         return contracts;
       }
