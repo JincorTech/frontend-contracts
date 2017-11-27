@@ -21,7 +21,7 @@ import {
   postContract,
   fetchEmployees
 } from '../../../redux/modules/employmentAgreement/employmentAgreement';
-import { StateMap as FormStateProps, change } from '../../../redux/modules/employmentAgreement/createContractForm';
+import { StateMap as FormStateProps, change, fetchContract } from '../../../redux/modules/employmentAgreement/createContractForm';
 import { getEmployeeById } from '../../../helpers/common/store';
 import { required, minLength, maxLength } from '../../../utils/validators';
 
@@ -46,6 +46,8 @@ export type DispatchProps = {
   closeVerifyPopup: () => void
   verifyContract: () => void
   change: (payload: { name: string, value: string }) => void
+  fetchEmployees: () => void
+  fetchContract: (contractId: string) => void
 }
 
 
@@ -58,8 +60,10 @@ class CreateContractForm extends React.Component<Props, any> {
   }
 
   componentDidMount() {
-    // fetchEmployees();
-    // fetchContract(this.props.routeParams.contractId);
+    if (this.props.routeParams) {
+      this.props.fetchEmployees();
+      this.props.fetchContract(this.props.routeParams.contractId);
+    }
   }
 
   handleChange(event) {
@@ -94,6 +98,10 @@ class CreateContractForm extends React.Component<Props, any> {
       verifyContract,
       fields
     } = this.props;
+
+    const getEmployeeId = () => {
+      return chosenEmployeeId || fields.employeeId;
+    }
 
     const getEmployeeName = (id: string) => {
       const employee = getEmployeeById(employees, id);
@@ -130,7 +138,7 @@ class CreateContractForm extends React.Component<Props, any> {
       true,
       validateAgreementPeriod(),
       validateCompensation(),
-      defaultValidate(fields.additionalClauses),
+      true,
       false
     ];
 
@@ -141,10 +149,10 @@ class CreateContractForm extends React.Component<Props, any> {
     return (
       <form onSubmit={this.handleSubmit} styleName="form">
         <div styleName="avatar">
-          <Avatar src={null} fullName={getEmployeeName(chosenEmployeeId)} id={chosenEmployeeId} />
+          <Avatar src={null} fullName={getEmployeeName(getEmployeeId())} id={getEmployeeId()} />
         </div>
         <div styleName="input">
-          <SelectInput text={getEmployeeName(chosenEmployeeId)} onButtonClick={openPopup}/>
+          <SelectInput text={getEmployeeName(getEmployeeId())} onButtonClick={openPopup}/>
         </div>
         <ol styleName="list">
           <li styleName={getFilledStyle(0)}>
@@ -222,6 +230,8 @@ export default connect<StateProps, DispatchProps, ComponentProps>(
     verifyContract,
     closeVerifyPopup,
     postContract,
-    change
+    change,
+    fetchEmployees,
+    fetchContract
   }
 )(StyledComponent);

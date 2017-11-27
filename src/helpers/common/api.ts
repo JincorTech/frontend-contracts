@@ -17,22 +17,26 @@ export const transformContracts = (data): Contract[] => {
 }
 
 export const transformContractBodyGet = (data) => {
+  const formatDate = (date: string) => {
+    return moment(date, ApiDateFormat).format(AppDateFormat);
+  }
+
   return {
     employeeId: data.employeeId,
-    contractDate: data.startDate,
+    contractDate: formatDate(data.startDate),
     contractNumber: data.contractNumber,
     jobTitle: data.jobTitle,
     roleDescription: data.jobDescription,
     employmentType: data.typeOfEmployment,
     agreementPeriod: data.periodOfAgreement,
-    startAgreementDate: data.periodStartDate,
-    endAgreementDate: data.periodEndDate,
+    startAgreementDate: formatDate(data.periodStartDate),
+    endAgreementDate: formatDate(data.periodEndDate),
     salaryAmount: data.salaryAmount.amount,
     paymentsDay: data.dayOfPayments,
     additionalClauses: data.additionalClauses,
     isSignedByEmployee: data.isSignedByEmployee,
-    createdAt: data.createdAt,
-    signedAt: data.signedAt
+    createdAt: formatDate(data.createdAt),
+    signedAt: formatDate(data.signedAt)
   }
 }
 

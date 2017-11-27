@@ -62,7 +62,7 @@ export default createReducer<State>({
     state.merge({ [payload.name]: payload.value })
   ),
 
-  [FETCH_CONTRACT]: (state: State, { payload }: Action<StateMap>): State => (
+  [fetchContract.SUCCESS]: (state: State, { payload }: Action<StateMap>): State => (
     state.merge({ ...payload })
   )
 }, initialState);
