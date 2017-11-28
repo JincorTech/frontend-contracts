@@ -13,7 +13,7 @@ import {
  */
 function* fetchContractIterator({ payload }): SagaIterator {
   try {
-    const { data } = yield call(get, `/api/contracts/6174b0f53573874343a4d915d4f5b6876a9a15e5/`);
+    const { data } = yield call(get, `/api/contracts/${payload}/`);
     yield put(fetchContract.success(transformContractBodyGet(data)));
   } catch (e) {
     yield put(fetchContract.failure(e));

@@ -29,12 +29,14 @@ export type StateMap = {
  */
 export const CHANGE = 'employmentAgreement/createContractForm/CHANGE';
 export const FETCH_CONTRACT = 'employmentAgreement/createContractForm/FETCH_CONTRACT';
+export const RESET_STATE = 'employmentAgreement/createContractForm/RESET_STATE';
 
 /**
  * Action creators
  */
 export const change = createAction<{name: string, value: string}>(CHANGE);
 export const fetchContract = createAsyncAction<string, StateMap>(FETCH_CONTRACT);
+export const resetState = createAction<void>(RESET_STATE);
 
 /**
  * Reducer
@@ -64,5 +66,9 @@ export default createReducer<State>({
 
   [fetchContract.SUCCESS]: (state: State, { payload }: Action<StateMap>): State => (
     state.merge({ ...payload })
-  )
+  ),
+
+  [RESET_STATE]: (state: State, { payload }: Action<{name: string, value: string}>): State => (
+    state.merge({ ...initialState })
+  ),
 }, initialState);

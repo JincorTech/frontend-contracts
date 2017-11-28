@@ -32,6 +32,7 @@ export const CHOOSE_EMPLOYEE = 'employmentAgreement/employmentAgreement/CHOOSE_E
 export const POST_CONTRACT = 'employmentAgreement/employmentAgreement/POST_CONTRACT';
 export const VERIFY_CONTRACT = 'employmentAgreement/employmentAgreement/VERIFY_CONTRACT';
 export const CLOSE_VERIFY_POPUP = 'employmentAgreement/employmentAgreement/CLOSE_VERIFY_POPUP';
+export const RESET_STATE = 'employmentAgreement/employmentAgreement/RESET_STATE';
 
 /**
  * Action creators
@@ -43,6 +44,7 @@ export const chooseEmployee = createAction<string>(CHOOSE_EMPLOYEE);
 export const postContract = createAsyncAction<any, any>(POST_CONTRACT);
 export const verifyContract = createAsyncAction<any, void>(VERIFY_CONTRACT);
 export const closeVerifyPopup = createAction<void>(CLOSE_VERIFY_POPUP);
+export const resetState = createAction<void>(RESET_STATE);
 
 /**
  * Reducer
@@ -84,5 +86,9 @@ export default createReducer<State>({
 
   [CLOSE_VERIFY_POPUP]: (state: State): State => (
     state.merge({ verifyPopupIsOpened: false })
+  ),
+
+  [RESET_STATE]: (state: State): State => (
+    state.merge({ ...initialState })
   ),
 }, initialState);

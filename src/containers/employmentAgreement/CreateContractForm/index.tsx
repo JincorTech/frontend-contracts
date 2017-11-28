@@ -19,9 +19,15 @@ import {
   verifyContract,
   closeVerifyPopup,
   postContract,
-  fetchEmployees
+  fetchEmployees,
+  resetState as resetWizardState
 } from '../../../redux/modules/employmentAgreement/employmentAgreement';
-import { StateMap as FormStateProps, change, fetchContract } from '../../../redux/modules/employmentAgreement/createContractForm';
+import {
+  StateMap as FormStateProps,
+  change,
+  fetchContract,
+  resetState as resetFormState
+} from '../../../redux/modules/employmentAgreement/createContractForm';
 import { getEmployeeById } from '../../../helpers/common/store';
 import { required, minLength, maxLength } from '../../../utils/validators';
 
@@ -48,6 +54,8 @@ export type DispatchProps = {
   change: (payload: { name: string, value: string }) => void
   fetchEmployees: () => void
   fetchContract: (contractId: string) => void
+  resetFormState: () => void
+  resetWizardState: () => void
 }
 
 
@@ -64,6 +72,11 @@ class CreateContractForm extends React.Component<Props, any> {
       this.props.fetchEmployees();
       this.props.fetchContract(this.props.routeParams.contractId);
     }
+  }
+
+  componentWillUnmount() {
+    this.props.resetFormState();
+    this.props.resetWizardState();
   }
 
   handleChange(event) {
@@ -232,6 +245,8 @@ export default connect<StateProps, DispatchProps, ComponentProps>(
     postContract,
     change,
     fetchEmployees,
-    fetchContract
+    fetchContract,
+    resetFormState,
+    resetWizardState
   }
 )(StyledComponent);
