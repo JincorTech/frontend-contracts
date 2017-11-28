@@ -14,6 +14,7 @@ import {
   Contract,
   FilteringType
 } from '../../../redux/modules/contracts/contractsPage';
+import Spinner from '../../../components/common/Spinner';
 
 /**
  * Types
@@ -50,6 +51,10 @@ class ContractsPage extends Component<Props, {}> {
         return contracts;
       }
     };
+
+    if (!contracts.length) {
+      return <Spinner/>
+    }
 
     return (
       <div>

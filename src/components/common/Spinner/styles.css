@@ -8,7 +8,7 @@
   width: 14px;
   height: 14px;
   margin: 0 4px;
-  background-color: #fff;
+  background-color: #2aaaff;
   border-radius: 100%;
   display: inline-block;
   animation: sk-bouncedelay 1.4s infinite ease-in-out both;
@@ -20,6 +20,10 @@
 
 .spinner .bounceTwo {
   animation-delay: -0.16s;
+}
+
+.bounceThree {
+
 }
 
 @-webkit-keyframes sk-bouncedelay {
