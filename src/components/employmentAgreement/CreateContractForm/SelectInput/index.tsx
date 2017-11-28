@@ -6,20 +6,26 @@ import Button from '../../../common/Button';
 export type Props = {
   onButtonClick?: () => void
   text?: string
+  disabled?: boolean
 }
 
 const SelectInput: SFC<Props> = (props) => {
   const {
     text,
-    onButtonClick
+    onButtonClick,
+    disabled
   } = props;
 
   return (
     <div styleName="input">
       <span styleName="value">{text || 'Employee'}</span>
-      <div styleName="button">
-        <Button onClick={onButtonClick}>Choose</Button>
-      </div>
+
+      {!disabled ?
+        <div styleName="button">
+          <Button onClick={onButtonClick}>Choose</Button>
+        </div> : null
+      }
+      
     </div>
   );
 };

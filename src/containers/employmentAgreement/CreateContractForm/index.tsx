@@ -79,6 +79,10 @@ class CreateContractForm extends React.Component<Props, any> {
     this.props.resetWizardState();
   }
 
+  canEdit() {
+    return !this.props.routeParams;
+  }
+
   handleChange(event) {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -165,14 +169,14 @@ class CreateContractForm extends React.Component<Props, any> {
           <Avatar src={null} fullName={getEmployeeName(getEmployeeId())} id={getEmployeeId()} />
         </div>
         <div styleName="input">
-          <SelectInput text={getEmployeeName(getEmployeeId())} onButtonClick={openPopup}/>
+          <SelectInput disabled={!this.canEdit()} text={getEmployeeName(getEmployeeId())} onButtonClick={openPopup}/>
         </div>
         <ol styleName="list">
           <li styleName={getFilledStyle(0)}>
-            <DateInput name={'contractDate'} value={fields.contractDate} onChange={this.handleChange} description={'Contract date'} buttonText={'Pick date'} />
+            <DateInput disabled={!this.canEdit()} name={'contractDate'} value={fields.contractDate} onChange={this.handleChange} description={'Contract date'} buttonText={'Pick date'} />
           </li>
           <li styleName={getFilledStyle(1)}>
-            <Input name={'contractNumber'} type="number" max={999999} value={fields.contractNumber} onChange={this.handleChange} styleName="text-input" placeholder={'Contract number'} />
+            <Input disabled={!this.canEdit()} name={'contractNumber'} type="number" max={999999} value={fields.contractNumber} onChange={this.handleChange} styleName="text-input" placeholder={'Contract number'} />
           </li>
           <li styleName={getFilledStyle(2)}>
             <Caption text={'Wallets'} />
@@ -181,34 +185,34 @@ class CreateContractForm extends React.Component<Props, any> {
             <div styleName="wallets-spacer" />
           </li>
           <li styleName={getFilledStyle(3)}>
-            <Input name={'jobTitle'} value={fields.jobTitle} maxLength={100} onChange={this.handleChange} styleName="job-text-input" placeholder={'Job title'} />
-            <Input name={'roleDescription'} value={fields.roleDescription} maxLength={100} onChange={this.handleChange} styleName="small-text-input" placeholder={'Role desription'} />
+            <Input disabled={!this.canEdit()} name={'jobTitle'} value={fields.jobTitle} maxLength={100} onChange={this.handleChange} styleName="job-text-input" placeholder={'Job title'} />
+            <Input disabled={!this.canEdit()} name={'roleDescription'} value={fields.roleDescription} maxLength={100} onChange={this.handleChange} styleName="small-text-input" placeholder={'Role desription'} />
           </li>
           <li styleName={getFilledStyle(4)}>
             <Caption text={'Type of employment'} />
-            <RadioGroup name={'employmentType'} value={fields.employmentType} onChange={this.handleChange} groupId={'type-of-employment'} values={['full', 'part']} labels={['Full time', 'Part time']} />
+            <RadioGroup disabled={!this.canEdit()} name={'employmentType'} value={fields.employmentType} onChange={this.handleChange} groupId={'type-of-employment'} values={['full', 'part']} labels={['Full time', 'Part time']} />
             <div styleName="spacer" />
           </li>
           <li styleName={getFilledStyle(5)}>
             <Caption text={'Period of agreement'} />
             <div styleName="period-radio-group">
-              <RadioGroup name={'agreementPeriod'} value={fields.agreementPeriod} onChange={this.handleChange} groupId={'period-of-agreement'} values={['fixed', 'permanent']} labels={['Fixed period', 'Permanent agreement']} />
+              <RadioGroup disabled={!this.canEdit()} name={'agreementPeriod'} value={fields.agreementPeriod} onChange={this.handleChange} groupId={'period-of-agreement'} values={['fixed', 'permanent']} labels={['Fixed period', 'Permanent agreement']} />
             </div>
             <div styleName="spacer" />
             <div styleName="period-dates">
-              <DateInput disabled={periodIsPermanent()} name={'startAgreementDate'} value={fields.startAgreementDate} onChange={this.handleChange} description={'Start date'} buttonText={'Pick start date'} />
-              <DateInput disabled={periodIsPermanent()} name={'endAgreementDate'} value={fields.endAgreementDate} onChange={this.handleChange} description={'End date'} buttonText={'Pick end date'} />
+              <DateInput disabled={periodIsPermanent() || !this.canEdit()} name={'startAgreementDate'} value={fields.startAgreementDate} onChange={this.handleChange} description={'Start date'} buttonText={'Pick start date'} />
+              <DateInput disabled={periodIsPermanent() || !this.canEdit()} name={'endAgreementDate'} value={fields.endAgreementDate} onChange={this.handleChange} description={'End date'} buttonText={'Pick end date'} />
             </div>
             <div styleName="spacer" />
           </li>
           <li styleName={getFilledStyle(6)}>
             <Caption text={'Compensation'} />
-            <Input name={'salaryAmount'} type="number" max={9999999999} value={fields.salaryAmount} onChange={this.handleChange} styleName="salary-text-input" placeholder={'Salary amount'} />
-            <Input name={'paymentsDay'} type="number" min={1} max={31} value={fields.paymentsDay} onChange={this.handleChange} styleName="text-input" placeholder={'Day of payments'}/>
+            <Input disabled={!this.canEdit()} name={'salaryAmount'} type="number" max={9999999999} value={fields.salaryAmount} onChange={this.handleChange} styleName="salary-text-input" placeholder={'Salary amount'} />
+            <Input disabled={!this.canEdit()} name={'paymentsDay'} type="number" min={1} max={31} value={fields.paymentsDay} onChange={this.handleChange} styleName="text-input" placeholder={'Day of payments'}/>
           </li>
           <li styleName={getFilledStyle(7)}>
             <Caption text={'Additional сlauses'} />
-            <Input name={'additionalClauses'} value={fields.additionalClauses} maxLength={100} onChange={this.handleChange} styleName="small-text-input" placeholder={'Place for additional text'} />
+            <Input disabled={!this.canEdit()} name={'additionalClauses'} value={fields.additionalClauses} maxLength={100} onChange={this.handleChange} styleName="small-text-input" placeholder={'Place for additional text'} />
           </li>
           <li styleName={getFilledStyle(8)}>
             <Caption text={'Signatures'} />
@@ -217,9 +221,13 @@ class CreateContractForm extends React.Component<Props, any> {
             <span styleName="sign-description">Employer signature</span>
           </li>
         </ol>
-        <div styleName="create-button">
-          <Button isSubmit={true} disabled={!validateSubmitButton} value={'Create smart contract'}/>
-        </div>
+
+        {this.canEdit() ?
+          <div styleName="create-button">
+            <Button isSubmit={true} disabled={!validateSubmitButton} value={'Create smart contract'} />
+          </div> : null
+        }
+
         <ChooseEmployeePopup open={popupIsOpened} onClose={closePopup} employees={employees} onSelect={chooseEmployee}/>
         <VerificationPopup open={verifyPopupIsOpened} onClose={closeVerifyPopup} onSubmit={verifyContract}/>
       </form>

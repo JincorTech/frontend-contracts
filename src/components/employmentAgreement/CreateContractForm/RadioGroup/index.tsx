@@ -15,7 +15,8 @@ const RadioGroup = (props) => {
     labels,
     name,
     value,
-    onChange
+    onChange,
+    disabled
   } = props;
 
   const getButtonId = (index) => `radio-item-${groupId}-${index}`;
@@ -24,7 +25,7 @@ const RadioGroup = (props) => {
     <div>
       {values.map((currentValue, index) => (
         <div key={index} styleName="item">
-          <input type="radio" id={getButtonId(index)} name={name} value={currentValue} checked={value === currentValue} onChange={onChange}/>
+          <input disabled={disabled} type="radio" id={getButtonId(index)} name={name} value={currentValue} checked={value === currentValue} onChange={onChange}/>
           <label htmlFor={getButtonId(index)}>
             <span>{labels[index] ? labels[index] : ''}</span>
           </label>
