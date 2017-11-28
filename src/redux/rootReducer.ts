@@ -8,6 +8,7 @@ import employmentAgreementWizard from './modules/wizard/employmentAgreementWizar
 import employmentAgreement from './modules/employmentAgreement/employmentAgreement';
 import chooseEmployeePopup from './modules/employmentAgreement/chooseEmployeePopup';
 import createContractForm from './modules/employmentAgreement/createContractForm';
+import verification from './modules/verification/verification';
 
 export default combineReducers({
   routing: routerReducer,
@@ -33,5 +34,9 @@ export default combineReducers({
     employmentAgreement,
     chooseEmployeePopup,
     createContractForm
+  }),
+
+  verification: combineReducers({
+    verification
   })
 });

@@ -92,55 +92,55 @@ const getMock = (path: string) => {
       }
     case '/api/contracts/6174b0f53573874343a4d915d4f5b6876a9a15e5/':
       return {
-          'status': 200,
-          'data': {
-              'contractId': '6174b0f53573874343a4d915d4f5b6876a9a15e5',
-              'employeeId': '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf579',
-              'startDate': '10/21/2017',
-              'contractNumber': '192',
-              'jobTitle': 'Graphics Designer',
-              'jobDescription': 'Design of all graphics materials for company',
-              'typeOfEmployment': 'full',
-              'periodOfAgreement': 'fixed',
-              'periodStartDate': '10/21/2017',
-              'periodEndDate': '10/21/2018',
-              'compensation': '',
-              'salaryAmount': {
-                  'currency': 'ETH',
-                  'amount': '300'
-              },
-              'dayOfPayments': '25',
-              'additionalClauses': '',
-              'isSignedByEmployee': true,
-              'createdAt': '01/10/2017',
-              'signedAt': '01/10/2017'
-          }
+        'status': 200,
+        'data': {
+          'contractId': '6174b0f53573874343a4d915d4f5b6876a9a15e5',
+          'employeeId': '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf579',
+          'startDate': '10/21/2017',
+          'contractNumber': '192',
+          'jobTitle': 'Graphics Designer',
+          'jobDescription': 'Design of all graphics materials for company',
+          'typeOfEmployment': 'full',
+          'periodOfAgreement': 'fixed',
+          'periodStartDate': '10/21/2017',
+          'periodEndDate': '10/21/2018',
+          'compensation': '',
+          'salaryAmount': {
+            'currency': 'ETH',
+            'amount': '300'
+          },
+          'dayOfPayments': '25',
+          'additionalClauses': '',
+          'isSignedByEmployee': true,
+          'createdAt': '01/10/2017',
+          'signedAt': '01/10/2017'
+        }
       }
     case '/api/contracts/6174b0f53573874343a4d915d4f5b6876a9a1535/':
       return {
-          'status': 200,
-          'data': {
-              'contractId': '6174b0f53573874343a4d915d4f5b6876a9a1535',
-              'employeeId': '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf519',
-              'startDate': '10/21/2017',
-              'contractNumber': '192',
-              'jobTitle': 'Graphics Designer',
-              'jobDescription': 'Design of all graphics materials for company',
-              'typeOfEmployment': 'full',
-              'periodOfAgreement': 'fixed',
-              'periodStartDate': '10/21/2017',
-              'periodEndDate': '10/21/2018',
-              'compensation': '',
-              'salaryAmount': {
-                  'currency': 'ETH',
-                  'amount': '300'
-              },
-              'dayOfPayments': '25',
-              'additionalClauses': '',
-              'isSignedByEmployee': false,
-              'createdAt': '01/10/2017',
-              'signedAt': ''
-          }
+        'status': 200,
+        'data': {
+          'contractId': '6174b0f53573874343a4d915d4f5b6876a9a1535',
+          'employeeId': '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf519',
+          'startDate': '10/21/2017',
+          'contractNumber': '192',
+          'jobTitle': 'Graphics Designer',
+          'jobDescription': 'Design of all graphics materials for company',
+          'typeOfEmployment': 'full',
+          'periodOfAgreement': 'fixed',
+          'periodStartDate': '10/21/2017',
+          'periodEndDate': '10/21/2018',
+          'compensation': '',
+          'salaryAmount': {
+            'currency': 'ETH',
+            'amount': '300'
+          },
+          'dayOfPayments': '25',
+          'additionalClauses': '',
+          'isSignedByEmployee': false,
+          'createdAt': '01/10/2017',
+          'signedAt': ''
+        }
       }
   }
 };

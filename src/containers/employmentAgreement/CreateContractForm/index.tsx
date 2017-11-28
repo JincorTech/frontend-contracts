@@ -10,13 +10,12 @@ import WalletInput from '../../../components/employmentAgreement/createContractF
 import RadioGroup from '../../../components/employmentAgreement/createContractForm/RadioGroup';
 import Button from '../../../components/common/Button';
 import ChooseEmployeePopup from '../ChooseEmployeePopup';
-import VerificationPopup from '../../../components/verification/VerificationPopup';
+import VerificationPopup from '../../../containers/verification/VerificationPopup';
 import {
   StateMap as CommonStateProps,
   openPopup,
   closePopup,
   chooseEmployee,
-  verifyContract,
   closeVerifyPopup,
   postContract,
   fetchEmployees,
@@ -243,7 +242,7 @@ class CreateContractForm extends React.Component<Props, any> {
         }
 
         <ChooseEmployeePopup open={popupIsOpened} onClose={closePopup} employees={employees} onSelect={chooseEmployee}/>
-        <VerificationPopup open={verifyPopupIsOpened} onClose={closeVerifyPopup} onSubmit={verifyContract}/>
+        <VerificationPopup isOpen={verifyPopupIsOpened} onClose={closeVerifyPopup}/>
       </form>
     );
   }
@@ -262,7 +261,6 @@ export default connect<StateProps, DispatchProps, ComponentProps>(
     openPopup,
     closePopup,
     chooseEmployee,
-    verifyContract,
     closeVerifyPopup,
     postContract,
     change,

@@ -8,7 +8,7 @@ import ContractTypesForm from '../../../components/wizard/ContractTypesForm';
 import ChooseEmployeeForm from '../../../containers/employmentAgreement/ChooseEmployeeForm';
 import ChooseEmployeePopup from '../../../containers/employmentAgreement/ChooseEmployeePopup';
 import CreateContractForm from '../../../containers/employmentAgreement/CreateContractForm';
-import VerificationPopup from '../../../components/verification/VerificationPopup';
+import VerificationPopup from '../../../containers/verification/VerificationPopup';
 
 /**
  * Types

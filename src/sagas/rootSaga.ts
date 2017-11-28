@@ -5,12 +5,14 @@ import appSaga from './app/app';
 import contractsPageSaga from './contracts/contractsPage';
 import employmentAgreement from './employmentAgreement/employmentAgreement';
 import createContractForm from './employmentAgreement/createContractForm';
+import verification from './verification/verification';
 
 export default function*(): SagaIterator {
   yield [
     fork(appSaga),
     fork(contractsPageSaga),
     fork(employmentAgreement),
-    fork(createContractForm)
+    fork(createContractForm),
+    fork(verification)
   ];
 }

@@ -6,8 +6,7 @@ import { transformContractBodyPost } from '../../helpers/common/api';
 
 import {
   fetchEmployees,
-  postContract,
-  verifyContract
+  postContract
 } from '../../redux/modules/employmentAgreement/employmentAgreement';
 
 /**
@@ -49,38 +48,11 @@ function* postContractSaga(): SagaIterator {
 }
 
 /**
- * Verify contract
- */
-const getContractState = (state) => state.employmentAgreement.employmentAgreement;
-
-function* verifyContractIterator({ payload }): SagaIterator {
-  try {
-    const { verificationId, contractId } = yield select(getContractState);
-    const { data } = yield call(post, `/api/contracts/${contractId}/actions/verify/`, {
-      verificationId: verificationId,
-      verificationCode: payload
-    });
-
-    yield put(verifyContract.success(data));
-  } catch (e) {
-    yield put(verifyContract.failure(e));
-  }
-}
-
-function* verifyContractSaga(): SagaIterator {
-  yield takeLatest(
-    verifyContract.REQUEST,
-    verifyContractIterator
-  );
-}
-
-/**
  * Employment agreement saga
  */
 export default function*(): SagaIterator {
   yield [
     fork(fetchEmployeesSaga),
-    fork(postContractSaga),
-    fork(verifyContractSaga)
+    fork(postContractSaga)
   ];
 }
