@@ -37,6 +37,6 @@ export default createReducer<State>({
   ),
 
   [verifyContract.SUCCESS]: (state: State, {}: Action<void>): State => (
-    state.merge({ isVerified: false })
+    state.merge({ isVerified: true })
   )
 }, initialState);

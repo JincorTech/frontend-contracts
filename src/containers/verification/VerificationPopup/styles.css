@@ -28,3 +28,17 @@
   color: #6e7987;
   margin-bottom: 30px;
 }
+
+.verified-section {
+}
+
+.verified-icon {
+  display: block;
+  margin: 0 auto 20px;
+}
+
+.verified-message {
+  composes: header;
+  display: block;
+  margin: 0 auto;
+}

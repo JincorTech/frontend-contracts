@@ -112,7 +112,8 @@ class CreateContractForm extends React.Component<Props, any> {
       postContract,
       closeVerifyPopup,
       verifyContract,
-      fields
+      fields,
+      contractId
     } = this.props;
 
     const getEmployeeId = () => {
@@ -242,7 +243,7 @@ class CreateContractForm extends React.Component<Props, any> {
         }
 
         <ChooseEmployeePopup open={popupIsOpened} onClose={closePopup} employees={employees} onSelect={chooseEmployee}/>
-        <VerificationPopup isOpen={verifyPopupIsOpened} onClose={closeVerifyPopup}/>
+        <VerificationPopup isOpen={verifyPopupIsOpened} onClose={closeVerifyPopup} contractId={contractId}/>
       </form>
     );
   }
