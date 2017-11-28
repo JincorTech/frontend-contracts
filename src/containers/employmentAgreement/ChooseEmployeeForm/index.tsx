@@ -51,7 +51,7 @@ class ChooseEmployeeForm extends Component<Props, {}> {
 
     return (
       <div>
-        <div styleName="image"/>
+        <img styleName="image" src={require('../../../assets/images/smart.png')}/>
         <span styleName="caption">Hey ya!</span>
         <span styleName="description">
           This is smart contract creation interface. To start creating new contract,

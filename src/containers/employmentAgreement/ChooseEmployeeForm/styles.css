@@ -1,8 +1,9 @@
 .image {
-  width: 375px;
-  height: 290px;
-  background-color: #cecece;
-  margin: 18px auto 6px;
+  display: block;
+  height: 224px;
+  margin: 118px auto 49px;
+  position: relative;
+  left: -35px;
 }
 
 .caption {
