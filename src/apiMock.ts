@@ -84,7 +84,8 @@ export const get = (path: string) => {
           { id: '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf515', name: 'Claudia Bullock', email: 'bullock@yandex.ru' },
           { id: '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf516', name: 'Maxim Brook', email: 'mbrook@yandex.ru' },
           { id: '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf517', name: 'Mike Jefferson', email: 'jeff@yandex.ru' },
-          { id: '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf518', name: 'Claudia Bullock', email: 'bullock@yandex.ru' }
+          { id: '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf518', name: 'Claudia Bullock', email: 'bullock@yandex.ru' },
+          { id: '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf519', name: 'Simon Slow', email: 'sslow@yandex.ru' }
         ]
       }
     case '/api/contracts/6174b0f53573874343a4d915d4f5b6876a9a15e5/':
@@ -111,6 +112,32 @@ export const get = (path: string) => {
               'isSignedByEmployee': true,
               'createdAt': '01/10/2017',
               'signedAt': '01/10/2017'
+          }
+      }
+    case '/api/contracts/6174b0f53573874343a4d915d4f5b6876a9a1535/':
+      return {
+          'status': 200,
+          'data': {
+              'contractId': '6174b0f53573874343a4d915d4f5b6876a9a1535',
+              'employeeId': '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf519',
+              'startDate': '10/21/2017',
+              'contractNumber': '192',
+              'jobTitle': 'Graphics Designer',
+              'jobDescription': 'Design of all graphics materials for company',
+              'typeOfEmployment': 'full',
+              'periodOfAgreement': 'fixed',
+              'periodStartDate': '10/21/2017',
+              'periodEndDate': '10/21/2018',
+              'compensation': '',
+              'salaryAmount': {
+                  'currency': 'ETH',
+                  'amount': '300'
+              },
+              'dayOfPayments': '25',
+              'additionalClauses': '',
+              'isSignedByEmployee': false,
+              'createdAt': '01/10/2017',
+              'signedAt': ''
           }
       }
   }

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="36px" height="36px" viewBox="0 0 36 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47 (45396) - http://www.bohemiancoding.com/sketch -->
+    <title>Signed</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Contracts" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Contracts-—-Filled" transform="translate(-344.000000, -1708.000000)">
+            <g id="Check-—-Green" transform="translate(344.000000, 1708.000000)">
+                <g id="Signed">
+                    <circle id="Oval-2" fill="#00DC85" cx="18" cy="18" r="18"></circle>
+                    <path d="M16.1283066,21.5757515 L15.7878628,21.230652 L12.7779333,18.1795615 C12.4543513,17.8516229 11.9261896,17.8480912 11.598251,18.1716732 C11.2702495,18.4953172 11.266709,19.0235778 11.5903431,19.3515892 L15.9270015,23.746904 C16.028385,23.8496588 16.1937782,23.8510664 16.2968959,23.7500519 L25.100514,15.1259959 C25.4289129,14.8031507 25.4333992,14.2769072 25.1115891,13.949563 C24.7882715,13.6206853 24.2597405,13.6156192 23.9301782,13.9382389 L16.1283066,21.5757515 Z" id="Path" stroke="#FFFFFF" fill="#FFFFFF"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

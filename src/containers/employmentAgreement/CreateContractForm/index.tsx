@@ -120,8 +120,9 @@ class CreateContractForm extends React.Component<Props, any> {
       return chosenEmployeeId || fields.employeeId;
     }
 
-    const getEmployeeName = (id: string) => {
-      const employee = getEmployeeById(employees, id);
+    const getEmployeeName = () => {
+      const employeeId = getEmployeeId();
+      const employee = getEmployeeById(employees, employeeId);
       if (!employee) {
         return '';
       }
@@ -130,7 +131,15 @@ class CreateContractForm extends React.Component<Props, any> {
     }
 
     const getFilledStyle = (step: number) => {
+      if (fields.isSignedByEmployee) {
+        return 'signed-item';
+      }
+
       return stepsValidationResult[step] ? 'filled-item' : '';
+    }
+
+    const getSignCaption = () => {
+      return fields.isSignedByEmployee ? `Signed by ${getEmployeeName()}`: 'Unsigned';
     }
 
     // Validation
@@ -166,10 +175,10 @@ class CreateContractForm extends React.Component<Props, any> {
     return (
       <form onSubmit={this.handleSubmit} styleName="form">
         <div styleName="avatar">
-          <Avatar src={null} fullName={getEmployeeName(getEmployeeId())} id={getEmployeeId()} />
+          <Avatar src={null} fullName={getEmployeeName()} id={getEmployeeId()} />
         </div>
         <div styleName="input">
-          <SelectInput disabled={!this.canEdit()} text={getEmployeeName(getEmployeeId())} onButtonClick={openPopup}/>
+          <SelectInput disabled={!this.canEdit()} text={getEmployeeName()} onButtonClick={openPopup}/>
         </div>
         <ol styleName="list">
           <li styleName={getFilledStyle(0)}>
@@ -217,7 +226,12 @@ class CreateContractForm extends React.Component<Props, any> {
           <li styleName={getFilledStyle(8)}>
             <Caption text={'Signatures'} />
             <span styleName="section-description">To sign contract you need to request code from Google Authentificator. After your signing request for the signing of the contract will be sent to your employee.</span>
-            <span styleName="sign-status">Unsigned</span>
+            
+            {fields.isSignedByEmployee ?
+              <img styleName="signed-icon" src={require('../../../assets/images/signed.svg')}/> : null
+            }
+            
+            <span styleName="sign-status">{getSignCaption()}</span>
             <span styleName="sign-description">Employer signature</span>
           </li>
         </ol>
