@@ -20,9 +20,7 @@ const WizardWrapper: SFC<Props> = (props) => {
   const renderBackButtonBody = () => {
     return (
       <div>
-        <div styleName="icon">
-          {'<'}
-        </div>
+        <img styleName="icon" src={require('../../../assets/images/back.svg')}/>
         <div styleName="caption">
           {'New smart contract'}
         </div>

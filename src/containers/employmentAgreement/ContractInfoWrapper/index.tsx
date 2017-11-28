@@ -20,9 +20,7 @@ const ContractInfoWrapper: SFC<Props> = (props) => {
     <div styleName="layout">
       <div styleName="header">
         <Link styleName="back" to={'/ctr/app/contracts'}>
-          <div styleName="icon">
-            {'<'}
-          </div>
+          <img styleName="icon" src={require('../../../assets/images/back.svg')}/>
           <div styleName="caption">
             {'Dashboard'}
           </div>

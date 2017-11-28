@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="10px" height="15px" viewBox="0 0 10 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47 (45396) - http://www.bohemiancoding.com/sketch -->
+    <title>Block Copy</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Contracts" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Contracts-—-Active" transform="translate(-866.000000, -1367.000000)">
+            <g id="Block" transform="translate(863.000000, 1366.000000)">
+                <rect id="Rectangle-6" fill="#DBDFE4" fill-rule="evenodd" x="3" y="6" width="10" height="10" rx="1"></rect>
+                <rect id="Rectangle" stroke="#DBDFE4" stroke-width="1" x="5.5" y="1.5" width="5" height="8" rx="2.5"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

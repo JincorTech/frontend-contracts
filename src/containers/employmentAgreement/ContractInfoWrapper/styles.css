@@ -14,14 +14,14 @@
 .back {
   position: absolute;
   left: 0;
-  margin: -8px 0 auto 12px;
+  margin: -10px 0 auto 15px;
   width: 180px;
   cursor: pointer;
 }
 
 .icon {
   float: left;
-  margin-right: 8px;
+  margin: 1px 15px 0 0;
   font-weight: 800;
   font-size: 16px;
   color: #6e7987;
