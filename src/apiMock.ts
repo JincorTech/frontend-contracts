@@ -1,4 +1,6 @@
-export const get = (path: string) => {
+import { setTimeout } from "timers";
+
+const getMock = (path: string) => {
   switch (path) {
     case '/api/contracts/':
       return {
@@ -143,7 +145,7 @@ export const get = (path: string) => {
   }
 };
 
-export const post = (path: string, body: any) => {
+const postMock = (path: string, body: any) => {
   switch (path) {
     case '/api/contracts/':
       console.log('!!! POST CONTRACT. BODY:', body);
@@ -166,4 +168,20 @@ export const post = (path: string, body: any) => {
         }
       }
   }
+}
+
+export const get = (path: string) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(getMock(path));
+    }, 1000);
+  });
+}
+
+export const post = (path: string, body: any) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(postMock(path, body));
+    }, 1000);
+  });
 }
