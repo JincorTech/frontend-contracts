@@ -28,4 +28,6 @@
   padding: 0 40px 50px;
   box-sizing: border-box;
   overflow-y: scroll;
+  position: relative;
+  clear: fix;
 }

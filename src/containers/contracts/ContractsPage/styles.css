@@ -3,8 +3,7 @@
 
 .list {
   position: absolute;
-  left: 290px;
-  right: 280px;
+  width: calc(100% - 320px);
 }
 
 .add-contract {
