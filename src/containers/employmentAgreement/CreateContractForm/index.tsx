@@ -11,6 +11,7 @@ import RadioGroup from '../../../components/employmentAgreement/createContractFo
 import Button from '../../../components/common/Button';
 import ChooseEmployeePopup from '../ChooseEmployeePopup';
 import VerificationPopup from '../../../containers/verification/VerificationPopup';
+import Spinner from '../../../components/common/Spinner';
 import {
   StateMap as CommonStateProps,
   openPopup,
@@ -172,6 +173,10 @@ class CreateContractForm extends React.Component<Props, any> {
     const validateSubmitButton = stepsValidationResult.slice(0, -1).every((value) => value);
 
     // Render
+
+    if (!getEmployeeId()) {
+      return <div styleName="spinner"><Spinner/></div>;
+    }
 
     return (
       <form onSubmit={this.handleSubmit} styleName="form">
