@@ -6,20 +6,26 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import Avatar from '../../../components/common/Avatar';
 import { StateMap as StateProps } from '../../../redux/modules/employmentAgreement/employmentAgreement';
+import { resetState } from '../../../redux/modules/wizard/employmentAgreementWizard';
 
 export type ComponentProps = {
 };
 
 export type DispatchProps = {
+  resetState: () => void
 }
 
 export type Props = RouteComponentProps<{}, {}> & ComponentProps & DispatchProps & StateProps;
 
 const ContractInfoWrapper: SFC<Props> = (props) => {
+  const {
+    resetState
+  } = props;
+
   return (
     <div styleName="layout">
       <div styleName="header">
-        <Link styleName="back" to={'/ctr/app/contracts'}>
+        <Link onClick={resetState} styleName="back" to={'/ctr/app/contracts'}>
           <img styleName="icon" src={require('../../../assets/images/back.svg')}/>
           <div styleName="caption">
             {'Dashboard'}
@@ -41,6 +47,6 @@ const styledComponent = CSSModules(ContractInfoWrapper, require('./styles.css'))
 export default connect<StateProps, DispatchProps, Props>(
   (state) => state.wizard.employmentAgreementWizard,
   {
-
+    resetState
   }
 )(styledComponent);
