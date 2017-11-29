@@ -43,9 +43,11 @@ class VerificationPopup extends Component<Props, {}> {
       isOpen,
       onClose,
       verificationCode,
-      isVerified,
+      verifyError,
       contractId,
-      inProgress
+      inProgress,
+      verificationFinished,
+      resetState
       } = this.props;
 
     const handleChange = (e) => {
@@ -54,6 +56,20 @@ class VerificationPopup extends Component<Props, {}> {
 
     const validateCode = (): boolean => {
       return !!verificationCode.length;
+    }
+
+    const isVerified = (): boolean => {
+      return !verifyError;
+    }
+
+    const renderPopupBody = () => {
+      if (!verificationFinished) {
+        return renderVerificationFormBody();
+      } else if (isVerified()) {
+        return renderSuccessMessageAndRedirect();
+      } else {
+        return renderFailedMessage();
+      }
     }
 
     const renderVerificationFormBody = () => (
@@ -69,7 +85,7 @@ class VerificationPopup extends Component<Props, {}> {
       </div>
     );
 
-    const renderSuccessMessage = () => {
+    const renderSuccessMessageAndRedirect = () => {
       if (contractId) {
         setTimeout(() => {
           browserHistory.push(`/ctr/contracts/${contractId}/`);
@@ -84,16 +100,24 @@ class VerificationPopup extends Component<Props, {}> {
       )
     };
 
+    const renderFailedMessage = () => {
+      return (
+        <div styleName="verified-section">
+          <img styleName="verified-icon" src={require('../../../assets/images/signed.svg')} />
+          <span styleName="verified-message">Verification failed</span>
+          <span styleName="verify-error">{verifyError}</span>
+          <Button onClick={resetState}>Retry</Button>
+        </div>
+      )
+    }
+
     return (
       <Popup
         title=""
         open={isOpen}
         close={onClose}>
         <div styleName="popup">
-          {isVerified ?
-            renderSuccessMessage() :
-            renderVerificationFormBody()
-          }
+          {renderPopupBody()}
         </div>
       </Popup>
     );

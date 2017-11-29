@@ -15,10 +15,14 @@ const getContractState = (state) => state.employmentAgreement.employmentAgreemen
 function* verifyContractIterator({ payload }): SagaIterator {
   try {
     const { verificationId, contractId } = yield select(getContractState);
-    const { data } = yield call(post, `/api/contracts/${contractId}/actions/verify/`, {
+    const { status, data } = yield call(post, `/api/contracts/${contractId}/actions/verify/`, {
       verificationId: verificationId,
       verificationCode: payload
     });
+
+    if (status !== 200) {
+      throw new Error('Wrong verification code');
+    }
 
     yield put(verifyContract.success(data));
   } catch (e) {

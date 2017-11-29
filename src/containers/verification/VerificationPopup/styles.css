@@ -42,3 +42,10 @@
   display: block;
   margin: 0 auto;
 }
+
+.verify-error {
+  display: block;
+  color: #ff5e5e;
+  margin: 15px 0;
+  text-align: center;
+}

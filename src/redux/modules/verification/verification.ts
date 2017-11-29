@@ -8,7 +8,8 @@ export type State = StateMap & ImmutableObject<StateMap>;
 
 export type StateMap = {
   verificationCode: string
-  isVerified: boolean
+  verificationFinished: boolean
+  verifyError: string
   inProgress: boolean
 };
 
@@ -31,7 +32,8 @@ export const resetState = createAction<string>(RESET_STATE);
  */
 const initialState: State = from<StateMap>({
   verificationCode: '',
-  isVerified: false,
+  verificationFinished: false,
+  verifyError: '',
   inProgress: false
 });
 
@@ -45,7 +47,11 @@ export default createReducer<State>({
   ),
 
   [verifyContract.SUCCESS]: (state: State, {}: Action<void>): State => (
-    state.merge({ isVerified: true, inProgress: false })
+    state.merge({ verificationFinished: true, verifyError: '', inProgress: false })
+  ),
+
+  [verifyContract.FAILURE]: (state: State, { payload }: Action<Error>): State => (
+    state.merge({ verificationFinished: true, verifyError: payload.message, inProgress: false })
   ),
 
   [RESET_STATE]: (state: State, { payload }: Action<string>): State => (
