@@ -8,7 +8,7 @@ export type Props = {
   pathname: string;
 };
 
-const Topbar: SFC<Props> = (pathname) => (
+const Topbar: SFC<Props> = ({ pathname }) => (
   <div styleName="topbar">
     <div styleName="title"><Pagename pathname={pathname}/></div>
     <div styleName="faq"></div>

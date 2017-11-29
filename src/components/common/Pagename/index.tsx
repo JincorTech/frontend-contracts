@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 const pages = {
-  '/cmp/app/contracts': 'Contracts'
+  '/ctr/app/contracts': 'Contracts'
 };
 
 const Pagename = ({ pathname }) => (<span>{pages[pathname]}</span>);
