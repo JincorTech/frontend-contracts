@@ -37,7 +37,7 @@ const Button: SFC<Props> = (props) => {
           href={href}
           styleName={getClass()}
           {...restProps}>
-          {spinner ? <Spinner /> : children}
+          {spinner ? <Spinner button={true}/> : children}
         </a>
       );
     }
@@ -48,13 +48,17 @@ const Button: SFC<Props> = (props) => {
           to={to}
           styleName={getClass()}
           {...restProps}>
-          {spinner ? <Spinner /> : children}
+          {spinner ? <Spinner button={true}/> : children}
         </Link>
       );
     }
 
     if (isSubmit) {
       return (
+        spinner ?
+        <div styleName={getClass()}>
+          <Spinner button={true}/>
+        </div> :
         <input type="submit"
           styleName={getClass()}
           value={value}
@@ -70,7 +74,7 @@ const Button: SFC<Props> = (props) => {
         onClick={onClick}
         {...restProps}
       >
-        {spinner ? <Spinner /> : children}
+        {spinner ? <Spinner button={true}/> : children}
       </button>
     );
   };

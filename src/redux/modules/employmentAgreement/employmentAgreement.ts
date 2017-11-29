@@ -13,7 +13,8 @@ export type StateMap = {
   verifyPopupIsOpened: boolean
   verificationId: string,
   contractId: string,
-  createdAt: string
+  createdAt: string,
+  contractPosting: boolean
 };
 
 export type Employee = {
@@ -54,7 +55,8 @@ const initialState: State = from<StateMap>({
   verifyPopupIsOpened: false,
   verificationId: '',
   contractId: '',
-  createdAt: ''
+  createdAt: '',
+  contractPosting: false
 });
 
 export default createReducer<State>({
@@ -74,8 +76,12 @@ export default createReducer<State>({
     state.merge({ chosenEmployeeId: payload, popupIsOpened: false })
   ),
 
+  [postContract.REQUEST]: (state: State, { payload }: Action<any>): State => (
+    state.merge({ contractPosting: true })
+  ),
+
   [postContract.SUCCESS]: (state: State, { payload }: Action<any>): State => (
-    state.merge({ verifyPopupIsOpened: true, ...payload })
+    state.merge({ verifyPopupIsOpened: true, contractPosting: false, ...payload })
   ),
 
   [CLOSE_VERIFY_POPUP]: (state: State): State => (

@@ -113,7 +113,8 @@ class CreateContractForm extends React.Component<Props, any> {
       closeVerifyPopup,
       verifyContract,
       fields,
-      contractId
+      contractId,
+      contractPosting
     } = this.props;
 
     const getEmployeeId = () => {
@@ -238,7 +239,7 @@ class CreateContractForm extends React.Component<Props, any> {
 
         {this.canEdit() ?
           <div styleName="create-button">
-            <Button isSubmit={true} disabled={!validateSubmitButton} value={'Create smart contract'} />
+            <Button isSubmit={true} disabled={!validateSubmitButton} spinner={contractPosting} value={'Create smart contract'} />
           </div> : null
         }
 
