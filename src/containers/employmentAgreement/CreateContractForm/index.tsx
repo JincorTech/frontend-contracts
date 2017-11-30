@@ -191,7 +191,7 @@ class CreateContractForm extends React.Component<Props, any> {
             <DateInput disabled={!this.canEdit()} name={'contractDate'} value={fields.contractDate} onChange={this.handleChange} description={'Contract date'} buttonText={'Pick date'} />
           </li>
           <li styleName={getFilledStyle(1)}>
-            <Input disabled={!this.canEdit()} name={'contractNumber'} type="number" max={999999} value={fields.contractNumber} onChange={this.handleChange} styleName="text-input" placeholder={'Contract number'} />
+            <Input disabled={!this.canEdit()} name={'contractNumber'} caption={true} type="number" max={999999} value={fields.contractNumber} onChange={this.handleChange} styleName="text-input" placeholder={'Contract number'} />
           </li>
           <li styleName={getFilledStyle(2)}>
             <Caption text={'Wallets'} />
@@ -200,7 +200,9 @@ class CreateContractForm extends React.Component<Props, any> {
             <div styleName="wallets-spacer" />
           </li>
           <li styleName={getFilledStyle(3)}>
-            <Input disabled={!this.canEdit()} name={'jobTitle'} value={fields.jobTitle} maxLength={100} onChange={this.handleChange} styleName="job-text-input" placeholder={'Job title'} />
+            <div styleName="job-text-input-container">
+              <Input disabled={!this.canEdit()} name={'jobTitle'} value={fields.jobTitle} maxLength={100} onChange={this.handleChange} styleName="text-input" placeholder={'Job title'} />
+            </div>
             <Input disabled={!this.canEdit()} name={'roleDescription'} value={fields.roleDescription} maxLength={100} onChange={this.handleChange} styleName="small-text-input" placeholder={'Role desription'} />
           </li>
           <li styleName={getFilledStyle(4)}>
@@ -222,8 +224,10 @@ class CreateContractForm extends React.Component<Props, any> {
           </li>
           <li styleName={getFilledStyle(6)}>
             <Caption text={'Compensation'} />
-            <Input disabled={!this.canEdit()} name={'salaryAmount'} type="number" max={9999999999} value={fields.salaryAmount} onChange={this.handleChange} styleName="salary-text-input" placeholder={'Salary amount'} />
-            <Input disabled={!this.canEdit()} name={'paymentsDay'} type="number" min={1} max={31} value={fields.paymentsDay} onChange={this.handleChange} styleName="text-input" placeholder={'Day of payments'}/>
+            <div styleName="salary-text-input-container">
+              <Input disabled={!this.canEdit()} name={'salaryAmount'} type="number" max={9999999999} value={fields.salaryAmount} onChange={this.handleChange} styleName="text-input" placeholder={'Salary amount'} />
+            </div>
+            <Input disabled={!this.canEdit()} name={'paymentsDay'} caption={true} type="number" min={1} max={31} value={fields.paymentsDay} onChange={this.handleChange} styleName="text-input" placeholder={'Day of payments'} />
           </li>
           <li styleName={getFilledStyle(7)}>
             <Caption text={'Additional сlauses'} />

@@ -1,5 +1,9 @@
 @use postcss-short;
 
+.container {
+  position: relative;
+}
+
 .input {
   font-size: 16px;
   text-align: left;
@@ -29,6 +33,7 @@
 
     &::placeholder {
       color: #ebeced;
+      margin-top: 20px;
     }
   }
 }
@@ -47,4 +52,19 @@
       color: #ebeced;
     }
   }
+}
+
+.shifted-label {
+  position: absolute;
+  bottom: -25px;
+  left: 0;
+  opacity: 1;
+	font-size: 14px;
+  color: #111111;
+  transition: 0.2s ease all;
+}
+
+.label {
+  composes: shifted-label;
+  opacity: 0;
 }
