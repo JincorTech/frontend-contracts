@@ -14,11 +14,15 @@ const WalletInput: SFC<Props> = (props) => {
     description
   } = props;
 
+  const getEllipsisWalletAddress = () => {
+    return `${value.slice(0, 12)}...${value.slice(-3)}`;
+  }
+
   return (
     <div>
       <div styleName="input">
         <div styleName="value">
-          {value}
+          {getEllipsisWalletAddress()}
         </div>
         <div styleName="description">
           {description}

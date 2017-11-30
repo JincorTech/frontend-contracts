@@ -188,8 +188,8 @@ class CreateContractForm extends React.Component<Props, any> {
           </li>
           <li styleName={getFilledStyle(2)}>
             <Caption text={'Wallets'} />
-            <WalletInput value={'0x29D7d1d865…86B'} description={'Company wallet address'} />
-            <WalletInput value={'0x32D9d1v909…91F'} description={'Employee wallet address'} />
+            <WalletInput value={fields.companyWalletAddress} description={'Company wallet address'} />
+            <WalletInput value={fields.employeeWalletAddress} description={'Employee wallet address'} />
             <div styleName="wallets-spacer" />
           </li>
           <li styleName={getFilledStyle(3)}>

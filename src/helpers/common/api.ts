@@ -36,7 +36,9 @@ export const transformContractBodyGet = (data) => {
     additionalClauses: data.additionalClauses,
     isSignedByEmployee: data.isSignedByEmployee,
     createdAt: formatDate(data.createdAt),
-    signedAt: formatDate(data.signedAt)
+    signedAt: formatDate(data.signedAt),
+    companyWalletAddress: data.wallets.corporate.address,
+    employeeWalletAddress: data.wallets.personal.address
   }
 }
 

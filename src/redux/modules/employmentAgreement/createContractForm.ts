@@ -21,7 +21,9 @@ export type StateMap = {
   additionalClauses: string,
   isSignedByEmployee: string,
   createdAt: string,
-  signedAt: string
+  signedAt: string,
+  companyWalletAddress: string,
+  employeeWalletAddress: string
 };
 
 /**
@@ -29,6 +31,7 @@ export type StateMap = {
  */
 export const CHANGE = 'employmentAgreement/createContractForm/CHANGE';
 export const FETCH_CONTRACT = 'employmentAgreement/createContractForm/FETCH_CONTRACT';
+export const FETCH_WALLETS = 'employmentAgreement/createContractForm/FETCH_WALLETS';
 export const RESET_STATE = 'employmentAgreement/createContractForm/RESET_STATE';
 
 /**
@@ -36,6 +39,7 @@ export const RESET_STATE = 'employmentAgreement/createContractForm/RESET_STATE';
  */
 export const change = createAction<{name: string, value: string}>(CHANGE);
 export const fetchContract = createAsyncAction<string, StateMap>(FETCH_CONTRACT);
+export const fetchWallets = createAsyncAction<string, StateMap>(FETCH_WALLETS);
 export const resetState = createAction<void>(RESET_STATE);
 
 /**
@@ -56,7 +60,9 @@ const initialState: State = from<StateMap>({
   additionalClauses: '',
   isSignedByEmployee: '',
   createdAt: '',
-  signedAt: ''
+  signedAt: '',
+  companyWalletAddress: '',
+  employeeWalletAddress: ''
 });
 
 export default createReducer<State>({
