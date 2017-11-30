@@ -24,7 +24,7 @@ const WalletInput: SFC<Props> = (props) => {
         </div>
       </div>
       <div styleName="label">
-        <div styleName="icon"/>
+        <img styleName="icon" src={require('../../../../assets/images/block.svg')}/>
         <span styleName="text">Choose</span>
       </div>
     </div>
