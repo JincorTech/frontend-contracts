@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { SFC } from 'react';
 import * as CSSModules from 'react-css-modules';
+import InputCaption from '../../../common/InputCaption';
 
 export type Props = {
   value: string
@@ -23,10 +24,7 @@ const WalletInput: SFC<Props> = (props) => {
           {description}
         </div>
       </div>
-      <div styleName="label">
-        <img styleName="icon" src={require('../../../../assets/images/block.svg')}/>
-        <span styleName="text">Choose</span>
-      </div>
+      <InputCaption text={'Choose'}/>
     </div>
   );
 };
