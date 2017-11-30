@@ -84,15 +84,7 @@ class CreateContractForm extends React.Component<Props, any> {
   }
 
   handleChange(event) {
-    const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    const name = target.name;
-    
-    if (target.type === 'number' && value !== '' && (+value > +target.max || (target.min && +value < +target.min) || !parseFloat(value))) {
-      return;
-    }
-
-    this.props.change({ name: name, value: value});
+    this.props.change({ name: event.target.name, value: event.target.value});
   }
 
   handleSubmit(event) {
@@ -225,7 +217,7 @@ class CreateContractForm extends React.Component<Props, any> {
           <li styleName={getFilledStyle(6)}>
             <Caption text={'Compensation'} />
             <div styleName="salary-text-input-container">
-              <Input disabled={!this.canEdit()} name={'salaryAmount'} type="number" max={9999999999} value={fields.salaryAmount} onChange={this.handleChange} styleName="text-input" placeholder={'Salary amount'} />
+              <Input disabled={!this.canEdit()} name={'salaryAmount'} caption={true} captionText={'ETH'} type="number" max={9999999999} value={fields.salaryAmount} onChange={this.handleChange} styleName="text-input" placeholder={'Salary amount'} />
             </div>
             <Input disabled={!this.canEdit()} name={'paymentsDay'} caption={true} type="number" min={1} max={31} value={fields.paymentsDay} onChange={this.handleChange} styleName="text-input" placeholder={'Day of payments'} />
           </li>
