@@ -26,6 +26,7 @@ import {
   StateMap as FormStateProps,
   change,
   fetchContract,
+  fetchWallets,
   resetState as resetFormState
 } from '../../../redux/modules/employmentAgreement/createContractForm';
 import { getEmployeeById } from '../../../helpers/common/store';
@@ -55,6 +56,7 @@ export type DispatchProps = {
   change: (payload: { name: string, value: string }) => void
   fetchEmployees: () => void
   fetchContract: (contractId: string) => void
+  fetchWallets: () => void
   resetFormState: () => void
   resetWizardState: () => void
 }
@@ -69,9 +71,12 @@ class CreateContractForm extends React.Component<Props, any> {
   }
 
   componentDidMount() {
+    // Check readonly mode
     if (this.props.routeParams) {
       this.props.fetchEmployees();
       this.props.fetchContract(this.props.routeParams.contractId);
+    } else {
+      this.props.fetchWallets();
     }
   }
 
@@ -125,6 +130,10 @@ class CreateContractForm extends React.Component<Props, any> {
       return employee.name;
     }
 
+    const isWalletsAddressesExists = () => {
+      return fields.companyWalletAddress && fields.employeeWalletAddress;
+    }
+
     const getFilledStyle = (step: number) => {
       if (fields.isSignedByEmployee) {
         return 'signed-item';
@@ -167,7 +176,7 @@ class CreateContractForm extends React.Component<Props, any> {
 
     // Render
 
-    if (!getEmployeeId()) {
+    if (!getEmployeeId() || !isWalletsAddressesExists()) {
       return <div styleName="spinner"><Spinner/></div>;
     }
 
@@ -274,6 +283,7 @@ export default connect<StateProps, DispatchProps, ComponentProps>(
     fetchEmployees,
     fetchContract,
     resetFormState,
-    resetWizardState
+    resetWizardState,
+    fetchWallets
   }
 )(StyledComponent);

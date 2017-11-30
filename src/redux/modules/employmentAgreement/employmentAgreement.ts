@@ -17,10 +17,23 @@ export type StateMap = {
   contractPosting: boolean
 };
 
+export type Wallet = {
+  //TODO Add wallet type enum
+  type: string
+  address: string
+  balance: string
+  //TODO Add currencies enum
+  currency: string
+  created_at: string,
+  //TODO Fix type
+  transactions: any
+}
+
 export type Employee = {
   id: string
   name: string
   email: string
+  wallets: Wallet[]
 }
 
 /**

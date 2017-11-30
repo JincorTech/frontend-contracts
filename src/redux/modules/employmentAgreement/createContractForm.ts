@@ -39,7 +39,7 @@ export const RESET_STATE = 'employmentAgreement/createContractForm/RESET_STATE';
  */
 export const change = createAction<{name: string, value: string}>(CHANGE);
 export const fetchContract = createAsyncAction<string, StateMap>(FETCH_CONTRACT);
-export const fetchWallets = createAsyncAction<string, StateMap>(FETCH_WALLETS);
+export const fetchWallets = createAsyncAction<string, {companyWalletAddress: string, employeeWalletAddress: string}>(FETCH_WALLETS);
 export const resetState = createAction<void>(RESET_STATE);
 
 /**
@@ -72,6 +72,10 @@ export default createReducer<State>({
 
   [fetchContract.SUCCESS]: (state: State, { payload }: Action<StateMap>): State => (
     state.merge({ ...payload })
+  ),
+
+  [fetchWallets.SUCCESS]: (state: State, { payload }: Action<{companyWalletAddress: string, employeeWalletAddress: string}>): State => (
+    state.merge({ companyWalletAddress: payload.companyWalletAddress, employeeWalletAddress: payload.employeeWalletAddress })
   ),
 
   [RESET_STATE]: (state: State, { payload }: Action<{name: string, value: string}>): State => (
