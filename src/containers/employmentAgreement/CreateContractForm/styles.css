@@ -27,6 +27,7 @@
 }
 
 .salary-text-input-container {
+  position: relative;
   margin-bottom: 40px;
 }
 
@@ -157,4 +158,10 @@
 
 .spinner {
   margin-top: 50px;
+}
+
+.salary-input-caption {
+  position: absolute;
+  right: 0;
+  top: 17px;
 }
