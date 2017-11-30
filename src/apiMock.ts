@@ -493,6 +493,55 @@ const getMock = (path: string) => {
           }
         ]
       }
+    case '/api/company/my/':
+      return {
+        'status': 200,
+        'data': {
+          'id': 'a3cbe21c-bab6-4c72-9d2e-8907f9a56898',
+          'legalName': 'Test Company',
+          'profile': {
+            'brandName': {
+              'en': 'My english brand name',
+              'ru': 'Мое русское брендовое имя!'
+            },
+            'picture': 'https://s3.eu-west-2.amazonaws.com/jincor-test/a3cbe21c-bab6-4c72-9d2e-8907f9a56898/avatars/pic_58f0455407416.png',
+            'links': [
+              {
+                'name': 'facebook',
+                'value': 'http://facebook.com'
+              }
+            ],
+            'email': 'admin@jincor.com',
+            'phone': '+7999229393',
+            'address': {
+              'country': {
+                'id': '5ac1d660-2891-48cb-8527-8ef8813b37a9',
+                'name': 'Russia'
+              },
+              'city': null,
+              'formattedAddress': 'Москва, ул. Алая, д. 15, оф. 89, 602030'
+            }
+          },
+          'economicalActivityTypes': [
+            {
+              'id': '72a0d7d3-afaf-4f0f-936c-ca4ffa55a7a6',
+              'name': 'Forestry & Logging',
+              'code': 'AD'
+            },
+            {
+              'id': '0e5e6e6a-5a39-4803-9837-156113692c2d',
+              'name': 'Oil Refining & Natural Gas Processing',
+              'code': 'CG'
+            }
+          ],
+          'companyType': {
+            'id': '547e7d91-bc27-4407-a27a-429d2855652b',
+            'name': 'Public Company',
+            'code': 'BT2'
+          },
+          'employeesCount': 2
+        }
+      }
   }
 };
 
