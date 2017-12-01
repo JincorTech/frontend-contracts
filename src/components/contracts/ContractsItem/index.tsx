@@ -7,7 +7,9 @@ import * as moment from 'moment';
 
 export type ComponentProps = {
   id: string
-  name: string
+  userId: string
+  userAvatar: string
+  userName: string
   date: Date
 };
 
@@ -15,9 +17,9 @@ const ContractsItem: SFC<ComponentProps> = (props) => {
   return (
     <div styleName="item">
     <Link to={`/ctr/app/contract/${props.id}`}>
-      <Avatar src={null} fullName={props.name} id={'4a516c0a-2c02-4a9f-9e2a-da6bc5ecf577'}/>
+      <Avatar src={props.userAvatar} fullName={props.userName} id={props.userId}/>
       <div styleName="info">
-        <div styleName="name">{props.name}</div>
+        <div styleName="name">{props.userName}</div>
         <div styleName="date">{moment(props.date).format('DD/MM/YYYY')}</div>
       </div>
       </Link>

@@ -33,6 +33,7 @@ export type Employee = {
   id: string
   name: string
   email: string
+  avatar: string
   wallets: Wallet[]
 }
 

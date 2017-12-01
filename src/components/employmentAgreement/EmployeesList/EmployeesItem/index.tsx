@@ -4,6 +4,8 @@ import * as CSSModules from 'react-css-modules';
 import Avatar from '../../../../components/common/Avatar';
 
 export type ComponentProps = {
+  avatar?: string
+  id: string
   name: string
   email: string
   onSelect: () => void
@@ -12,7 +14,7 @@ export type ComponentProps = {
 const EmployeesItem: SFC<ComponentProps> = (props) => {
   return (
     <div styleName="item" onClick={props.onSelect}>
-      <Avatar styleName="avatar" src={null} fullName={props.name} id={'4a516c0a-2c02-4a9f-9e2a-da6bc5ecf577'}/>
+      <Avatar styleName="avatar" src={props.avatar} fullName={props.name} id={props.id}/>
       <div styleName="info">
         <div styleName="name">{props.name}</div>
         <div styleName="email">{props.email}</div>

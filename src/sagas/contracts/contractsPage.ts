@@ -33,7 +33,7 @@ function* fetchContractsSaga(): SagaIterator {
 }
 
 /**
- * App saga
+ * Contracts saga
  */
 export default function*(): SagaIterator {
   yield [

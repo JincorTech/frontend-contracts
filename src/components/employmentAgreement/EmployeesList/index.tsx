@@ -15,7 +15,8 @@ const EmployeesList: SFC<Props> = (props) => {
   return (
     <div styleName="list">
       {employees.map((employee) => {
-        return <EmployeesItem onSelect={() => { props.onSelect(employee.id) }} key={employee.id} name={employee.name} email={employee.email}/>
+        return <EmployeesItem onSelect={() => { props.onSelect(employee.id) }}
+                    key={employee.id} id={employee.id} name={employee.name} email={employee.email} avatar={employee.avatar}/>
       })}
     </div>
   );

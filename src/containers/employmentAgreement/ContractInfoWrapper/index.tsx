@@ -5,7 +5,8 @@ import * as CSSModules from 'react-css-modules';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import Avatar from '../../../components/common/Avatar';
-import { StateMap as StateProps } from '../../../redux/modules/employmentAgreement/employmentAgreement';
+import { StateMap as ContractStateProps } from '../../../redux/modules/employmentAgreement/employmentAgreement';
+import { StateMap as AppStateProps } from '../../../redux/modules/app/appWrapper';
 import { resetState } from '../../../redux/modules/wizard/employmentAgreementWizard';
 
 export type ComponentProps = {
@@ -15,11 +16,14 @@ export type DispatchProps = {
   resetState: () => void
 }
 
+export type StateProps = ContractStateProps & AppStateProps;
+
 export type Props = RouteComponentProps<{}, {}> & ComponentProps & DispatchProps & StateProps;
 
 const ContractInfoWrapper: SFC<Props> = (props) => {
   const {
-    resetState
+    resetState,
+    user
   } = props;
 
   return (
@@ -32,7 +36,7 @@ const ContractInfoWrapper: SFC<Props> = (props) => {
           </div>
         </Link>
         <div styleName="avatar">
-          <Avatar src={'/src'} fullName={''} id={''}/>
+          <Avatar src={user.profile.avatar} fullName={user.profile.name} id={user.id} />
         </div>
       </div>
       <div>
@@ -45,7 +49,12 @@ const ContractInfoWrapper: SFC<Props> = (props) => {
 const styledComponent = CSSModules(ContractInfoWrapper, require('./styles.css'));
 
 export default connect<StateProps, DispatchProps, Props>(
-  (state) => state.wizard.employmentAgreementWizard,
+  (state) => {
+    return {
+      ...state.app.appWrapper,
+      ...state.wizard.employmentAgreementWizard
+    }
+  },
   {
     resetState
   }

@@ -135,14 +135,27 @@ class CreateContractForm extends React.Component<Props, any> {
       return chosenEmployeeId || fields.employeeId;
     }
 
-    const getEmployeeName = () => {
+    const getEmployee = () => {
       const employeeId = getEmployeeId();
-      const employee = getEmployeeById(employees, employeeId);
+      return getEmployeeById(employees, employeeId);
+    }
+
+    const getEmployeeName = () => {
+      const employee = getEmployee();
       if (!employee) {
         return '';
       }
 
       return employee.name;
+    }
+
+    const getEmployeeAvatar = () => {
+      const employee = getEmployee();
+      if (!employee) {
+        return null;
+      }
+
+      return employee.avatar;
     }
 
     const isWalletsAddressesExists = () => {
@@ -198,7 +211,7 @@ class CreateContractForm extends React.Component<Props, any> {
     return (
       <form onSubmit={this.handleSubmit} styleName="form">
         <div styleName="avatar">
-          <Avatar src={null} fullName={getEmployeeName()} id={getEmployeeId()} />
+          <Avatar src={getEmployeeAvatar()} fullName={getEmployeeName()} id={getEmployeeId()} />
         </div>
         <div styleName="input">
           <SelectInput disabled={!this.canEdit()} text={getEmployeeName()} onButtonClick={openPopup}/>

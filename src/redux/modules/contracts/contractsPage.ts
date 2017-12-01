@@ -24,7 +24,9 @@ export type StateMap = {
 
 export type Contract = {
   id: string
-  name: string
+  userId: string
+  userName: string
+  userAvatar: string
   createdAt: Date
   signedAt: boolean
 };
@@ -56,7 +58,7 @@ const getSortingComparator = (sorting: SortingType) => {
   if (sorting === SortingType.ByDate) {
     return (a: Contract, b: Contract) => a.createdAt < b.createdAt ? 1 : -1;
   } else {
-    return (a: Contract, b: Contract) => a.name > b.name ? 1 : -1;
+    return (a: Contract, b: Contract) => a.userName > b.userName ? 1 : -1;
   }
 };
 

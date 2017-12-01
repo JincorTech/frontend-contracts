@@ -5,7 +5,8 @@ import * as CSSModules from 'react-css-modules';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import Avatar from '../../../components/common/Avatar';
-import { StateMap as StateProps, prevStep, Step } from '../../../redux/modules/wizard/employmentAgreementWizard';
+import { StateMap as WizardStateProps, prevStep, Step } from '../../../redux/modules/wizard/employmentAgreementWizard';
+import { StateMap as AppStateProps } from '../../../redux/modules/app/appWrapper';
 
 export type ComponentProps = {
 };
@@ -14,9 +15,18 @@ export type DispatchProps = {
   prevStep: () => void
 }
 
+export type StateProps = WizardStateProps & AppStateProps
+
 export type Props = RouteComponentProps<{}, {}> & ComponentProps & DispatchProps & StateProps;
 
 const WizardWrapper: SFC<Props> = (props) => {
+  const {
+    currentStep,
+    prevStep,
+    children,
+    user
+  } = props
+
   const renderBackButtonBody = () => {
     return (
       <div>
@@ -31,20 +41,20 @@ const WizardWrapper: SFC<Props> = (props) => {
   return (
     <div styleName="layout">
       <div styleName="header">
-        {props.currentStep === 0 ?
+        {currentStep === 0 ?
           <Link styleName="back" to={'/ctr/app/contracts/list'}>
             {renderBackButtonBody()}
           </Link> :
-          <div styleName="back" onClick={props.prevStep}>
+          <div styleName="back" onClick={prevStep}>
             {renderBackButtonBody()}
           </div>
         }
         <div styleName="avatar">
-          <Avatar src={'/src'} fullName={''} id={''}/>
+          <Avatar src={user.profile.avatar} fullName={user.profile.name} id={user.id}/>
         </div>
       </div>
       <div>
-        <div>{props.children}</div>
+        <div>{children}</div>
       </div>
     </div>
   );
@@ -53,7 +63,12 @@ const WizardWrapper: SFC<Props> = (props) => {
 const styledComponent = CSSModules(WizardWrapper, require('./styles.css'));
 
 export default connect<StateProps, DispatchProps, Props>(
-  (state) => state.wizard.employmentAgreementWizard,
+  (state) => {
+    return {
+      ...state.app.appWrapper,
+      ...state.wizard.employmentAgreementWizard
+    }
+  },
   {
     prevStep
   }

@@ -14,7 +14,9 @@ export const transformContracts = (data): Contract[] => {
   return data.map((contract) => {
     return {
       id: contract.contractId,
-      name: contract.employee.fullName,
+      userId: contract.employee.id,
+      userAvatar: contract.employee.avatar,
+      userName: contract.employee.fullName,
       createdAt: new Date(contract.createdAt),
       signedAt: contract.signedAt ? new Date(contract.signedAt) : null
     }
@@ -31,6 +33,7 @@ export const transformEmployeesGet = (data): Employee[] => {
       id: employee.id,
       name: employee.profile.name,
       email: employee.contacts.email,
+      avatar: employee.profile.avatar,
       wallets: employee.wallets
     }
   });
