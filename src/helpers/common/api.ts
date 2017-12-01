@@ -8,6 +8,7 @@ export const ApiDateFormat = 'MM/DD/YYYY'
 
 export const EthCurrencyName = 'ETH';
 export const PersonalWalletType = 'personal';
+export const CorporateWalletType = 'corporate';
 
 export const transformContracts = (data): Contract[] => {
   return data.map((contract) => {
@@ -77,7 +78,7 @@ export const transformContractBodyPost = (data) => {
     periodStartDate: formatDate(data.startAgreementDate),
     periodEndDate: formatDate(data.endAgreementDate),
     salaryAmount: {
-        currency: 'ETH',
+        currency: EthCurrencyName,
         amount: data.salaryAmount
     },
     dayOfPayments: data.paymentsDay,
