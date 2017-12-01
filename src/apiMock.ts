@@ -72,283 +72,192 @@ const getMock = (path: string) => {
           },
         ]
       };
-    case '/employees':
+    case '/employee/colleagues/':
       return {
-        data: [
-          {
-            id: '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf577', name: 'Maxim Brook', email: 'mbrook@yandex.ru',
-            'wallets': [
-              {
-                'type': 'personal',
-                'address': '0x345f81e0135c896873b6526674ea2ef57e1ca371',
-                'balance': 0,
-                'currency': 'ETH',
-                'created_at': 1512043628,
-                'transactions': []
-              },
-              {
-                'type': 'personal',
-                'address': '0x3f97db8c9b9c4097044628d614fc4afd52cd6cea',
-                'balance': 0,
-                'currency': 'JCR',
-                'created_at': 1512043628,
-                'transactions': []
-              }
-            ]
+        data: {
+          'self': {
+            'id': '3e696895-ab1b-44ec-8646-86067877e38c',
+            'profile': {
+              'name': 'Admin Company 2',
+              'firstName': 'Admin',
+              'lastName': 'Company 2',
+              'position': 'Admin',
+              'role': 'company-admin',
+              'avatar': null
+            },
+            'contacts': {
+              'email': 'admin@company2.com',
+              'phone': null
+            },
+            'meta': {
+              'status': 'active',
+              'registeredAt': '2017-06-13T05:57:21+0000'
+            }
           },
-          {
-            id: '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf578', name: 'Mike Jefferson', email: 'jeff@yandex.ru',
-            'wallets': [
-              {
-                'type': 'personal',
-                'address': '0x345f81e0135c896873b6526674ea2ef57e1ca371',
-                'balance': 0,
-                'currency': 'ETH',
-                'created_at': 1512043628,
-                'transactions': []
+          'active': [
+            {
+              'id': '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf577',
+              'profile': {
+                'name': 'Maxim Brook',
+                'position': 'Frontend wizard',
+                'role': 'admin', //admin, employee
+                'avatar': null
               },
-              {
-                'type': 'personal',
-                'address': '0x3f97db8c9b9c4097044628d614fc4afd52cd6cea',
-                'balance': 0,
-                'currency': 'JCR',
-                'created_at': 1512043628,
-                'transactions': []
-              }
-            ]
-          },
-          {
-            id: '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf579', name: 'Claudia Bullock', email: 'bullock@yandex.ru',
-            'wallets': [
-              {
-                'type': 'personal',
-                'address': '0x345f81e0135c896873b6526674ea2ef57e1ca371',
-                'balance': 0,
-                'currency': 'ETH',
-                'created_at': 1512043628,
-                'transactions': []
+              'contacts': {
+                'email': 'mbrook@yandex.ru',
+                'phone': null
               },
-              {
-                'type': 'personal',
-                'address': '0x3f97db8c9b9c4097044628d614fc4afd52cd6cea',
-                'balance': 0,
-                'currency': 'JCR',
-                'created_at': 1512043628,
-                'transactions': []
-              }
-            ]
-          },
-          {
-            id: '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf510', name: 'Maxim Brook', email: 'mbrook@yandex.ru',
-            'wallets': [
-              {
-                'type': 'personal',
-                'address': '0x345f81e0135c896873b6526674ea2ef57e1ca371',
-                'balance': 0,
-                'currency': 'ETH',
-                'created_at': 1512043628,
-                'transactions': []
+              'meta': {
+                'status': 'active',
+                'registeredAt': '2017-04-14T01:34:28+0000'
               },
-              {
-                'type': 'personal',
-                'address': '0x3f97db8c9b9c4097044628d614fc4afd52cd6cea',
-                'balance': 0,
-                'currency': 'JCR',
-                'created_at': 1512043628,
-                'transactions': []
-              }
-            ]
-          },
-          {
-            id: '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf511', name: 'Mike Jefferson', email: 'jeff@yandex.ru',
-            'wallets': [
-              {
-                'type': 'personal',
-                'address': '0x345f81e0135c896873b6526674ea2ef57e1ca371',
-                'balance': 0,
-                'currency': 'ETH',
-                'created_at': 1512043628,
-                'transactions': []
+              'wallets': [
+                {
+                  'type': 'personal',
+                  'address': '0x345f81e0135c896873b6526674ea2ef57e1ca371',
+                  'balance': 0,
+                  'currency': 'ETH',
+                  'created_at': 1512043628,
+                  'transactions': []
+                },
+                {
+                  'type': 'personal',
+                  'address': '0x3f97db8c9b9c4097044628d614fc4afd52cd6cea',
+                  'balance': 0,
+                  'currency': 'JCR',
+                  'created_at': 1512043628,
+                  'transactions': []
+                }
+              ]
+            },
+            {
+              'id': '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf578',
+              'profile': {
+                'name': 'Mike Jefferson',
+                'position': 'Frontend wizard',
+                'role': 'admin', //admin, employee
+                'avatar': null
               },
-              {
-                'type': 'personal',
-                'address': '0x3f97db8c9b9c4097044628d614fc4afd52cd6cea',
-                'balance': 0,
-                'currency': 'JCR',
-                'created_at': 1512043628,
-                'transactions': []
-              }
-            ]
-          },
-          {
-            id: '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf512', name: 'Claudia Bullock', email: 'bullock@yandex.ru',
-            'wallets': [
-              {
-                'type': 'personal',
-                'address': '0x345f81e0135c896873b6526674ea2ef57e1ca371',
-                'balance': 0,
-                'currency': 'ETH',
-                'created_at': 1512043628,
-                'transactions': []
+              'contacts': {
+                'email': 'jeff@yandex.ru',
+                'phone': null
               },
-              {
-                'type': 'personal',
-                'address': '0x3f97db8c9b9c4097044628d614fc4afd52cd6cea',
-                'balance': 0,
-                'currency': 'JCR',
-                'created_at': 1512043628,
-                'transactions': []
-              }
-            ]
-          },
-          {
-            id: '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf513', name: 'Maxim Brook', email: 'mbrook@yandex.ru',
-            'wallets': [
-              {
-                'type': 'personal',
-                'address': '0x345f81e0135c896873b6526674ea2ef57e1ca371',
-                'balance': 0,
-                'currency': 'ETH',
-                'created_at': 1512043628,
-                'transactions': []
+              'meta': {
+                'status': 'active',
+                'registeredAt': '2017-04-14T01:34:28+0000'
               },
-              {
-                'type': 'personal',
-                'address': '0x3f97db8c9b9c4097044628d614fc4afd52cd6cea',
-                'balance': 0,
-                'currency': 'JCR',
-                'created_at': 1512043628,
-                'transactions': []
-              }
-            ]
-          },
-          {
-            id: '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf514', name: 'Mike Jefferson', email: 'jeff@yandex.ru',
-            'wallets': [
-              {
-                'type': 'personal',
-                'address': '0x345f81e0135c896873b6526674ea2ef57e1ca371',
-                'balance': 0,
-                'currency': 'ETH',
-                'created_at': 1512043628,
-                'transactions': []
+              'wallets': [
+                {
+                  'type': 'personal',
+                  'address': '0x345f81e0135c896873b6526674ea2ef57e1ca371',
+                  'balance': 0,
+                  'currency': 'ETH',
+                  'created_at': 1512043628,
+                  'transactions': []
+                },
+                {
+                  'type': 'personal',
+                  'address': '0x3f97db8c9b9c4097044628d614fc4afd52cd6cea',
+                  'balance': 0,
+                  'currency': 'JCR',
+                  'created_at': 1512043628,
+                  'transactions': []
+                }
+              ]
+            },
+            {
+              'id': '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf579',
+              'profile': {
+                'name': 'Claudia Bullock',
+                'position': 'Frontend wizard',
+                'role': 'admin', //admin, employee
+                'avatar': null
               },
-              {
-                'type': 'personal',
-                'address': '0x3f97db8c9b9c4097044628d614fc4afd52cd6cea',
-                'balance': 0,
-                'currency': 'JCR',
-                'created_at': 1512043628,
-                'transactions': []
-              }
-            ]
-          },
-          {
-            id: '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf515', name: 'Claudia Bullock', email: 'bullock@yandex.ru',
-            'wallets': [
-              {
-                'type': 'personal',
-                'address': '0x345f81e0135c896873b6526674ea2ef57e1ca371',
-                'balance': 0,
-                'currency': 'ETH',
-                'created_at': 1512043628,
-                'transactions': []
+              'contacts': {
+                'email': 'bullock@yandex.ru',
+                'phone': null
               },
-              {
-                'type': 'personal',
-                'address': '0x3f97db8c9b9c4097044628d614fc4afd52cd6cea',
-                'balance': 0,
-                'currency': 'JCR',
-                'created_at': 1512043628,
-                'transactions': []
-              }
-            ]
-          },
-          {
-            id: '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf516', name: 'Maxim Brook', email: 'mbrook@yandex.ru',
-            'wallets': [
-              {
-                'type': 'personal',
-                'address': '0x345f81e0135c896873b6526674ea2ef57e1ca371',
-                'balance': 0,
-                'currency': 'ETH',
-                'created_at': 1512043628,
-                'transactions': []
+              'meta': {
+                'status': 'active',
+                'registeredAt': '2017-04-14T01:34:28+0000'
               },
-              {
-                'type': 'personal',
-                'address': '0x3f97db8c9b9c4097044628d614fc4afd52cd6cea',
-                'balance': 0,
-                'currency': 'JCR',
-                'created_at': 1512043628,
-                'transactions': []
-              }
-            ]
-          },
-          {
-            id: '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf517', name: 'Mike Jefferson', email: 'jeff@yandex.ru',
-            'wallets': [
-              {
-                'type': 'personal',
-                'address': '0x345f81e0135c896873b6526674ea2ef57e1ca371',
-                'balance': 0,
-                'currency': 'ETH',
-                'created_at': 1512043628,
-                'transactions': []
+              'wallets': [
+                {
+                  'type': 'personal',
+                  'address': '0x345f81e0135c896873b6526674ea2ef57e1ca371',
+                  'balance': 0,
+                  'currency': 'ETH',
+                  'created_at': 1512043628,
+                  'transactions': []
+                },
+                {
+                  'type': 'personal',
+                  'address': '0x3f97db8c9b9c4097044628d614fc4afd52cd6cea',
+                  'balance': 0,
+                  'currency': 'JCR',
+                  'created_at': 1512043628,
+                  'transactions': []
+                }
+              ]
+            },
+            {
+              'id': '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf519',
+              'profile': {
+                'name': 'Simon Slow',
+                'position': 'Frontend wizard',
+                'role': 'admin', //admin, employee
+                'avatar': null
               },
-              {
-                'type': 'personal',
-                'address': '0x3f97db8c9b9c4097044628d614fc4afd52cd6cea',
-                'balance': 0,
-                'currency': 'JCR',
-                'created_at': 1512043628,
-                'transactions': []
-              }
-            ]
-          },
-          {
-            id: '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf518', name: 'Claudia Bullock', email: 'bullock@yandex.ru',
-            'wallets': [
-              {
-                'type': 'personal',
-                'address': '0x345f81e0135c896873b6526674ea2ef57e1ca371',
-                'balance': 0,
-                'currency': 'ETH',
-                'created_at': 1512043628,
-                'transactions': []
+              'contacts': {
+                'email': 'sslow@yandex.ru',
+                'phone': null
               },
-              {
-                'type': 'personal',
-                'address': '0x3f97db8c9b9c4097044628d614fc4afd52cd6cea',
-                'balance': 0,
-                'currency': 'JCR',
-                'created_at': 1512043628,
-                'transactions': []
-              }
-            ]
-          },
-          {
-            id: '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf519', name: 'Simon Slow', email: 'sslow@yandex.ru',
-            'wallets': [
-              {
-                'type': 'personal',
-                'address': '0x345f81e0135c896873b6526674ea2ef57e1ca371',
-                'balance': 0,
-                'currency': 'ETH',
-                'created_at': 1512043628,
-                'transactions': []
+              'meta': {
+                'status': 'active',
+                'registeredAt': '2017-04-14T01:34:28+0000'
               },
-              {
-                'type': 'personal',
-                'address': '0x3f97db8c9b9c4097044628d614fc4afd52cd6cea',
-                'balance': 0,
-                'currency': 'JCR',
-                'created_at': 1512043628,
-                'transactions': []
+              'wallets': [
+                {
+                  'type': 'personal',
+                  'address': '0x345f81e0135c896873b6526674ea2ef57e1ca371',
+                  'balance': 0,
+                  'currency': 'ETH',
+                  'created_at': 1512043628,
+                  'transactions': []
+                },
+                {
+                  'type': 'personal',
+                  'address': '0x3f97db8c9b9c4097044628d614fc4afd52cd6cea',
+                  'balance': 0,
+                  'currency': 'JCR',
+                  'created_at': 1512043628,
+                  'transactions': []
+                }
+              ]
+            }
+          ],
+          'deleted': [
+            {
+              'id': '3d7563a2-cdc9-4877-a322-a3c3edd5ad24',
+              'profile': {
+                'name': 'David Totraev',
+                'position': 'Frontend wizard',
+                'role': 'employee',
+                'avatar': null
+              },
+              'contacts': {
+                'email': 'hlogeon1@gmail.com',
+                'phone': null
+              },
+              'meta': {
+                'status': 'deleted',
+                'registeredAt': '2017-04-20T03:21:01+0000',
+                'deletedAt': '2017-04-20T04:10:06+0000'
               }
-            ]
-          }
-        ]
+            }
+          ],
+          'invited': []
+        },
       }
     case '/api/contracts/6174b0f53573874343a4d915d4f5b6876a9a15e5/':
       return {

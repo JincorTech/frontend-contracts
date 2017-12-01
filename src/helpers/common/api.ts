@@ -1,9 +1,13 @@
 import { Contract } from '../../redux/modules/contracts/contractsPage';
+import { Employee } from '../../redux/modules/employmentAgreement/employmentAgreement';
 import { printDate } from '../../helpers/common/format';
 import * as moment from 'moment';
 
 export const AppDateFormat = 'YYYY-MM-DD';
 export const ApiDateFormat = 'MM/DD/YYYY'
+
+export const EthCurrencyName = 'ETH';
+export const PersonalWalletType = 'personal';
 
 export const transformContracts = (data): Contract[] => {
   return data.map((contract) => {
@@ -12,6 +16,21 @@ export const transformContracts = (data): Contract[] => {
       name: contract.employee.fullName,
       createdAt: new Date(contract.createdAt),
       signedAt: contract.signedAt ? new Date(contract.signedAt) : null
+    }
+  });
+}
+
+export const transformEmployeesGet = (data): Employee[] => {
+  const filteredEmployees = data.active.filter((employee) => {
+    return employee.wallets.find((wallet) => wallet.currency === EthCurrencyName && wallet.type === PersonalWalletType);
+  });
+
+  return filteredEmployees.map((employee) => {
+    return {
+      id: employee.id,
+      name: employee.profile.name,
+      email: employee.contacts.email,
+      wallets: employee.wallets
     }
   });
 }
