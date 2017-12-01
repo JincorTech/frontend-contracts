@@ -3,8 +3,9 @@ import { Route, IndexRedirect, Redirect } from 'react-router';
 
 import App from './containers/app/App';
 
-import AppWrapper from './components/app/AppWrapper';
+import AppWrapper from './containers/app/AppWrapper';
 import ContractsPage from './containers/contracts/ContractsPage';
+import ContractsWrapper from './components/contracts/ContractsWrapper';
 import WizardWrapper from './containers/wizard/WizardWrapper';
 import employmentAgreementWizard from "./containers/wizard/EmploymentAgreementWizard";
 
@@ -22,25 +23,22 @@ export const routes = {
 
 export default (
   <Route path="/ctr" component={App}>
-    <IndexRedirect to="/ctr/app/contracts"/>
+    <IndexRedirect to="/ctr/app/contracts/list"/>
 
     <Route path="app" component={AppWrapper}>
-      <Route path="contracts" component={ContractsPage}/>
+      <Route path="contracts" component={ContractsWrapper}>
+        <Route path="list" component={ContractsPage}/>
+      </Route>
+      
+      <Route path="contract" component={ContractInfoWrapper}>
+        <Route path=":contractId" component={CreateContractForm}/>
+      </Route>
+
+      <Route path="create" component={WizardWrapper}>
+        <Route path="new" component={employmentAgreementWizard}/>
+      </Route>
+
     </Route>
-
-    <Route path="contracts" component={ContractInfoWrapper}>
-      <Route path=":contractId" component={CreateContractForm}/>
-    </Route>
-
-    <Route path="create" component={WizardWrapper}>
-      <Route path="new" component={employmentAgreementWizard}/>
-      <Route path="type" component={ContractTypesForm}/>
-      <Route path="employee" component={ChooseEmployeeForm}/>
-    </Route>
-
-    <Route path="popup" component={ChooseEmployeePopup}/>
-    <Route path="verifypopup" component={VerificationPopup}/>
-
     <Redirect from="*" to="/cmp/auth/signin" />
   </Route>
 );

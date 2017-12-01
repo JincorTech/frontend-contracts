@@ -2,6 +2,69 @@ import { setTimeout } from 'timers';
 
 const getMock = (path: string) => {
   switch (path) {
+    case '/employee/me/':
+      return {
+        'status': 200,
+        'data': {
+          'id': 'aa51cb8e-1b3d-4569-a95a-00e5cfe1a6b8',
+          'profile': {
+            'name': 'John Doe',
+            'position': 'Tester',
+            'role': 'admin', //admin, employee
+            'avatar': 'http://i.imgur.com/n613Ki4.jpg'
+          },
+          'admin': true,
+          'contacts': {
+            'email': 'john@doe.com',
+            'phone': null
+          },
+          'company': {
+            'id': 'a3cbe21c-bab6-4c72-9d2e-8907f9a56898',
+            'legalName': 'Test Company',
+            'profile': {
+              'brandName': {
+                'en': 'My english brand name',
+                'ru': 'Русское название'
+              },
+              'picture': 'https://s3.eu-west-2.amazonaws.com/jincor-test/a3cbe21c-bab6-4c72-9d2e-8907f9a56898/avatars/pic_58f05129ba5cd.png',
+              'links': [
+                {
+                  'name': 'facebook',
+                  'value': 'http://facebook.com'
+                }
+              ],
+              'email': 'admin@jincor.com',
+              'phone': '+7999229393',
+              'address': {
+                'country': {
+                  'id': '5ac1d660-2891-48cb-8527-8ef8813b37a9',
+                  'name': 'Russia'
+                },
+                'city': null,
+                'formattedAddress': 'Пироговый переулок, 5, оф. 15'
+              }
+            },
+            'economicalActivityTypes': [
+              {
+                'id': '72a0d7d3-afaf-4f0f-936c-ca4ffa55a7a6',
+                'name': 'Forestry & Logging',
+                'code': 'AD'
+              },
+              {
+                'id': '0e5e6e6a-5a39-4803-9837-156113692c2d',
+                'name': 'Oil Refining & Natural Gas Processing',
+                'code': 'CG'
+              }
+            ],
+            'companyType': {
+              'id': '547e7d91-bc27-4407-a27a-429d2855652b',
+              'name': 'Public Company',
+              'code': 'BT2'
+            },
+            'employeesCount': 2
+          }
+        }
+      }
     case '/api/contracts/':
       return {
         'status': 200,

@@ -25,7 +25,7 @@ const ContractInfoWrapper: SFC<Props> = (props) => {
   return (
     <div styleName="layout">
       <div styleName="header">
-        <Link onClick={resetState} styleName="back" to={'/ctr/app/contracts'}>
+        <Link onClick={resetState} styleName="back" to={'/ctr/app/contracts/list'}>
           <img styleName="icon" src={require('../../../assets/images/back.svg')}/>
           <div styleName="caption">
             {'Dashboard'}

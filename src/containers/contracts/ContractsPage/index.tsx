@@ -69,7 +69,7 @@ class ContractsPage extends Component<Props, {}> {
           <ContractsList contracts={getFilteredContracts(contracts, filtering)}/>
         </section>
         <section styleName="add-contract">
-          <Button disabled={!admin} to='/ctr/create/new'>
+          <Button disabled={!admin} to='/ctr/app/create/new'>
             + Add contract
           </Button>
           <div styleName="contracts-number">

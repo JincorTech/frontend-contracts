@@ -88,7 +88,7 @@ class VerificationPopup extends Component<Props, {}> {
     const renderSuccessMessageAndRedirect = () => {
       if (contractId) {
         setTimeout(() => {
-          browserHistory.push(`/ctr/contracts/${contractId}/`);
+          browserHistory.push(`/ctr/app/contract/${contractId}/`);
         }, RedirectPeriod);
       }
 

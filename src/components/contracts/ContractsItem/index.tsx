@@ -14,7 +14,7 @@ export type ComponentProps = {
 const ContractsItem: SFC<ComponentProps> = (props) => {
   return (
     <div styleName="item">
-    <Link to={`/ctr/contracts/${props.id}`}>
+    <Link to={`/ctr/app/contract/${props.id}`}>
       <Avatar src={null} fullName={props.name} id={'4a516c0a-2c02-4a9f-9e2a-da6bc5ecf577'}/>
       <div styleName="info">
         <div styleName="name">{props.name}</div>
