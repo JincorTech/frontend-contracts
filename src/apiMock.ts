@@ -263,7 +263,7 @@ const getMock = (path: string) => {
               'wallets': [
                 {
                   'type': 'personal',
-                  'address': '0x345f81e0135c896873b6526674ea2ef57e1ca371',
+                  'address': '0x345f81e0135c896873b6526674ea2ef57e1ca370',
                   'balance': 0,
                   'currency': 'ETH',
                   'created_at': 1512043628,
@@ -298,7 +298,7 @@ const getMock = (path: string) => {
               'wallets': [
                 {
                   'type': 'personal',
-                  'address': '0x345f81e0135c896873b6526674ea2ef57e1ca371',
+                  'address': '0x345f81e0135c896873b6526674ea2ef57e1ca372',
                   'balance': 0,
                   'currency': 'ETH',
                   'created_at': 1512043628,

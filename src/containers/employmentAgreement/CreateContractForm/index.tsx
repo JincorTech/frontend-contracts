@@ -86,6 +86,12 @@ class CreateContractForm extends React.Component<Props, any> {
     }
   }
 
+  componentWillReceiveProps (nextProps) {
+    if (this.props.chosenEmployeeId !== nextProps.chosenEmployeeId) {
+      this.props.fetchWallets();
+    }
+  }
+
   componentWillUnmount() {
     this.props.resetFormState();
     this.props.resetWizardState();
