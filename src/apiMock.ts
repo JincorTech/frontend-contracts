@@ -6,9 +6,9 @@ const getMock = (path: string) => {
       return {
         'status': 200,
         'data': {
-          'id': 'aa51cb8e-1b3d-4569-a95a-00e5cfe1a6b8',
+          'id': '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf519',
           'profile': {
-            'name': 'John Doe',
+            'name': 'Simon Slow',
             'position': 'Tester',
             'role': 'admin', //admin, employee
             'avatar': 'http://i.imgur.com/n613Ki4.jpg'

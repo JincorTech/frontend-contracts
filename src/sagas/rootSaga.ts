@@ -11,6 +11,7 @@ import verification from './verification/verification';
 export default function*(): SagaIterator {
   yield [
     fork(appSaga),
+    fork(appWrapperSaga),
     fork(contractsPageSaga),
     fork(employmentAgreement),
     fork(createContractForm),

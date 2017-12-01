@@ -30,12 +30,15 @@ import {
   fetchWallets,
   resetState as resetFormState
 } from '../../../redux/modules/employmentAgreement/createContractForm';
+import {
+  StateMap as AppStateProps
+} from '../../../redux/modules/app/appWrapper';
 import { getEmployeeById } from '../../../helpers/common/store';
 import { required, minLength, maxLength } from '../../../utils/validators';
 import InputCaption from '../../../components/common/InputCaption';
 import { EthCurrencyName } from '../../../helpers/common/api';
 
-export type StateProps = CommonStateProps & { fields: FormStateProps };
+export type StateProps = CommonStateProps & AppStateProps & { fields: FormStateProps };
 
 export type Props = StateProps & DispatchProps & ComponentProps;
 
@@ -97,8 +100,7 @@ class CreateContractForm extends React.Component<Props, any> {
   }
 
   canSign() {
-    //TODO getting own employee id
-    return !this.canEdit() && this.props.fields.employeeId === '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf519';
+    return !this.canEdit() && this.props.fields.employeeId === this.props.user.id;
   }
 
   handleChange(event) {
@@ -288,6 +290,7 @@ const StyledComponent = CSSModules(CreateContractForm, require('./styles.css'));
 export default connect<StateProps, DispatchProps, ComponentProps>(
   (state) => {
     return {
+      ...state.app.appWrapper,
       ...state.employmentAgreement.employmentAgreement,
       fields: state.employmentAgreement.createContractForm
     }
