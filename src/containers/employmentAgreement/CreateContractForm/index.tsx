@@ -20,6 +20,7 @@ import {
   closeVerifyPopup,
   postContract,
   fetchEmployees,
+  signContract,
   resetState as resetWizardState
 } from '../../../redux/modules/employmentAgreement/employmentAgreement';
 import {
@@ -59,6 +60,7 @@ export type DispatchProps = {
   fetchWallets: () => void
   resetFormState: () => void
   resetWizardState: () => void
+  signContract: (contractId: string) => void
 }
 
 
@@ -85,8 +87,17 @@ class CreateContractForm extends React.Component<Props, any> {
     this.props.resetWizardState();
   }
 
+  getContractIdFromRoute() {
+    return this.props.routeParams.contractId;
+  }
+
   canEdit() {
     return !this.props.routeParams;
+  }
+
+  canSign() {
+    //TODO getting own employee id
+    return !this.canEdit() && this.props.fields.employeeId === '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf519';
   }
 
   handleChange(event) {
@@ -113,7 +124,8 @@ class CreateContractForm extends React.Component<Props, any> {
       verifyContract,
       fields,
       contractId,
-      contractPosting
+      waiting,
+      signContract
     } = this.props;
 
     const getEmployeeId = () => {
@@ -253,7 +265,13 @@ class CreateContractForm extends React.Component<Props, any> {
 
         {this.canEdit() ?
           <div styleName="create-button">
-            <Button isSubmit={true} disabled={!validateSubmitButton} spinner={contractPosting} value={'Create smart contract'} />
+            <Button isSubmit={true} disabled={!validateSubmitButton} spinner={waiting} value={'Create smart contract'} />
+          </div> : null
+        }
+
+        {this.canSign() ?
+          <div styleName="create-button">
+              <Button spinner={waiting} onClick={() => signContract(this.getContractIdFromRoute())}>Sign</Button>
           </div> : null
         }
 
@@ -284,6 +302,7 @@ export default connect<StateProps, DispatchProps, ComponentProps>(
     fetchContract,
     resetFormState,
     resetWizardState,
-    fetchWallets
+    fetchWallets,
+    signContract
   }
 )(StyledComponent);

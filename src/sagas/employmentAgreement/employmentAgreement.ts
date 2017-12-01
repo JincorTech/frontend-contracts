@@ -6,8 +6,13 @@ import { transformContractBodyPost } from '../../helpers/common/api';
 
 import {
   fetchEmployees,
-  postContract
+  postContract,
+  signContract
 } from '../../redux/modules/employmentAgreement/employmentAgreement';
+
+import {
+  fetchContract
+} from '../../redux/modules/employmentAgreement/createContractForm';
 
 /**
  * Fetch employees
@@ -48,11 +53,32 @@ function* postContractSaga(): SagaIterator {
 }
 
 /**
+ * Sign contract
+ */
+function* signContractIterator({ payload }): SagaIterator {
+  try {
+    const { data } = yield call(post, `/api/contracts/${payload}/actions/sign/`, {});
+    yield put(signContract.success(data));
+    yield put(fetchContract(payload));
+  } catch (e) {
+    yield put(signContract.failure(e));
+  }
+}
+
+function* signContractSaga(): SagaIterator {
+  yield takeLatest(
+    signContract.REQUEST,
+    signContractIterator
+  );
+}
+
+/**
  * Employment agreement saga
  */
 export default function*(): SagaIterator {
   yield [
     fork(fetchEmployeesSaga),
-    fork(postContractSaga)
+    fork(postContractSaga),
+    fork(signContractSaga)
   ];
 }
