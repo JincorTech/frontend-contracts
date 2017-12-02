@@ -141,6 +141,7 @@ class CreateContractForm extends React.Component<Props, any> {
     const inputName = this.getActiveDateInputName();
 
     this.props.change({name: inputName, value: moment(date).format(DateFormat)});
+    this.props.closeDatePopup();
   }
 
   render() {
