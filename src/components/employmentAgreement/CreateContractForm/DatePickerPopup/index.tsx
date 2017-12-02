@@ -35,10 +35,10 @@ const DatePickerPopup: SFC<Props> = (props) => {
         width={400}
         height={600}
         selected={startDate}
-        min={startDate}
-        max={endDate}
-        minDate={startDate}
-        maxDate={endDate}
+        min={startDate || new Date()}
+        max={endDate || new Date(2050, 11, 31)}
+        minDate={startDate || new Date()}
+        maxDate={endDate || new Date(2050, 11, 31)}
         onSelect={onSelect}
         displayOptions={{ showHeader: false }}
       />

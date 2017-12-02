@@ -42,6 +42,7 @@ import { required, minLength, maxLength } from '../../../utils/validators';
 import InputCaption from '../../../components/common/InputCaption';
 import { EthCurrencyName } from '../../../helpers/common/api';
 import DatePickerPopup from '../../../components/employmentAgreement/CreateContractForm/DatePickerPopup';
+import { parseAppDate } from '../../../helpers/common/api';
 
 export type StateProps = CommonStateProps & AppStateProps & { fields: FormStateProps };
 
@@ -208,6 +209,24 @@ class CreateContractForm extends React.Component<Props, any> {
 
     // Validation
 
+    const getMinDate = () => {
+      switch (activeDatePopup) {
+        case FormDates.ContractDate: return '';
+        case FormDates.StartDate: return fields.contractDate;
+        case FormDates.EndDate: return fields.startAgreementDate !== '' ? fields.startAgreementDate : fields.contractDate;
+        default: return '';
+      }
+    }
+
+    const getMaxDate = () => {
+      switch (activeDatePopup) {
+        case FormDates.ContractDate: return fields.startAgreementDate !== '' ? fields.startAgreementDate : fields.endAgreementDate;
+        case FormDates.StartDate: return fields.endAgreementDate;
+        case FormDates.EndDate: return '';
+        default: return '';
+      }
+    }
+
     const defaultValidate = (value) => value && value !== '';
 
     const validateAgreementPeriod = () => {
@@ -325,7 +344,7 @@ class CreateContractForm extends React.Component<Props, any> {
 
         <ChooseEmployeePopup open={popupIsOpened} onClose={closePopup} employees={employees} onSelect={chooseEmployee}/>
         <VerificationPopup isOpen={verifyPopupIsOpened} onClose={closeVerifyPopup} contractId={contractId}/>
-        <DatePickerPopup open={activeDatePopup !== null} onClose={closeDatePopup} onSelect={this.handleDateSelect}/>
+        <DatePickerPopup open={activeDatePopup !== null} onClose={closeDatePopup} onSelect={this.handleDateSelect} startDate={parseAppDate(getMinDate())} endDate={parseAppDate(getMaxDate())}/>
       </form>
     );
   }

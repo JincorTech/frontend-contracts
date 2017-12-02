@@ -10,6 +10,14 @@ export const EthCurrencyName = 'ETH';
 export const PersonalWalletType = 'personal';
 export const CorporateWalletType = 'corporate';
 
+export const parseAppDate = (date: string) => {
+  if (date === '') {
+    return null;
+  }
+
+  return moment(date, AppDateFormat).toDate();
+}
+
 export const transformContracts = (data): Contract[] => {
   return data.map((contract) => {
     return {
