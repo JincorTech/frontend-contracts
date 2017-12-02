@@ -1,3 +1,7 @@
+.container {
+  position: relative;
+}
+
 .date-input {
   margin: 30px 0;
 }
@@ -9,6 +13,11 @@
   color: #9da0a4;
 }
 
+.filled {
+  composes: value;
+  color: #111;  
+}
+
 .button {
   float: right;
   cursor: pointer;
@@ -16,4 +25,14 @@
   font-size: 16px;
   text-align: right;
   color: #0080ff;
+}
+
+.shifted-label {
+  position: absolute;
+  bottom: -25px;
+  left: 0;
+  opacity: 1;
+	font-size: 14px;
+  color: #111;
+  transition: 0.2s ease all;
 }

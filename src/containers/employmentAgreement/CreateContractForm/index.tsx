@@ -250,7 +250,7 @@ class CreateContractForm extends React.Component<Props, any> {
         </div>
         <ol styleName="list">
           <li styleName={getFilledStyle(0)}>
-            <DateInput disabled={!this.canEdit()} name={'contractDate'} value={fields.contractDate} onClick={() => openDatePopup(FormDates.ContractDate)} description={'Contract date'} buttonText={'Pick date'} />
+            <DateInput disabled={!this.canEdit()} name={'contractDate'} caption={true} value={fields.contractDate} onClick={() => openDatePopup(FormDates.ContractDate)} description={'Contract date'} buttonText={'Pick date'} />
           </li>
           <li styleName={getFilledStyle(1)}>
             <Input disabled={!this.canEdit()} name={'contractNumber'} caption={true} type="number" max={999999} value={fields.contractNumber} onChange={this.handleChange} styleName="text-input" placeholder={'Contract number'} />

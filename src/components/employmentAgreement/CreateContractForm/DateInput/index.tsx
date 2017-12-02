@@ -14,13 +14,19 @@ const DateInput = (props) => {
     onClick,
     value,
     disabled,
+    caption,
     ...restProps
   } = props;
 
   return (
-    <div styleName="date-input" onClick={!disabled ? onClick : null}>
-      <span styleName="value">{value || description}</span>
-      { !disabled ? <span styleName="button">{buttonText}</span> : null }
+    <div styleName="container">
+      <div styleName="date-input" onClick={!disabled ? onClick : null}>
+        <span styleName={value ? 'filled' : 'value'}>{value || description}</span>
+        {!disabled ? <span styleName="button">{buttonText}</span> : null}
+      </div>
+      {caption && value ?
+        <span styleName={'shifted-label'}>{description}</span> : null
+      }
     </div>
   );
 };
