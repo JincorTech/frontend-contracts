@@ -3,7 +3,7 @@ import { Employee } from '../../redux/modules/employmentAgreement/employmentAgre
 import { printDate } from '../../helpers/common/format';
 import * as moment from 'moment';
 
-export const AppDateFormat = 'YYYY-MM-DD';
+export const AppDateFormat = 'DD.MM.YYYY';
 export const ApiDateFormat = 'MM/DD/YYYY'
 
 export const EthCurrencyName = 'ETH';

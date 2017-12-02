@@ -11,13 +11,9 @@
 
 .button {
   float: right;
-  margin: 15px 0 0;
+  cursor: pointer;
+  margin: 10px 0 0;
   font-size: 16px;
   text-align: right;
   color: #0080ff;
-}
-
-.input {
-  composes: value;
-  float: right;
 }

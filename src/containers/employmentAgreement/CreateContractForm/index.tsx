@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as CSSModules from 'react-css-modules';
 import { connect } from 'react-redux';
+import * as moment from 'moment';
 import SelectInput from '../../../components/employmentAgreement/createContractForm/SelectInput';
 import Avatar from '../../../components/common/Avatar';
 import DateInput from '../../../components/employmentAgreement/createContractForm/DateInput';
@@ -21,6 +22,9 @@ import {
   postContract,
   fetchEmployees,
   signContract,
+  openDatePopup,
+  closeDatePopup,
+  FormDates,
   resetState as resetWizardState
 } from '../../../redux/modules/employmentAgreement/employmentAgreement';
 import {
@@ -37,6 +41,7 @@ import { getEmployeeById } from '../../../helpers/common/store';
 import { required, minLength, maxLength } from '../../../utils/validators';
 import InputCaption from '../../../components/common/InputCaption';
 import { EthCurrencyName } from '../../../helpers/common/api';
+import DatePickerPopup from '../../../components/employmentAgreement/CreateContractForm/DatePickerPopup';
 
 export type StateProps = CommonStateProps & AppStateProps & { fields: FormStateProps };
 
@@ -65,6 +70,8 @@ export type DispatchProps = {
   resetFormState: () => void
   resetWizardState: () => void
   signContract: (contractId: string) => void
+  openDatePopup: (popup: FormDates) => void
+  closeDatePopup: () => void
 }
 
 
@@ -74,6 +81,7 @@ class CreateContractForm extends React.Component<Props, any> {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDateSelect = this.handleDateSelect.bind(this);
   }
 
   componentDidMount() {
@@ -119,6 +127,21 @@ class CreateContractForm extends React.Component<Props, any> {
     event.preventDefault();
   }
 
+  getActiveDateInputName() {
+    switch (this.props.activeDatePopup) {
+      case FormDates.ContractDate: return 'contractDate';
+      case FormDates.StartDate: return 'startAgreementDate';
+      case FormDates.EndDate: return 'endAgreementDate';
+    }
+  }
+
+  handleDateSelect(date) {
+    const DateFormat = 'DD.MM.YYYY';
+    const inputName = this.getActiveDateInputName();
+
+    this.props.change({name: inputName, value: moment(date).format(DateFormat)});
+  }
+
   render() {
     const {
       employees,
@@ -134,7 +157,10 @@ class CreateContractForm extends React.Component<Props, any> {
       fields,
       contractId,
       waiting,
-      signContract
+      signContract,
+      openDatePopup,
+      closeDatePopup,
+      activeDatePopup
     } = this.props;
 
     const getEmployeeId = () => {
@@ -224,7 +250,7 @@ class CreateContractForm extends React.Component<Props, any> {
         </div>
         <ol styleName="list">
           <li styleName={getFilledStyle(0)}>
-            <DateInput disabled={!this.canEdit()} name={'contractDate'} value={fields.contractDate} onChange={this.handleChange} description={'Contract date'} buttonText={'Pick date'} />
+            <DateInput disabled={!this.canEdit()} name={'contractDate'} value={fields.contractDate} onClick={() => openDatePopup(FormDates.ContractDate)} description={'Contract date'} buttonText={'Pick date'} />
           </li>
           <li styleName={getFilledStyle(1)}>
             <Input disabled={!this.canEdit()} name={'contractNumber'} caption={true} type="number" max={999999} value={fields.contractNumber} onChange={this.handleChange} styleName="text-input" placeholder={'Contract number'} />
@@ -253,8 +279,8 @@ class CreateContractForm extends React.Component<Props, any> {
             </div>
             <div styleName="spacer" />
             <div styleName="period-dates">
-              <DateInput disabled={periodIsPermanent() || !this.canEdit()} name={'startAgreementDate'} value={fields.startAgreementDate} onChange={this.handleChange} description={'Start date'} buttonText={'Pick start date'} />
-              <DateInput disabled={periodIsPermanent() || !this.canEdit()} name={'endAgreementDate'} value={fields.endAgreementDate} onChange={this.handleChange} description={'End date'} buttonText={'Pick end date'} />
+              <DateInput disabled={periodIsPermanent() || !this.canEdit()} name={'startAgreementDate'} value={fields.startAgreementDate} onClick={() => openDatePopup(FormDates.StartDate)} description={'Start date'} buttonText={'Pick start date'} />
+              <DateInput disabled={periodIsPermanent() || !this.canEdit()} name={'endAgreementDate'} value={fields.endAgreementDate} onClick={() => openDatePopup(FormDates.EndDate)} description={'End date'} buttonText={'Pick end date'} />
             </div>
             <div styleName="spacer" />
           </li>
@@ -299,6 +325,7 @@ class CreateContractForm extends React.Component<Props, any> {
 
         <ChooseEmployeePopup open={popupIsOpened} onClose={closePopup} employees={employees} onSelect={chooseEmployee}/>
         <VerificationPopup isOpen={verifyPopupIsOpened} onClose={closeVerifyPopup} contractId={contractId}/>
+        <DatePickerPopup open={activeDatePopup !== null} onClose={closeDatePopup} onSelect={this.handleDateSelect}/>
       </form>
     );
   }
@@ -326,6 +353,8 @@ export default connect<StateProps, DispatchProps, ComponentProps>(
     resetFormState,
     resetWizardState,
     fetchWallets,
-    signContract
+    signContract,
+    openDatePopup,
+    closeDatePopup
   }
 )(StyledComponent);

@@ -6,9 +6,16 @@ import { from, ImmutableObject } from 'seamless-immutable';
  */
 export type State = StateMap & ImmutableObject<StateMap>;
 
+export enum FormDates {
+  ContractDate = 1,
+  StartDate,
+  EndDate
+}
+
 export type StateMap = {
   employees: Employee[]
   popupIsOpened: boolean
+  activeDatePopup: FormDates
   chosenEmployeeId: string
   verifyPopupIsOpened: boolean
   verificationId: string,
@@ -42,6 +49,8 @@ export type Employee = {
  */
 export const OPEN_POPUP = 'employmentAgreement/employmentAgreement/OPEN_POPUP';
 export const CLOSE_POPUP = 'employmentAgreement/employmentAgreement/CLOSE_POPUP';
+export const OPEN_DATE_POPUP = 'employmentAgreement/employmentAgreement/OPEN_DATE_POPUP';
+export const CLOSE_DATE_POPUP = 'employmentAgreement/employmentAgreement/CLOSE_DATE_POPUP';
 export const FETCH_EMPLOYEES = 'employmentAgreement/employmentAgreement/FETCH_EMPLOYEES';
 export const CHOOSE_EMPLOYEE = 'employmentAgreement/employmentAgreement/CHOOSE_EMPLOYEE';
 export const POST_CONTRACT = 'employmentAgreement/employmentAgreement/POST_CONTRACT';
@@ -54,6 +63,8 @@ export const RESET_STATE = 'employmentAgreement/employmentAgreement/RESET_STATE'
  */
 export const openPopup = createAction<void>(OPEN_POPUP);
 export const closePopup = createAction<void>(CLOSE_POPUP);
+export const openDatePopup = createAction<FormDates>(OPEN_DATE_POPUP);
+export const closeDatePopup = createAction<void>(CLOSE_DATE_POPUP);
 export const fetchEmployees = createAsyncAction<void, Employee[]>(FETCH_EMPLOYEES);
 export const chooseEmployee = createAction<string>(CHOOSE_EMPLOYEE);
 export const postContract = createAsyncAction<any, any>(POST_CONTRACT);
@@ -67,6 +78,7 @@ export const resetState = createAction<void>(RESET_STATE);
 const initialState: State = from<StateMap>({
   employees: [],
   popupIsOpened: false,
+  activeDatePopup: null,
   chosenEmployeeId: null,
   verifyPopupIsOpened: false,
   verificationId: '',
@@ -82,6 +94,14 @@ export default createReducer<State>({
 
   [CLOSE_POPUP]: (state: State): State => (
     state.merge({ popupIsOpened: false })
+  ),
+
+  [OPEN_DATE_POPUP]: (state: State, { payload }: Action<FormDates>): State => (
+    state.merge({ activeDatePopup: payload })
+  ),
+
+  [CLOSE_DATE_POPUP]: (state: State): State => (
+    state.merge({ activeDatePopup: null })
   ),
 
   [fetchEmployees.SUCCESS]: (state: State, { payload }: Action<Employee[]>): State => (

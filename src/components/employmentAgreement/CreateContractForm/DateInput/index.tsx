@@ -11,14 +11,16 @@ const DateInput = (props) => {
   const {
     description,
     buttonText,
+    onClick,
+    value,
+    disabled,
     ...restProps
   } = props;
 
   return (
-    <div styleName="date-input">
-      <span styleName="value">{`${description}: `}</span>
-      <input styleName="input" type="date" {...restProps}/>
-      {/* <span styleName="button">{buttonText}</span> */}
+    <div styleName="date-input" onClick={!disabled ? onClick : null}>
+      <span styleName="value">{value || description}</span>
+      { !disabled ? <span styleName="button">{buttonText}</span> : null }
     </div>
   );
 };
