@@ -1,7 +1,7 @@
 import { SagaIterator } from 'redux-saga';
 import { takeLatest, call, put, fork, select } from 'redux-saga/effects';
 import { Action } from '../../utils/actions';
-import { get, post } from '../../apiMock';
+import { get, post } from '../../utils/api';
 import { transformContractBodyGet, EthCurrencyName, CorporateWalletType } from '../../helpers/common/api';
 import { getEmployeeById } from '../../helpers/common/store';
 
@@ -15,7 +15,7 @@ import {
  */
 function* fetchContractIterator({ payload }): SagaIterator {
   try {
-    const { data } = yield call(get, `/api/contracts/${payload}/`);
+    const { data } = yield call(get, `/contracts/${payload}/`);
     yield put(fetchContract.success(transformContractBodyGet(data)));
   } catch (e) {
     yield put(fetchContract.failure(e));
@@ -37,7 +37,7 @@ const getContractState = (state) => state.employmentAgreement.employmentAgreemen
 function* fetchWalletsIterator({ payload }): SagaIterator {
   try {
     //get corporate wallet
-    const { data } = yield call(get, `/api/wallets/`);
+    const { data } = yield call(get, `/wallets/`);
     const corporateEthWallet = data.find((wallet) => {
       return wallet.type === CorporateWalletType && wallet.currency === EthCurrencyName;
     });

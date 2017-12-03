@@ -65,7 +65,7 @@ const getMock = (path: string) => {
           }
         }
       }
-    case '/api/contracts/':
+    case '/contracts/':
       return {
         'status': 200,
         'data': [
@@ -338,7 +338,7 @@ const getMock = (path: string) => {
           'invited': []
         },
       }
-    case '/api/contracts/6174b0f53573874343a4d915d4f5b6876a9a15e5/':
+    case '/contracts/6174b0f53573874343a4d915d4f5b6876a9a15e5/':
       return {
         'status': 200,
         'data': {
@@ -372,7 +372,7 @@ const getMock = (path: string) => {
           }
         }
       }
-    case '/api/contracts/6174b0f53573874343a4d915d4f5b6876a9a1535/':
+    case '/contracts/6174b0f53573874343a4d915d4f5b6876a9a1535/':
       return {
         'status': 200,
         'data': {
@@ -406,7 +406,7 @@ const getMock = (path: string) => {
           }
         }
       }
-    case '/api/wallets/':
+    case '/wallets/':
       return {
         'status': 200,
         'data': [
@@ -481,7 +481,7 @@ const getMock = (path: string) => {
           }
         ]
       }
-    case '/api/company/my/':
+    case '/company/my/':
       return {
         'status': 200,
         'data': {
@@ -535,7 +535,7 @@ const getMock = (path: string) => {
 
 const postMock = (path: string, body: any) => {
   switch (path) {
-    case '/api/contracts/':
+    case '/contracts/':
       console.log('!!! POST CONTRACT. BODY:', body);
       return {
         'status': 200,
@@ -545,7 +545,7 @@ const postMock = (path: string, body: any) => {
           'verificationId': '1c7d2871-8af6-4e2d-a9a5-b5e7ab41a53e'
         }
       }
-    case '/api/contracts/6174b0f53573874343a4d915d4f5b6876a9a1535/actions/verify/':
+    case '/contracts/6174b0f53573874343a4d915d4f5b6876a9a1535/actions/verify/':
       console.log('!!! POST VERIFY. BODY:', body);
       return {
         'status': 200,
@@ -555,7 +555,7 @@ const postMock = (path: string, body: any) => {
           'signedAt': '01/10/2017'
         }
       }
-    case '/api/contracts/6174b0f53573874343a4d915d4f5b6876a9a1535/actions/sign/':
+    case '/contracts/6174b0f53573874343a4d915d4f5b6876a9a1535/actions/sign/':
       console.log('!!! POST SIGN. BODY:', body);
       return {
         'status': 200,

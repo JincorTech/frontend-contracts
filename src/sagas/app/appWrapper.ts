@@ -1,7 +1,7 @@
 import { SagaIterator } from 'redux-saga';
 import { takeLatest, call, put, fork } from 'redux-saga/effects';
 
-import { get } from '../../apiMock';//'../../utils/api';
+import { get } from '../../utils/api';
 
 import { fetchUser } from '../../redux/modules/app/appWrapper';
 

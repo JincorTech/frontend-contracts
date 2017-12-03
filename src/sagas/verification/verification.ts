@@ -1,7 +1,7 @@
 import { SagaIterator } from 'redux-saga';
 import { takeLatest, call, put, fork, select } from 'redux-saga/effects';
 import { Action } from '../../utils/actions';
-import { post } from '../../apiMock';
+import { post } from '../../utils/api';
 
 import {
   verifyContract
@@ -15,7 +15,7 @@ const getContractState = (state) => state.employmentAgreement.employmentAgreemen
 function* verifyContractIterator({ payload }): SagaIterator {
   try {
     const { verificationId, contractId } = yield select(getContractState);
-    const { status, data } = yield call(post, `/api/contracts/${contractId}/actions/verify/`, {
+    const { status, data } = yield call(post, `/contracts/${contractId}/actions/verify/`, {
       verificationId: verificationId,
       verificationCode: payload
     });
