@@ -15,7 +15,7 @@
 
 .filled {
   composes: value;
-  color: #111;  
+  color: #111;
 }
 
 .button {
@@ -32,7 +32,7 @@
   bottom: -25px;
   left: 0;
   opacity: 1;
-	font-size: 14px;
+  font-size: 14px;
   color: #111;
   transition: 0.2s ease all;
 }

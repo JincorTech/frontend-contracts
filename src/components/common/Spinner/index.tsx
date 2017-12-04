@@ -15,7 +15,7 @@ const Spinner: SFC<Props> = (props) => {
     <div styleName="spinner">
       <div styleName="bounceOne" style={{ backgroundColor: getColor() }}></div>
       <div styleName="bounceTwo" style={{ backgroundColor: getColor() }}></div>
-      <div styleName="bounceThree" style={{ backgroundColor: getColor() }}></div>
+      <div style={{ backgroundColor: getColor() }}></div>
     </div>
   );
 };

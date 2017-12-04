@@ -83,7 +83,7 @@ class VerificationPopup extends Component<Props, {}> {
       }
 
       return (
-        <div styleName="verified-section">
+        <div>
           <img styleName="verified-icon" src={require('../../../assets/images/signed.svg')} />
           <span styleName="verified-message">Successfully verified!</span>
         </div>
@@ -92,7 +92,7 @@ class VerificationPopup extends Component<Props, {}> {
 
     const renderFailedMessage = () => {
       return (
-        <div styleName="verified-section">
+        <div>
           <img styleName="verified-icon" src={require('../../../assets/images/signed.svg')} />
           <span styleName="verified-message">Verification failed</span>
           <span styleName="verify-error">{verifyError}</span>
