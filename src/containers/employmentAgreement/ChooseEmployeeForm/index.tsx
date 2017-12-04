@@ -17,14 +17,14 @@ export type Props = StateProps & DispatchProps & ComponentProps;
 
 export type ComponentProps = {
   onNext: () => void
-}
+};
 
 export type DispatchProps = {
   fetchEmployees: () => void
   chooseEmployee: (id: string) => void
   openPopup: () => void
   closePopup: () => void
-}
+};
 
 class ChooseEmployeeForm extends Component<Props, {}> {
   componentDidMount() {
@@ -41,11 +41,11 @@ class ChooseEmployeeForm extends Component<Props, {}> {
       chooseEmployee,
       chosenEmployeeId
     } = this.props;
-  
+
     const handleSelect = (id: string) => {
       chooseEmployee(id);
       onNext();
-    }
+    };
 
     const chosenEmployee = getEmployeeById(employees, chosenEmployeeId);
 
@@ -62,7 +62,7 @@ class ChooseEmployeeForm extends Component<Props, {}> {
       </div>
     );
   }
-};
+}
 
 const StyledComponent = CSSModules(ChooseEmployeeForm, require('./styles.css'));
 
@@ -75,4 +75,3 @@ export default connect<StateProps, DispatchProps, ComponentProps>(
     chooseEmployee
   }
 )(StyledComponent);
-

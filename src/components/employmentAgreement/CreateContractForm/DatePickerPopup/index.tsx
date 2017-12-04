@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { SFC } from 'react';
-import { connect } from 'react-redux';
 import InfiniteCalendar from 'react-infinite-calendar';
 import Popup from '../../../common/Popup';
 
@@ -12,10 +11,10 @@ export type ComponentProps = {
   onSelect?: (date: string) => void
   startDate?: Date
   endDate?: Date
-}
+};
 
 export type DispatchProps = {
-}
+};
 
 const DatePickerPopup: SFC<Props> = (props) => {
   const {

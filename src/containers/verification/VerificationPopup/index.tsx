@@ -21,13 +21,13 @@ export type ComponentProps = {
   isOpen: boolean
   onClose: () => void,
   contractId?: string
-}
+};
 
 export type DispatchProps = {
   verifyContract: (code: string) => void
   changeVerificationCode: (payload: { name: string, value: string }) => void
   resetState: () => void
-}
+};
 
 class VerificationPopup extends Component<Props, {}> {
   componentWillUnmount() {
@@ -52,25 +52,15 @@ class VerificationPopup extends Component<Props, {}> {
 
     const handleChange = (e) => {
       changeVerificationCode(e.target.value);
-    }
+    };
 
     const validateCode = (): boolean => {
       return !!verificationCode.length;
-    }
+    };
 
     const isVerified = (): boolean => {
       return !verifyError;
-    }
-
-    const renderPopupBody = () => {
-      if (!verificationFinished) {
-        return renderVerificationFormBody();
-      } else if (isVerified()) {
-        return renderSuccessMessageAndRedirect();
-      } else {
-        return renderFailedMessage();
-      }
-    }
+    };
 
     const renderVerificationFormBody = () => (
       <div>
@@ -97,7 +87,7 @@ class VerificationPopup extends Component<Props, {}> {
           <img styleName="verified-icon" src={require('../../../assets/images/signed.svg')} />
           <span styleName="verified-message">Successfully verified!</span>
         </div>
-      )
+      );
     };
 
     const renderFailedMessage = () => {
@@ -108,8 +98,18 @@ class VerificationPopup extends Component<Props, {}> {
           <span styleName="verify-error">{verifyError}</span>
           <Button onClick={resetState}>Retry</Button>
         </div>
-      )
-    }
+      );
+    };
+
+    const renderPopupBody = () => {
+      if (!verificationFinished) {
+        return renderVerificationFormBody();
+      } else if (isVerified()) {
+        return renderSuccessMessageAndRedirect();
+      } else {
+        return renderFailedMessage();
+      }
+    };
 
     return (
       <Popup
@@ -122,7 +122,7 @@ class VerificationPopup extends Component<Props, {}> {
       </Popup>
     );
   }
-};
+}
 
 const StyledComponent = CSSModules(VerificationPopup, require('./styles.css'));
 

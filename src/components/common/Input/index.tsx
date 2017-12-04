@@ -17,12 +17,11 @@ export class Input extends Component<Props, {}> {
 
     const isNumeric = (n) => {
       return !isNaN(parseFloat(n)) && isFinite(n);
-    }
+    };
 
     const handleChange = (event) => {
       const target = event.target;
       const value = target.type === 'checkbox' ? target.checked : target.value;
-      const name = target.name;
 
       if (type === 'number') {
         const isValidNumber = value === '' || isNumeric(value);
@@ -39,12 +38,12 @@ export class Input extends Component<Props, {}> {
       }
 
       onChange(event);
-    }
+    };
 
     return (
       <div styleName="container">
         <input styleName={invalid ? 'invalid' : 'default'} ref={(input) => this.inputElement = input} placeholder={placeholder} onChange={handleChange} {...inputProps}/>
-        {caption ? 
+        {caption ?
           <span styleName={inputProps.value ? 'shifted-label' : 'label'}>{captionText || placeholder}</span> : null
         }
       </div>

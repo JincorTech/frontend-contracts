@@ -38,7 +38,6 @@ import {
   StateMap as AppStateProps
 } from '../../../redux/modules/app/appWrapper';
 import { getEmployeeById } from '../../../helpers/common/store';
-import { required, minLength, maxLength } from '../../../utils/validators';
 import InputCaption from '../../../components/common/InputCaption';
 import { EthCurrencyName } from '../../../helpers/common/api';
 import DatePickerPopup from '../../../components/employmentAgreement/CreateContractForm/DatePickerPopup';
@@ -52,10 +51,10 @@ export type RouterParams = {
   routeParams?: {
     contractId: string
   }
-}
+};
 
 export type ComponentProps = RouterParams & {
-}
+};
 
 export type DispatchProps = {
   openPopup: () => void
@@ -73,8 +72,7 @@ export type DispatchProps = {
   signContract: (contractId: string) => void
   openDatePopup: (popup: FormDates) => void
   closeDatePopup: () => void
-}
-
+};
 
 class CreateContractForm extends React.Component<Props, any> {
   constructor(props) {
@@ -95,7 +93,7 @@ class CreateContractForm extends React.Component<Props, any> {
     }
   }
 
-  componentWillReceiveProps (nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (this.props.chosenEmployeeId !== nextProps.chosenEmployeeId) {
       this.props.fetchWallets();
     }
@@ -153,9 +151,7 @@ class CreateContractForm extends React.Component<Props, any> {
       closePopup,
       chosenEmployeeId,
       chooseEmployee,
-      postContract,
       closeVerifyPopup,
-      verifyContract,
       fields,
       contractId,
       waiting,
@@ -167,12 +163,12 @@ class CreateContractForm extends React.Component<Props, any> {
 
     const getEmployeeId = () => {
       return chosenEmployeeId || fields.employeeId;
-    }
+    };
 
     const getEmployee = () => {
       const employeeId = getEmployeeId();
       return getEmployeeById(employees, employeeId);
-    }
+    };
 
     const getEmployeeName = () => {
       const employee = getEmployee();
@@ -181,7 +177,7 @@ class CreateContractForm extends React.Component<Props, any> {
       }
 
       return employee.name;
-    }
+    };
 
     const getEmployeeAvatar = () => {
       const employee = getEmployee();
@@ -190,23 +186,11 @@ class CreateContractForm extends React.Component<Props, any> {
       }
 
       return employee.avatar;
-    }
+    };
 
     const isWalletsAddressesExists = () => {
       return fields.companyWalletAddress && fields.employeeWalletAddress;
-    }
-
-    const getFilledStyle = (step: number) => {
-      if (fields.isSignedByEmployee) {
-        return 'signed-item';
-      }
-
-      return stepsValidationResult[step] ? 'filled-item' : '';
-    }
-
-    const getSignCaption = () => {
-      return fields.isSignedByEmployee ? `Signed by ${getEmployeeName()}`: 'Unsigned';
-    }
+    };
 
     // Validation
 
@@ -217,7 +201,7 @@ class CreateContractForm extends React.Component<Props, any> {
         case FormDates.EndDate: return fields.startAgreementDate !== '' ? fields.startAgreementDate : fields.contractDate;
         default: return '';
       }
-    }
+    };
 
     const getMaxDate = () => {
       switch (activeDatePopup) {
@@ -226,19 +210,18 @@ class CreateContractForm extends React.Component<Props, any> {
         case FormDates.EndDate: return '';
         default: return '';
       }
-    }
+    };
 
     const defaultValidate = (value) => value && value !== '';
+    const periodIsPermanent = () => fields.agreementPeriod === 'permanent';
 
     const validateAgreementPeriod = () => {
       return !!(periodIsPermanent() || (fields.startAgreementDate && fields.endAgreementDate));
-    }
+    };
 
     const validateCompensation = () => {
       return !!(fields.salaryAmount && fields.paymentsDay);
-    }
-
-    const periodIsPermanent = () => fields.agreementPeriod === "permanent";
+    };
 
     const stepsValidationResult: boolean[] = [
       defaultValidate(fields.contractDate),
@@ -255,6 +238,18 @@ class CreateContractForm extends React.Component<Props, any> {
     const validateSubmitButton = stepsValidationResult.slice(0, -1).every((value) => value);
 
     // Render
+
+    const getFilledStyle = (step: number) => {
+      if (fields.isSignedByEmployee) {
+        return 'signed-item';
+      }
+
+      return stepsValidationResult[step] ? 'filled-item' : '';
+    };
+
+    const getSignCaption = () => {
+      return fields.isSignedByEmployee ? `Signed by ${getEmployeeName()}` : 'Unsigned';
+    };
 
     if (!getEmployeeId() || !isWalletsAddressesExists()) {
       return <div styleName="spinner"><Spinner/></div>;
@@ -321,11 +316,11 @@ class CreateContractForm extends React.Component<Props, any> {
           <li styleName={getFilledStyle(8)}>
             <Caption text={'Signatures'} />
             <span styleName="section-description">To sign contract you need to request code from Google Authentificator. After your signing request for the signing of the contract will be sent to your employee.</span>
-            
+
             {fields.isSignedByEmployee ?
               <img styleName="signed-icon" src={require('../../../assets/images/signed.svg')}/> : null
             }
-            
+
             <span styleName="sign-status">{getSignCaption()}</span>
             <span styleName="sign-description">Employer signature</span>
           </li>
@@ -359,7 +354,7 @@ export default connect<StateProps, DispatchProps, ComponentProps>(
       ...state.app.appWrapper,
       ...state.employmentAgreement.employmentAgreement,
       fields: state.employmentAgreement.createContractForm
-    }
+    };
   },
   {
     openPopup,

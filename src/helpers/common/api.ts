@@ -1,10 +1,9 @@
 import { Contract } from '../../redux/modules/contracts/contractsPage';
 import { Employee } from '../../redux/modules/employmentAgreement/employmentAgreement';
-import { printDate } from '../../helpers/common/format';
 import * as moment from 'moment';
 
 export const AppDateFormat = 'DD.MM.YYYY';
-export const ApiDateFormat = 'MM/DD/YYYY'
+export const ApiDateFormat = 'MM/DD/YYYY';
 
 export const EthCurrencyName = 'ETH';
 export const PersonalWalletType = 'personal';
@@ -16,7 +15,7 @@ export const parseAppDate = (date: string) => {
   }
 
   return moment(date, AppDateFormat).toDate();
-}
+};
 
 export const transformContracts = (data): Contract[] => {
   return data.map((contract) => {
@@ -27,9 +26,9 @@ export const transformContracts = (data): Contract[] => {
       userName: contract.employee.fullName,
       createdAt: new Date(contract.createdAt),
       signedAt: contract.signedAt ? new Date(contract.signedAt) : null
-    }
+    };
   });
-}
+};
 
 export const transformEmployeesGet = (data): Employee[] => {
   const filteredEmployees = data.active.filter((employee) => {
@@ -43,14 +42,14 @@ export const transformEmployeesGet = (data): Employee[] => {
       email: employee.contacts.email,
       avatar: employee.profile.avatar,
       wallets: employee.wallets
-    }
+    };
   });
-}
+};
 
 export const transformContractBodyGet = (data) => {
   const formatDate = (date: string) => {
     return moment(date, ApiDateFormat).format(AppDateFormat);
-  }
+  };
 
   return {
     employeeId: data.employeeId,
@@ -70,13 +69,13 @@ export const transformContractBodyGet = (data) => {
     signedAt: formatDate(data.signedAt),
     companyWalletAddress: data.wallets.corporate.address,
     employeeWalletAddress: data.wallets.personal.address
-  }
-}
+  };
+};
 
 export const transformContractBodyPost = (data) => {
   const formatDate = (date: string) => {
     return moment(date, AppDateFormat).format(ApiDateFormat);
-  }
+  };
 
   return {
     employeeId: data.employeeId,
@@ -89,10 +88,10 @@ export const transformContractBodyPost = (data) => {
     periodStartDate: formatDate(data.startAgreementDate),
     periodEndDate: formatDate(data.endAgreementDate),
     salaryAmount: {
-        currency: EthCurrencyName,
-        amount: data.salaryAmount
+      currency: EthCurrencyName,
+      amount: data.salaryAmount
     },
     dayOfPayments: data.paymentsDay,
     additionalClauses: data.additionalClauses
-  }
-}
+  };
+};

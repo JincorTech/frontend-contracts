@@ -14,7 +14,7 @@ export type ComponentProps = {
 
 export type DispatchProps = {
   resetState: () => void
-}
+};
 
 export type StateProps = ContractStateProps & AppStateProps;
 
@@ -53,7 +53,7 @@ export default connect<StateProps, DispatchProps, Props>(
     return {
       ...state.app.appWrapper,
       ...state.wizard.employmentAgreementWizard
-    }
+    };
   },
   {
     resetState

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { routes } from '../../../routes';
 import { RouteComponentProps } from 'react-router';
 
 import {
@@ -38,8 +37,7 @@ class AppWrapper extends Component<Props, StateProps> {
       return null;
     }
 
-    const { user, children, isAuth } = this.props;
-    const { id, profile } = user;
+    const { children } = this.props;
 
     return (
       <div>

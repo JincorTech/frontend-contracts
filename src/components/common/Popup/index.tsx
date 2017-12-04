@@ -49,7 +49,7 @@ class Popup extends Component<Props, {}> {
           {title && <div styleName="title">{title}</div>}
           <div>{children}</div>
           <div styleName="footer">
-            <button styleName="close" type="button" onClick={() => { close() }}>
+            <button styleName="close" type="button" onClick={() => { close(); }}>
               <img src={require('./images/close.svg')}/>
             </button>
           </div>

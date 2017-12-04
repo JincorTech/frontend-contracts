@@ -5,7 +5,7 @@ import * as CSSModules from 'react-css-modules';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import Avatar from '../../../components/common/Avatar';
-import { StateMap as WizardStateProps, prevStep, Step } from '../../../redux/modules/wizard/employmentAgreementWizard';
+import { StateMap as WizardStateProps, prevStep } from '../../../redux/modules/wizard/employmentAgreementWizard';
 import { StateMap as AppStateProps } from '../../../redux/modules/app/appWrapper';
 
 export type ComponentProps = {
@@ -13,9 +13,9 @@ export type ComponentProps = {
 
 export type DispatchProps = {
   prevStep: () => void
-}
+};
 
-export type StateProps = WizardStateProps & AppStateProps
+export type StateProps = WizardStateProps & AppStateProps;
 
 export type Props = RouteComponentProps<{}, {}> & ComponentProps & DispatchProps & StateProps;
 
@@ -25,7 +25,7 @@ const WizardWrapper: SFC<Props> = (props) => {
     prevStep,
     children,
     user
-  } = props
+  } = props;
 
   const renderBackButtonBody = () => {
     return (
@@ -36,7 +36,7 @@ const WizardWrapper: SFC<Props> = (props) => {
         </div>
       </div>
     );
-  }
+  };
 
   return (
     <div styleName="layout">
@@ -67,7 +67,7 @@ export default connect<StateProps, DispatchProps, Props>(
     return {
       ...state.app.appWrapper,
       ...state.wizard.employmentAgreementWizard
-    }
+    };
   },
   {
     prevStep

@@ -6,9 +6,7 @@ import { StateMap as StateProps, nextStep, Step } from '../../../redux/modules/w
 
 import ContractTypesForm from '../../../components/wizard/ContractTypesForm';
 import ChooseEmployeeForm from '../../../containers/employmentAgreement/ChooseEmployeeForm';
-import ChooseEmployeePopup from '../../../containers/employmentAgreement/ChooseEmployeePopup';
 import CreateContractForm from '../../../containers/employmentAgreement/CreateContractForm';
-import VerificationPopup from '../../../containers/verification/VerificationPopup';
 
 /**
  * Types
@@ -37,7 +35,7 @@ class EmploymentAgreementWizard extends Component<Props, {}> {
         return <CreateContractForm/>;
       default:
         return <div/>;
-    } 
+    }
   }
 }
 

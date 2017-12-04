@@ -20,7 +20,7 @@ const ErrorField: SFC<Props> = (props) => {
         <div styleName="error">
           {validatorMessage}
         </div>
-      )
+      );
     }
   }
 };

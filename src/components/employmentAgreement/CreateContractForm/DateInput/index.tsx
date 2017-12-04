@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { SFC } from 'react';
 import * as CSSModules from 'react-css-modules';
 
 // export type Props = {
@@ -14,8 +13,7 @@ const DateInput = (props) => {
     onClick,
     value,
     disabled,
-    caption,
-    ...restProps
+    caption
   } = props;
 
   return (

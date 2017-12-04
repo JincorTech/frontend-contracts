@@ -7,7 +7,7 @@ export type Props = {
   onButtonClick?: () => void
   text?: string
   disabled?: boolean
-}
+};
 
 const SelectInput: SFC<Props> = (props) => {
   const {
@@ -25,7 +25,6 @@ const SelectInput: SFC<Props> = (props) => {
           <Button onClick={onButtonClick}>Choose</Button>
         </div> : null
       }
-      
     </div>
   );
 };

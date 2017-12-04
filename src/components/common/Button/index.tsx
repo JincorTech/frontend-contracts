@@ -29,7 +29,7 @@ const Button: SFC<Props> = (props) => {
   } = props;
 
   const getClass = () => disabled ? 'disabled' : 'button';
-  
+
   const renderElement = () => {
     if (href) {
       return (

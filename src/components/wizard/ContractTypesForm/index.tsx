@@ -5,7 +5,7 @@ import ContractTypeItem from '../../../components/wizard/ContractTypeItem';
 
 export type Props = {
   onNext: () => void
-}
+};
 
 const ContractTypesForm: SFC<Props> = (props) => {
   return (

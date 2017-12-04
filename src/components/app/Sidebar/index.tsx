@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Component } from 'react';
-import { Link, IndexLink } from 'react-router';
+import { Link } from 'react-router';
 import * as CSSModules from 'react-css-modules';
 import { InjectedCSSModuleProps } from 'react-css-modules';
 

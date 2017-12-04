@@ -10,7 +10,7 @@ const getMock = (path: string) => {
           'profile': {
             'name': 'Simon Slow',
             'position': 'Tester',
-            'role': 'admin', //admin, employee
+            'role': 'admin',
             'avatar': 'http://i.imgur.com/n613Ki4.jpg'
           },
           'admin': true,
@@ -64,7 +64,7 @@ const getMock = (path: string) => {
             'employeesCount': 2
           }
         }
-      }
+      };
     case '/contracts/':
       return {
         'status': 200,
@@ -148,7 +148,7 @@ const getMock = (path: string) => {
             },
             'createdAt': '01/10/2017',
             'signedAt': '01/10/2017'
-          },
+          }
         ]
       };
     case '/employee/colleagues/':
@@ -179,7 +179,7 @@ const getMock = (path: string) => {
               'profile': {
                 'name': 'Maxim Brook',
                 'position': 'Frontend wizard',
-                'role': 'admin', //admin, employee
+                'role': 'admin',
                 'avatar': 'https://s3.eu-west-2.amazonaws.com/jincor-test/a3cbe21c-bab6-4c72-9d2e-8907f9a56898/avatars/pic_58f05129ba5cd.png'
               },
               'contacts': {
@@ -214,7 +214,7 @@ const getMock = (path: string) => {
               'profile': {
                 'name': 'Mike Jefferson',
                 'position': 'Frontend wizard',
-                'role': 'admin', //admin, employee
+                'role': 'admin',
                 'avatar': null
               },
               'contacts': {
@@ -249,7 +249,7 @@ const getMock = (path: string) => {
               'profile': {
                 'name': 'Claudia Bullock',
                 'position': 'Frontend wizard',
-                'role': 'admin', //admin, employee
+                'role': 'admin',
                 'avatar': null
               },
               'contacts': {
@@ -284,7 +284,7 @@ const getMock = (path: string) => {
               'profile': {
                 'name': 'Simon Slow',
                 'position': 'Frontend wizard',
-                'role': 'admin', //admin, employee
+                'role': 'admin',
                 'avatar': 'https://s3.eu-west-2.amazonaws.com/jincor-test/a3cbe21c-bab6-4c72-9d2e-8907f9a56898/avatars/pic_58f05129ba5cd.png'
               },
               'contacts': {
@@ -336,8 +336,8 @@ const getMock = (path: string) => {
             }
           ],
           'invited': []
-        },
-      }
+        }
+      };
     case '/contracts/6174b0f53573874343a4d915d4f5b6876a9a15e5/':
       return {
         'status': 200,
@@ -367,11 +367,11 @@ const getMock = (path: string) => {
               'address': '0x345f81e0135c896873b6526674ea2ef57e1ca111'
             },
             'corporate': {
-              'address':'0x345f81e0135c896873b6526674ea2ef57e1ca777'
+              'address': '0x345f81e0135c896873b6526674ea2ef57e1ca777'
             }
           }
         }
-      }
+      };
     case '/contracts/6174b0f53573874343a4d915d4f5b6876a9a1535/':
       return {
         'status': 200,
@@ -401,11 +401,11 @@ const getMock = (path: string) => {
               'address': '0x345f81e0135c896873b6526674ea2ef57e1ca111'
             },
             'corporate': {
-              'address':'0x345f81e0135c896873b6526674ea2ef57e1ca777'
+              'address': '0x345f81e0135c896873b6526674ea2ef57e1ca777'
             }
           }
         }
-      }
+      };
     case '/wallets/':
       return {
         'status': 200,
@@ -480,7 +480,7 @@ const getMock = (path: string) => {
             ]
           }
         ]
-      }
+      };
     case '/company/my/':
       return {
         'status': 200,
@@ -529,7 +529,7 @@ const getMock = (path: string) => {
           },
           'employeesCount': 2
         }
-      }
+      };
   }
 };
 
@@ -544,7 +544,7 @@ const postMock = (path: string, body: any) => {
           'createdAt': '01/10/2017',
           'verificationId': '1c7d2871-8af6-4e2d-a9a5-b5e7ab41a53e'
         }
-      }
+      };
     case '/contracts/6174b0f53573874343a4d915d4f5b6876a9a1535/actions/verify/':
       console.log('!!! POST VERIFY. BODY:', body);
       return {
@@ -554,19 +554,19 @@ const postMock = (path: string, body: any) => {
           'employeeId': 'e316a9e8cba9131b675bfec0f0a662eea5fca517',
           'signedAt': '01/10/2017'
         }
-      }
+      };
     case '/contracts/6174b0f53573874343a4d915d4f5b6876a9a1535/actions/sign/':
       console.log('!!! POST SIGN. BODY:', body);
       return {
         'status': 200,
         'data': {
-            'contractId': '6174b0f53573874343a4d915d4f5b6876a9a1535',
-            'employeeId': 'e316a9e8cba9131b675bfec0f0a662eea5fca517',
-            'verificationId': '1c7d2871-8af6-4e2d-a9a5-b5e7ab41a53e'
+          'contractId': '6174b0f53573874343a4d915d4f5b6876a9a1535',
+          'employeeId': 'e316a9e8cba9131b675bfec0f0a662eea5fca517',
+          'verificationId': '1c7d2871-8af6-4e2d-a9a5-b5e7ab41a53e'
         }
-      }
+      };
   }
-}
+};
 
 export const get = (path: string) => {
   return new Promise((resolve) => {
@@ -574,7 +574,7 @@ export const get = (path: string) => {
       resolve(getMock(path));
     }, 1000);
   });
-}
+};
 
 export const post = (path: string, body: any) => {
   return new Promise((resolve) => {
@@ -582,4 +582,4 @@ export const post = (path: string, body: any) => {
       resolve(postMock(path, body));
     }, 1000);
   });
-}
+};

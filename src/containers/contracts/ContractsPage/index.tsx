@@ -59,7 +59,7 @@ class ContractsPage extends Component<Props, {}> {
     };
 
     if (!contracts.length) {
-      return <Spinner/>
+      return <Spinner/>;
     }
 
     return (
@@ -69,7 +69,7 @@ class ContractsPage extends Component<Props, {}> {
           <ContractsList contracts={getFilteredContracts(contracts, filtering)}/>
         </section>
         <section styleName="add-contract">
-          <Button disabled={!admin} to='/ctr/app/create/new'>
+          <Button disabled={!admin} to="/ctr/app/create/new">
             + Add contract
           </Button>
           <div styleName="contracts-number">
@@ -92,7 +92,7 @@ export default connect<StateProps, DispatchProps, Props>(
     return {
       ...state.contracts.contractsPage,
       ...state.app.app
-    }
+    };
   },
   {
     fetchContracts,

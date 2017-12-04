@@ -25,16 +25,16 @@ export type StateMap = {
 };
 
 export type Wallet = {
-  //TODO Add wallet type enum
+  // TODO Add wallet type enum
   type: string
   address: string
   balance: string
-  //TODO Add currencies enum
+  // TODO Add currencies enum
   currency: string
   created_at: string,
-  //TODO Fix type
+  // TODO Fix type
   transactions: any
-}
+};
 
 export type Employee = {
   id: string
@@ -42,7 +42,7 @@ export type Employee = {
   email: string
   avatar: string
   wallets: Wallet[]
-}
+};
 
 /**
  * Constants
@@ -134,5 +134,5 @@ export default createReducer<State>({
 
   [RESET_STATE]: (state: State): State => (
     state.merge({ ...initialState })
-  ),
+  )
 }, initialState);

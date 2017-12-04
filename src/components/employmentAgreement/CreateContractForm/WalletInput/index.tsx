@@ -16,7 +16,7 @@ const WalletInput: SFC<Props> = (props) => {
 
   const getEllipsisWalletAddress = () => {
     return `${value.slice(0, 12)}...${value.slice(-3)}`;
-  }
+  };
 
   return (
     <div>

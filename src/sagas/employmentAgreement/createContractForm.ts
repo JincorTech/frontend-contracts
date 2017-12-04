@@ -36,13 +36,13 @@ const getContractState = (state) => state.employmentAgreement.employmentAgreemen
 
 function* fetchWalletsIterator({ payload }): SagaIterator {
   try {
-    //get corporate wallet
+    // get corporate wallet
     const { data } = yield call(get, `/wallets/`);
     const corporateEthWallet = data.find((wallet) => {
       return wallet.type === CorporateWalletType && wallet.currency === EthCurrencyName;
     });
 
-    //get employee wallet
+    // get employee wallet
     const { chosenEmployeeId, employees } = yield select(getContractState);
     const employee = getEmployeeById(employees, chosenEmployeeId);
     const employeeEthWallet = employee.wallets.find((wallet) => wallet.currency === EthCurrencyName);

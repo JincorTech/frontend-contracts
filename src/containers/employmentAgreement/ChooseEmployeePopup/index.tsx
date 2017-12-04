@@ -15,11 +15,11 @@ export type ComponentProps = {
   onClose: () => void
   employees: Employee[]
   onSelect: (id: string) => void
-}
+};
 
 export type DispatchProps = {
   changeSearchText: (text: string) => void
-}
+};
 
 const ChooseEmployeePopup: SFC<Props> = (props) => {
   const {
@@ -33,14 +33,14 @@ const ChooseEmployeePopup: SFC<Props> = (props) => {
 
   const handleChangeSearchText = (e) => {
     changeSearchText(e.target.value);
-  }
+  };
 
   const getFilteredEmployees = () => {
     return employees.filter((employee) => {
       return employee.name.toUpperCase().includes(searchText.toUpperCase())
               || employee.email.toUpperCase().includes(searchText.toUpperCase());
-    })
-  }
+    });
+  };
 
   return (
     <Popup

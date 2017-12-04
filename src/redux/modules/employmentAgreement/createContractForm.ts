@@ -23,7 +23,7 @@ export type StateMap = {
   createdAt: string,
   signedAt: string,
   companyWalletAddress: string,
-  employeeWalletAddress: string,
+  employeeWalletAddress: string
 };
 
 /**
@@ -62,7 +62,7 @@ const initialState: State = from<StateMap>({
   createdAt: '',
   signedAt: '',
   companyWalletAddress: '',
-  employeeWalletAddress: '',
+  employeeWalletAddress: ''
 });
 
 export default createReducer<State>({
@@ -84,5 +84,5 @@ export default createReducer<State>({
 
   [RESET_STATE]: (state: State, { payload }: Action<{name: string, value: string}>): State => (
     state.merge({ ...initialState })
-  ),
+  )
 }, initialState);
