@@ -23,30 +23,26 @@ class Sidebar extends Component<Props, any> {
         </div>
 
         <div className={navigation}>
-          <Link
+          <a
             className={link}
-            activeClassName={active}
-            to={'/cmp'}>My Company</Link>
+            href="/cmp">My Company</a>
 
-          <Link
+          <a
             className={link}
-            activeClassName={active}
-            to={'/cmp/app/search'}>Search</Link>
+            href="/cmp/app/search">Search</a>
 
-          <Link
+          <a
             className={link}
-            activeClassName={active}
-            to={'/wallets'}>Wallets</Link>
+            href="/wallets">Wallets</a>
 
           <Link
             className={link}
             activeClassName={active}
             to={'/ctr'}>Contracts</Link>
 
-          <Link
+          <a
             className={link}
-            activeClassName={active}
-            to={'/msg'}>Messenger</Link>
+            href="/msg">Messenger</a>
         </div>
       </div>
     );
