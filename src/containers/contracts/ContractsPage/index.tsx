@@ -9,16 +9,22 @@ import {
   fetchContracts,
   changeSorting,
   changeFiltering,
-  StateMap as StateProps,
+  StateMap as ContractsStateProps,
   SortingType,
   Contract,
   FilteringType
 } from '../../../redux/modules/contracts/contractsPage';
+import {
+  StateMap as AppStateProps
+} from '../../../redux/modules/app/app';
+import Spinner from '../../../components/common/Spinner';
 
 /**
  * Types
  */
 export type Props = StateProps & DispatchProps;
+
+export type StateProps = ContractsStateProps & AppStateProps;
 
 export type DispatchProps = {
   fetchContracts: () => void
@@ -40,16 +46,21 @@ class ContractsPage extends Component<Props, {}> {
       sorting,
       filtering,
       changeSorting,
-      changeFiltering
+      changeFiltering,
+      admin
     } = this.props;
 
     const getFilteredContracts = (contracts: Contract[], filtering: FilteringType) => {
       if (filtering === FilteringType.Unsigned) {
-        return contracts.filter((contract: Contract) => !contract.signed);
+        return contracts.filter((contract: Contract) => !contract.signedAt);
       } else {
         return contracts;
       }
     };
+
+    if (!contracts.length) {
+      return <Spinner/>;
+    }
 
     return (
       <div>
@@ -58,7 +69,7 @@ class ContractsPage extends Component<Props, {}> {
           <ContractsList contracts={getFilteredContracts(contracts, filtering)}/>
         </section>
         <section styleName="add-contract">
-          <Button>
+          <Button disabled={!admin} to="/ctr/app/create/new">
             + Add contract
           </Button>
           <div styleName="contracts-number">
@@ -77,7 +88,12 @@ class ContractsPage extends Component<Props, {}> {
 const styledComponent = CSSModules(ContractsPage, require('./styles.css'));
 
 export default connect<StateProps, DispatchProps, Props>(
-  (state) => state.contracts.contractsPage,
+  (state) => {
+    return {
+      ...state.contracts.contractsPage,
+      ...state.app.app
+    };
+  },
   {
     fetchContracts,
     changeSorting,

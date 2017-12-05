@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47 (45396) - http://www.bohemiancoding.com/sketch -->
+    <title>Overlay Close</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Contracts" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Contracts-—-Signing" transform="translate(-1375.000000, -51.000000)" fill="#FFFFFF">
+            <g id="Close" transform="translate(1364.000000, 40.000000)">
+                <path d="M19.7,16.3 L19.7,11.1921759 C19.7,10.252404 18.9388841,9.5 18,9.5 C17.0545702,9.5 16.3,10.2576129 16.3,11.1921759 L16.3,16.3 L11.1921759,16.3 C10.252404,16.3 9.5,17.0611159 9.5,18 C9.5,18.9454298 10.2576129,19.7 11.1921759,19.7 L16.3,19.7 L16.3,24.8078241 C16.3,25.747596 17.0611159,26.5 18,26.5 C18.9454298,26.5 19.7,25.7423871 19.7,24.8078241 L19.7,19.7 L24.8078241,19.7 C25.747596,19.7 26.5,18.9388841 26.5,18 C26.5,17.0545702 25.7423871,16.3 24.8078241,16.3 L19.7,16.3 Z" id="Combined-Shape" transform="translate(18.000000, 18.000000) rotate(45.000000) translate(-18.000000, -18.000000) "></path>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -31,11 +31,6 @@
   &.active {
     color: #0080ff;
     font: bold 16px;
-
-    &:hover {
-      cursor: default;
-      pointer-events: none;
-    }
   }
 }
 

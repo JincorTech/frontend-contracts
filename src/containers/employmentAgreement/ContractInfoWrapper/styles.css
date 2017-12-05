@@ -1,0 +1,39 @@
+@use postcss-short;
+@use postcss-clearfix;
+
+.layout {
+  display: block;
+  width: 100%;
+}
+
+.header {
+  border-bottom: 1px solid #e6e8eb;
+  padding: 32px 0;
+}
+
+.back {
+  position: absolute;
+  left: 0;
+  margin: -10px 0 auto 15px;
+  width: 180px;
+  cursor: pointer;
+}
+
+.icon {
+  float: left;
+  margin: 1px 15px 0 0;
+  font-weight: 800;
+  font-size: 16px;
+  color: #6e7987;
+}
+
+.caption {
+  font-size: 16px;
+  color: #6e7987;
+}
+
+.avatar {
+  position: absolute;
+  right: 0;
+  margin: -36px 40px 0 0;
+}

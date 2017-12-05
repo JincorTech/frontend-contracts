@@ -3,7 +3,13 @@ import { reducer as formReducer } from 'redux-form';
 import { loadingBarReducer } from 'react-redux-loading-bar';
 
 import app from './modules/app/app';
+import appWrapper from './modules/app/appWrapper';
 import contractsPage from './modules/contracts/contractsPage';
+import employmentAgreementWizard from './modules/wizard/employmentAgreementWizard';
+import employmentAgreement from './modules/employmentAgreement/employmentAgreement';
+import chooseEmployeePopup from './modules/employmentAgreement/chooseEmployeePopup';
+import createContractForm from './modules/employmentAgreement/createContractForm';
+import verification from './modules/verification/verification';
 
 export default combineReducers({
   routing: routerReducer,
@@ -11,7 +17,8 @@ export default combineReducers({
   loadingBar: loadingBarReducer,
 
   app: combineReducers({
-    app
+    app,
+    appWrapper
   }),
 
   common: combineReducers({
@@ -19,5 +26,19 @@ export default combineReducers({
 
   contracts: combineReducers({
     contractsPage
+  }),
+
+  wizard: combineReducers({
+    employmentAgreementWizard
+  }),
+
+  employmentAgreement: combineReducers({
+    employmentAgreement,
+    chooseEmployeePopup,
+    createContractForm
+  }),
+
+  verification: combineReducers({
+    verification
   })
 });

@@ -1,0 +1,25 @@
+.type {
+  padding: 20px 0;
+  margin: 0 auto;
+  width: 620px;
+  border-bottom: 1px solid #e6e8eb;
+  cursor: pointer;
+}
+
+.name {
+  font-size: 22px;
+  text-align: left;
+  color: #222;
+  margin-bottom: 10px;
+}
+
+.disabled {
+  composes: name;
+  color: #9da0a4;
+}
+
+.description {
+  font-size: 14px;
+  text-align: left;
+  color: #6e7987;
+}

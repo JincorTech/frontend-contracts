@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { Component } from 'react';
-import { Link, IndexLink } from 'react-router';
+import { Link } from 'react-router';
 import * as CSSModules from 'react-css-modules';
 import { InjectedCSSModuleProps } from 'react-css-modules';
-// import { namedRoutes } from '../../../routes';
 
 export type Props = InjectedCSSModuleProps & {
 
@@ -24,43 +23,27 @@ class Sidebar extends Component<Props, any> {
         </div>
 
         <div className={navigation}>
-          <IndexLink
+          <a
             className={link}
-            activeClassName={active}
-            to={'/'}>Messenger</IndexLink>
+            href="/cmp">My Company</a>
+
+          <a
+            className={link}
+            href="/cmp/app/search">Search</a>
+
+          <a
+            className={link}
+            href="/wallets">Wallets</a>
 
           <Link
             className={link}
             activeClassName={active}
-            to={'/'}>My Company</Link>
+            to={'/ctr'}>Contracts</Link>
 
-          <Link
+          <a
             className={link}
-            activeClassName={active}
-            to={'/'}>Contracts</Link>
-
-          <Link
-            className={link}
-            activeClassName={active}
-            to={'/'}>Accounts</Link>
-
-          <Link
-            className={link}
-            activeClassName={active}
-            to={'/'}>Search</Link>
+            href="/msg">Messenger</a>
         </div>
-
-        {/* <div styleName='socials'>
-          <a href="http://t.me/jincorICOeng" target="_blank">
-            <img src={require('../../../assets/images/social-icons/telegram.svg')} />
-          </a>
-          <a href="https://www.facebook.com/jincorlimited/" target="_blank">
-            <img src={require('../../../assets/images/social-icons/facebook.svg')} />
-          </a>
-          <a href="https://twitter.com/jincor_ico" target="_blank">
-            <img src={require('../../../assets/images/social-icons/twitter.svg')} />
-          </a>
-        </div> */}
       </div>
     );
   }

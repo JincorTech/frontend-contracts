@@ -16,18 +16,3 @@
   color: #111;
   margin-bottom: 30px;
 }
-
-.label {
-  float: right;
-}
-
-.icon {
-  width: 16px;
-  height: 16px;
-}
-
-.text {
-  font-size: 16px;
-  text-align: right;
-  color: #9da0a4;
-}

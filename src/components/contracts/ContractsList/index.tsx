@@ -10,7 +10,9 @@ export type Props = {
 const ContractsList: SFC<Props> = (props) => (
   <div>
     {props.contracts.map((contract, index) => {
-      return <ContractsItem key={index} name={contract.name} date={contract.date} />;
+      return <ContractsItem key={index} id={contract.id}
+                userName={contract.userName} userId={contract.userId} userAvatar={contract.userAvatar}
+                date={contract.createdAt} />;
     })}
   </div>
 );

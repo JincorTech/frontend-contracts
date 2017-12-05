@@ -10,6 +10,9 @@ export type Props = {
   spinner?: boolean
   href?: string
   to?: string
+  isSubmit?: boolean
+  onClick?: () => void
+  value?: string
 };
 
 const Button: SFC<Props> = (props) => {
@@ -19,6 +22,9 @@ const Button: SFC<Props> = (props) => {
     spinner,
     href,
     to,
+    isSubmit,
+    onClick,
+    value,
     ...restProps
   } = props;
 
@@ -31,7 +37,7 @@ const Button: SFC<Props> = (props) => {
           href={href}
           styleName={getClass()}
           {...restProps}>
-          {spinner ? <Spinner /> : children}
+          {spinner ? <Spinner button={true}/> : children}
         </a>
       );
     }
@@ -42,8 +48,22 @@ const Button: SFC<Props> = (props) => {
           to={to}
           styleName={getClass()}
           {...restProps}>
-          {spinner ? <Spinner /> : children}
+          {spinner ? <Spinner button={true}/> : children}
         </Link>
+      );
+    }
+
+    if (isSubmit) {
+      return (
+        spinner ?
+        <div styleName={getClass()}>
+          <Spinner button={true}/>
+        </div> :
+        <input type="submit"
+          styleName={getClass()}
+          value={value}
+          {...restProps}
+        />
       );
     }
 
@@ -51,9 +71,10 @@ const Button: SFC<Props> = (props) => {
       <button
         type="button"
         styleName={getClass()}
+        onClick={onClick}
         {...restProps}
       >
-        {spinner ? <Spinner /> : children}
+        {spinner ? <Spinner button={true}/> : children}
       </button>
     );
   };

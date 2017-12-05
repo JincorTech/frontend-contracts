@@ -1,0 +1,48 @@
+@use postcss-short;
+
+.popup {
+  padding: 40px 40px 44px;
+}
+
+.input {
+  height: 45px;
+  background-color: #fff;
+  border-radius: 4px;
+  border: solid 1px #dbdfe4;
+  padding-left: 25px;
+  margin-bottom: 15px;
+}
+
+.header {
+  font-size: 26px;
+  line-height: 1.46;
+  text-align: center;
+  color: #000;
+  margin-bottom: 20px;
+}
+
+.description {
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: center;
+  color: #6e7987;
+  margin-bottom: 30px;
+}
+
+.verified-icon {
+  display: block;
+  margin: 0 auto 20px;
+}
+
+.verified-message {
+  composes: header;
+  display: block;
+  margin: 0 auto;
+}
+
+.verify-error {
+  display: block;
+  color: #ff5e5e;
+  margin: 15px 0;
+  text-align: center;
+}

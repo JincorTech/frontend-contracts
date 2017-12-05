@@ -12,6 +12,7 @@ import i18n from './i18n/i18n';
 import './assets/normalize.css';
 import './assets/fonts/Roboto/stylesheet.css';
 import './assets/main.css';
+import 'react-infinite-calendar/styles.css';
 
 const history = syncHistoryWithStore(browserHistory, store);
 

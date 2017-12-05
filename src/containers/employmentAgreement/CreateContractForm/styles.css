@@ -17,21 +17,25 @@
   font-size: 32px;
   line-height: 1.12;
   text-align: left;
-  color: #9da0a4;
+  color: #000;
   border: none;
   padding: 0;
 }
 
-.job-text-input {
-  composes: text-input;
+.job-text-input-container {
   margin-bottom: 15px;
+}
+
+.salary-text-input-container {
+  position: relative;
+  margin-bottom: 40px;
 }
 
 .small-text-input {
   height: 19px;
   font-size: 16px;
   text-align: left;
-  color: #9da0a4;
+  color: #000;
   border: none;
   padding: 0;
 }
@@ -55,6 +59,36 @@
   content: counter(step-counter);
   margin-right: 5px;
   background-color: #dbdfe4;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  color: #fff;
+  border-radius: 50%;
+  width: 36px;
+  padding: 9px 0;
+}
+
+.list li.filled-item::before {
+  float: left;
+  margin-left: -64px;
+  content: counter(step-counter);
+  margin-right: 5px;
+  background-color: #6e7987;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  color: #fff;
+  border-radius: 50%;
+  width: 36px;
+  padding: 9px 0;
+}
+
+.list li.signed-item::before {
+  float: left;
+  margin-left: -64px;
+  content: counter(step-counter);
+  margin-right: 5px;
+  background-color: #0080ff;
   font-size: 16px;
   font-weight: bold;
   text-align: center;
@@ -93,7 +127,6 @@
 
 .sign-status {
   display: block;
-  width: 134px;
   height: 36px;
   font-size: 32px;
   line-height: 1.12;
@@ -115,4 +148,20 @@
 .create-button {
   width: 200px;
   margin: 0 auto;
+}
+
+.signed-icon {
+  margin-top: 30px;
+  margin-left: -64px;
+  float: left;
+}
+
+.spinner {
+  margin-top: 50px;
+}
+
+.salary-input-caption {
+  position: absolute;
+  right: 0;
+  top: 17px;
 }
