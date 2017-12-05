@@ -23,7 +23,7 @@ export const parseApiDate = (date: string): Date => {
   }
 
   return moment(date, ApiDateFormat).toDate();
-}
+};
 
 export const transformContracts = (data): Contract[] => {
   return data.map((contract) => {
