@@ -2,8 +2,9 @@ import * as React from 'react';
 import { SFC } from 'react';
 import * as CSSModules from 'react-css-modules';
 import { Link } from 'react-router';
-import Avatar from '../../common/Avatar';
 import * as moment from 'moment';
+import Avatar from '../../common/Avatar';
+import UnsignedLabel from '../UnsignedLabel';
 
 export type ComponentProps = {
   id: string
@@ -11,6 +12,7 @@ export type ComponentProps = {
   userAvatar: string
   userName: string
   date: Date
+  signedAt: Date
 };
 
 const ContractsItem: SFC<ComponentProps> = (props) => {
@@ -20,7 +22,10 @@ const ContractsItem: SFC<ComponentProps> = (props) => {
       <Avatar src={props.userAvatar} fullName={props.userName} id={props.userId}/>
       <div styleName="info">
         <div styleName="name">{props.userName}</div>
+        <div styleName="date-container">
         <div styleName="date">{moment(props.date).format('DD/MM/YYYY')}</div>
+        { !props.signedAt ? <UnsignedLabel/> : null }
+        </div>
       </div>
       </Link>
     </div>

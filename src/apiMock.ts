@@ -137,7 +137,7 @@ const getMock = (path: string) => {
               'fullName': 'Simon Slow'
             },
             'createdAt': '02/10/2017',
-            'signedAt': '02/10/2017'
+            'signedAt': null
           },
           {
             'contractId': '242a8d1e4a58e9741b6e8f509cb3d63abb8540bb',
@@ -364,7 +364,7 @@ const getMock = (path: string) => {
           'signedAt': '01/10/2017',
           'wallets': {
             'personal': {
-              'address': '0x345f81e0135c896873b6526674ea2ef57e1ca111'
+              'address': '0x345f81e0135c896873b6526674ea2ef57e1ca370'
             },
             'corporate': {
               'address': '0x345f81e0135c896873b6526674ea2ef57e1ca777'
@@ -398,7 +398,7 @@ const getMock = (path: string) => {
           'signedAt': '',
           'wallets': {
             'personal': {
-              'address': '0x345f81e0135c896873b6526674ea2ef57e1ca111'
+              'address': '0x345f81e0135c896873b6526674ea2ef57e1ca372'
             },
             'corporate': {
               'address': '0x345f81e0135c896873b6526674ea2ef57e1ca777'
