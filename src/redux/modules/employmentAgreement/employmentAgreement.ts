@@ -76,7 +76,7 @@ export const resetState = createAction<void>(RESET_STATE);
  * Reducer
  */
 const initialState: State = from<StateMap>({
-  employees: [],
+  employees: null,
   popupIsOpened: false,
   activeDatePopup: null,
   chosenEmployeeId: null,

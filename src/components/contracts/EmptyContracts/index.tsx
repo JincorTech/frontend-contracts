@@ -4,7 +4,7 @@ import * as CSSModules from 'react-css-modules';
 
 const EmptyContracts: SFC<{}> = () => {
   return (
-    <span styleName="text">There is no contracts yet...</span>
+    <span styleName="text">There are no contracts yet...</span>
   );
 };
 

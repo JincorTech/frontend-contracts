@@ -47,7 +47,7 @@ class ChooseEmployeeForm extends Component<Props, {}> {
       onNext();
     };
 
-    const chosenEmployee = getEmployeeById(employees, chosenEmployeeId);
+    const chosenEmployee = employees && getEmployeeById(employees, chosenEmployeeId);
 
     return (
       <div>

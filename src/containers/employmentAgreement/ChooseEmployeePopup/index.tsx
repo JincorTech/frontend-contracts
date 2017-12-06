@@ -7,6 +7,8 @@ import Input from '../../../components/common/Input';
 import EmployeesList from '../../../components/employmentAgreement/EmployeesList';
 import { Employee } from '../../../redux/modules/employmentAgreement/employmentAgreement';
 import { StateMap as StateProps, changeSearchText } from '../../../redux/modules/employmentAgreement/chooseEmployeePopup';
+import EmptyEmployees from '../../../components/employmentAgreement/EmptyEmployees';
+import Spinner from '../../../components/common/Spinner';
 
 export type Props = StateProps & DispatchProps & ComponentProps;
 
@@ -42,17 +44,37 @@ const ChooseEmployeePopup: SFC<Props> = (props) => {
     });
   };
 
+  const renderList = () => {
+    if (!employees) {
+      return (
+        <div styleName="empty">
+          <Spinner />
+        </div>
+      );
+    } else if (!employees.length) {
+      return (
+        <div styleName="empty">
+          <EmptyEmployees />
+        </div>
+      );
+    } else {
+      return (
+        <EmployeesList employees={getFilteredEmployees()} onSelect={onSelect} />
+      );
+    }
+  };
+
   return (
     <Popup
       title=""
       open={open}
       close={onClose}>
       <div>
-        <Input styleName="input" placeholder="Search" value={searchText} onChange={handleChangeSearchText}/>
+        <Input styleName="input" placeholder="Search" value={searchText} onChange={handleChangeSearchText} />
         <div styleName="header">
           Employees
         </div>
-        <EmployeesList employees={getFilteredEmployees()} onSelect={onSelect}/>
+        {renderList()}
       </div>
     </Popup>
   );

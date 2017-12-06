@@ -1,5 +1,11 @@
 @use postcss-short;
 
+.empty {
+  height: 400px;
+  padding: 130px 25px;
+  text-align: center;
+}
+
 .input {
   height: 64px;
   background-color: #f8f9fa;
