@@ -49,7 +49,7 @@ export const changeFiltering = createAction<FilteringType>(CHANGE_FILTERING);
  * Reducer
  */
 const initialState: State = from<StateMap>({
-  contracts: [],
+  contracts: null,
   sorting: SortingType.ByDate,
   filtering: FilteringType.All
 });

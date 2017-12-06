@@ -18,6 +18,7 @@ import {
   StateMap as AppStateProps
 } from '../../../redux/modules/app/app';
 import Spinner from '../../../components/common/Spinner';
+import EmptyContracts from '../../../components/contracts/EmptyContracts';
 
 /**
  * Types
@@ -58,16 +59,19 @@ class ContractsPage extends Component<Props, {}> {
       }
     };
 
-    if (!contracts.length) {
+    if (!contracts) {
       return <Spinner/>;
     }
 
     return (
       <div>
-        <section styleName="list">
-          <TabPanel sorting={sorting} filtering={filtering} changeSorting={changeSorting} changeFiltering={changeFiltering}/>
-          <ContractsList contracts={getFilteredContracts(contracts, filtering)}/>
-        </section>
+        {contracts.length ?
+          <section styleName="list">
+            <TabPanel sorting={sorting} filtering={filtering} changeSorting={changeSorting} changeFiltering={changeFiltering} />
+            <ContractsList contracts={getFilteredContracts(contracts, filtering)} />
+          </section> :
+          <EmptyContracts />
+        }
         <section styleName="add-contract">
           <Button disabled={!admin} to="/ctr/app/create/new">
             + Add contract
