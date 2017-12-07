@@ -9,6 +9,8 @@ const getMock = (path: string) => {
           'id': '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf519',
           'profile': {
             'name': 'Simon Slow',
+            'firstName': 'Simon',
+            'lastName': 'Slow',
             'position': 'Tester',
             'role': 'admin',
             'avatar': 'http://i.imgur.com/n613Ki4.jpg'

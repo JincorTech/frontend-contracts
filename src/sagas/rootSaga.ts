@@ -3,6 +3,7 @@ import { fork } from 'redux-saga/effects';
 
 import appSaga from './app/app';
 import appWrapperSaga from './app/appWrapper';
+import profileCardSaga from './app/profileCard';
 import contractsPageSaga from './contracts/contractsPage';
 import employmentAgreement from './employmentAgreement/employmentAgreement';
 import createContractForm from './employmentAgreement/createContractForm';
@@ -15,6 +16,7 @@ export default function*(): SagaIterator {
     fork(contractsPageSaga),
     fork(employmentAgreement),
     fork(createContractForm),
-    fork(verification)
+    fork(verification),
+    fork(profileCardSaga)
   ];
 }

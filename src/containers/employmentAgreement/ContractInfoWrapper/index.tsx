@@ -8,22 +8,26 @@ import Avatar from '../../../components/common/Avatar';
 import { StateMap as ContractStateProps } from '../../../redux/modules/employmentAgreement/employmentAgreement';
 import { StateMap as AppStateProps } from '../../../redux/modules/app/appWrapper';
 import { resetState } from '../../../redux/modules/wizard/employmentAgreementWizard';
+import ProfileCard from '../../app/ProfileCard';
+import { StateMap as ProfileStateProps, openProfileCard } from '../../../redux/modules/app/profileCard';
 
 export type ComponentProps = {
 };
 
 export type DispatchProps = {
   resetState: () => void
+  openProfileCard: () => void
 };
 
-export type StateProps = ContractStateProps & AppStateProps;
+export type StateProps = ContractStateProps & AppStateProps & ProfileStateProps;
 
 export type Props = RouteComponentProps<{}, {}> & ComponentProps & DispatchProps & StateProps;
 
 const ContractInfoWrapper: SFC<Props> = (props) => {
   const {
     resetState,
-    user
+    user,
+    openProfileCard
   } = props;
 
   return (
@@ -36,12 +40,14 @@ const ContractInfoWrapper: SFC<Props> = (props) => {
           </div>
         </Link>
         <div styleName="avatar">
-          <Avatar src={user.profile.avatar} fullName={user.profile.name} id={user.id} />
+          <Avatar src={user.profile.avatar} fullName={user.profile.name} id={user.id}
+                  onClick={openProfileCard} />
         </div>
       </div>
       <div>
         <div>{props.children}</div>
       </div>
+      <ProfileCard user={user}/>
     </div>
   );
 };
@@ -52,10 +58,12 @@ export default connect<StateProps, DispatchProps, Props>(
   (state) => {
     return {
       ...state.app.appWrapper,
+      ...state.app.profileCard,
       ...state.wizard.employmentAgreementWizard
     };
   },
   {
-    resetState
+    resetState,
+    openProfileCard
   }
 )(styledComponent);

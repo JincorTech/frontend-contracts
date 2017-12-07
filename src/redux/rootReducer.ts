@@ -4,6 +4,7 @@ import { loadingBarReducer } from 'react-redux-loading-bar';
 
 import app from './modules/app/app';
 import appWrapper from './modules/app/appWrapper';
+import profileCard from './modules/app/profileCard';
 import contractsPage from './modules/contracts/contractsPage';
 import employmentAgreementWizard from './modules/wizard/employmentAgreementWizard';
 import employmentAgreement from './modules/employmentAgreement/employmentAgreement';
@@ -18,7 +19,8 @@ export default combineReducers({
 
   app: combineReducers({
     app,
-    appWrapper
+    appWrapper,
+    profileCard
   }),
 
   common: combineReducers({
