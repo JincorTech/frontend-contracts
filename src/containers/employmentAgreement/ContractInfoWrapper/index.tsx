@@ -40,7 +40,7 @@ const ContractInfoWrapper: SFC<Props> = (props) => {
           </div>
         </Link>
         <div styleName="avatar">
-          <Avatar src={user.profile.avatar} fullName={user.profile.name} id={user.id}
+          <Avatar styleName="avatar-icon" src={user.profile.avatar} fullName={user.profile.name} id={user.id}
                   onClick={openProfileCard} />
         </div>
       </div>

@@ -37,3 +37,7 @@
   right: 0;
   margin: -36px 40px 0 0;
 }
+
+.avatar-icon {
+  cursor: pointer;
+}
