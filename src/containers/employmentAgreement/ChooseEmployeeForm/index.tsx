@@ -38,6 +38,7 @@ class ChooseEmployeeForm extends Component<Props, {}> {
       closePopup,
       onNext,
       employees,
+      employeesWaiting,
       chooseEmployee,
       chosenEmployeeId
     } = this.props;
@@ -58,7 +59,7 @@ class ChooseEmployeeForm extends Component<Props, {}> {
           choose the employee and tap next button.
         </span>
         <SelectInput text={chosenEmployee ? chosenEmployee.name : ''} onButtonClick={() => openPopup()}/>
-        <ChooseEmployeePopup open={popupIsOpened} onClose={closePopup} employees={employees} onSelect={handleSelect}/>
+        <ChooseEmployeePopup open={popupIsOpened} onClose={closePopup} employees={employees} spinner={employeesWaiting} onSelect={handleSelect}/>
       </div>
     );
   }

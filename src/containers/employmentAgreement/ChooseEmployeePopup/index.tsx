@@ -14,6 +14,7 @@ export type Props = StateProps & DispatchProps & ComponentProps;
 
 export type ComponentProps = {
   open: boolean
+  spinner: boolean
   onClose: () => void
   employees: Employee[]
   onSelect: (id: string) => void
@@ -30,7 +31,8 @@ const ChooseEmployeePopup: SFC<Props> = (props) => {
     employees,
     onSelect,
     searchText,
-    changeSearchText
+    changeSearchText,
+    spinner
   } = props;
 
   const handleChangeSearchText = (e) => {
@@ -45,7 +47,7 @@ const ChooseEmployeePopup: SFC<Props> = (props) => {
   };
 
   const renderList = () => {
-    if (!employees) {
+    if (spinner) {
       return (
         <div styleName="empty">
           <Spinner />
