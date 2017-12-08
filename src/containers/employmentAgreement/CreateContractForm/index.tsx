@@ -158,7 +158,8 @@ class CreateContractForm extends React.Component<Props, any> {
       signContract,
       openDatePopup,
       closeDatePopup,
-      activeDatePopup
+      activeDatePopup,
+      employeesWaiting
     } = this.props;
 
     const getEmployeeId = () => {
@@ -342,7 +343,7 @@ class CreateContractForm extends React.Component<Props, any> {
           </div> : null
         }
 
-        <ChooseEmployeePopup open={popupIsOpened} onClose={closePopup} employees={employees} onSelect={chooseEmployee}/>
+        <ChooseEmployeePopup open={popupIsOpened} onClose={closePopup} employees={employees} spinner={employeesWaiting} onSelect={chooseEmployee}/>
         <VerificationPopup isOpen={verifyPopupIsOpened} onClose={closeVerifyPopup} contractId={contractId}/>
         <DatePickerPopup open={activeDatePopup !== null} onClose={closeDatePopup} onSelect={this.handleDateSelect} startDate={parseAppDate(getMinDate())} endDate={parseAppDate(getMaxDate())}/>
       </form>
