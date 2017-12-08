@@ -358,7 +358,7 @@ const getMock = (path: string) => {
             'amount': '300'
           },
           'dayOfPayments': '25',
-          'additionalClauses': '',
+          'additionalClauses': 'Some additional information',
           'isSignedByEmployee': true,
           'createdAt': '01/10/2017',
           'signedAt': '01/10/2017',
@@ -383,9 +383,9 @@ const getMock = (path: string) => {
           'jobTitle': 'Graphics Designer',
           'jobDescription': 'Design of all graphics materials for company',
           'typeOfEmployment': 'full',
-          'periodOfAgreement': 'fixed',
-          'periodStartDate': '10/21/2017',
-          'periodEndDate': '10/21/2018',
+          'periodOfAgreement': 'permanent',
+          'periodStartDate': null,
+          'periodEndDate': null,
           'compensation': '',
           'salaryAmount': {
             'currency': 'ETH',

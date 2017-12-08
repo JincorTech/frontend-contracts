@@ -293,10 +293,11 @@ class CreateContractForm extends React.Component<Props, any> {
               <RadioGroup disabled={!this.canEdit()} name={'agreementPeriod'} value={fields.agreementPeriod} onChange={this.handleChange} groupId={'period-of-agreement'} values={['fixed', 'permanent']} labels={['Fixed period', 'Permanent agreement']} />
             </div>
             <div styleName="spacer" />
-            <div styleName="period-dates">
-              <DateInput disabled={periodIsPermanent() || !this.canEdit()} name={'startAgreementDate'} value={fields.startAgreementDate} onClick={() => openDatePopup(FormDates.StartDate)} description={'Start date'} buttonText={'Pick start date'} />
-              <DateInput disabled={periodIsPermanent() || !this.canEdit()} name={'endAgreementDate'} value={fields.endAgreementDate} onClick={() => openDatePopup(FormDates.EndDate)} description={'End date'} buttonText={'Pick end date'} />
-            </div>
+            {!periodIsPermanent() ?
+              <div styleName="period-dates">
+                <DateInput disabled={!this.canEdit()} name={'startAgreementDate'} value={fields.startAgreementDate} onClick={() => openDatePopup(FormDates.StartDate)} description={'Start date'} buttonText={'Pick start date'} />
+                <DateInput disabled={!this.canEdit()} name={'endAgreementDate'} value={fields.endAgreementDate} onClick={() => openDatePopup(FormDates.EndDate)} description={'End date'} buttonText={'Pick end date'} />
+              </div> : null}
             <div styleName="spacer" />
           </li>
           <li styleName={getFilledStyle(6)}>
@@ -311,7 +312,10 @@ class CreateContractForm extends React.Component<Props, any> {
           </li>
           <li styleName={getFilledStyle(7)}>
             <Caption text={'Additional сlauses'} />
-            <Input disabled={!this.canEdit()} name={'additionalClauses'} value={fields.additionalClauses} maxLength={100} onChange={this.handleChange} styleName="small-text-input" placeholder={'Place for additional text'} />
+            {this.canEdit() || fields.additionalClauses !== ''
+              ? <Input disabled={!this.canEdit()} name={'additionalClauses'} value={fields.additionalClauses} maxLength={100} onChange={this.handleChange} styleName="small-text-input" placeholder={'Place for additional text'} />
+              : null
+            }
           </li>
           <li styleName={getFilledStyle(8)}>
             <Caption text={'Signatures'} />
