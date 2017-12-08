@@ -312,8 +312,9 @@ class CreateContractForm extends React.Component<Props, any> {
           </li>
           <li styleName={getFilledStyle(7)}>
             <Caption text={'Additional сlauses'} />
-            {this.canEdit() || fields.additionalClauses !== '' ?
-              <Input disabled={!this.canEdit()} name={'additionalClauses'} value={fields.additionalClauses} maxLength={100} onChange={this.handleChange} styleName="small-text-input" placeholder={'Place for additional text'} /> : null
+            {this.canEdit() || fields.additionalClauses !== ''
+              ? <Input disabled={!this.canEdit()} name={'additionalClauses'} value={fields.additionalClauses} maxLength={100} onChange={this.handleChange} styleName="small-text-input" placeholder={'Place for additional text'} />
+              : null
             }
           </li>
           <li styleName={getFilledStyle(8)}>
