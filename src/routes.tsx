@@ -14,12 +14,12 @@ import ContractInfoWrapper from './containers/employmentAgreement/ContractInfoWr
 
 // named routes
 export const routes = {
-  base: '/ctr'
+  base: '/contracts'
 };
 
 export default (
-  <Route path="/ctr" component={App}>
-    <IndexRedirect to="/ctr/app/contracts/list"/>
+  <Route path="/contracts" component={App}>
+    <IndexRedirect to="/contracts/app/contracts/list"/>
 
     <Route path="app" component={AppWrapper}>
       <Route path="contracts" component={ContractsWrapper}>

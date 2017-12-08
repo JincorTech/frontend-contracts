@@ -38,7 +38,7 @@ class Sidebar extends Component<Props, any> {
           <Link
             className={link}
             activeClassName={active}
-            to={'/ctr'}>Contracts</Link>
+            to={'/contracts'}>Contracts</Link>
 
           <a
             className={link}

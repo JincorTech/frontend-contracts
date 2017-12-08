@@ -46,7 +46,7 @@ const WizardWrapper: SFC<Props> = (props) => {
     <div styleName="layout">
       <div styleName="header">
         {currentStep === 0 ?
-          <Link styleName="back" to={'/ctr/app/contracts/list'}>
+          <Link styleName="back" to={'/contracts/app/contracts/list'}>
             {renderBackButtonBody()}
           </Link> :
           <div styleName="back" onClick={prevStep}>
