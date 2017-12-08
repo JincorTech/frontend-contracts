@@ -67,7 +67,8 @@ class ContractsPage extends Component<Props, {}> {
       <div>
         {contracts.length ?
           <section styleName="list">
-            <TabPanel sorting={sorting} filtering={filtering} changeSorting={changeSorting} changeFiltering={changeFiltering} />
+            <TabPanel sorting={sorting} filtering={filtering} changeSorting={changeSorting}
+                      changeFiltering={changeFiltering} showFilterByName={admin}/>
             <ContractsList contracts={getFilteredContracts(contracts, filtering)} />
           </section> :
           <EmptyContracts />

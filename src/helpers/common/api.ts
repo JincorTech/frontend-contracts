@@ -9,12 +9,20 @@ export const EthCurrencyName = 'ETH';
 export const PersonalWalletType = 'personal';
 export const CorporateWalletType = 'corporate';
 
-export const parseAppDate = (date: string) => {
-  if (date === '') {
+export const parseAppDate = (date: string): Date => {
+  if (!date) {
     return null;
   }
 
   return moment(date, AppDateFormat).toDate();
+};
+
+export const parseApiDate = (date: string): Date => {
+  if (!date) {
+    return null;
+  }
+
+  return moment(date, ApiDateFormat).toDate();
 };
 
 export const transformContracts = (data): Contract[] => {
@@ -25,7 +33,7 @@ export const transformContracts = (data): Contract[] => {
       userAvatar: contract.employee.avatar,
       userName: contract.employee.fullName,
       createdAt: new Date(contract.createdAt),
-      signedAt: contract.signedAt ? new Date(contract.signedAt) : null
+      signedAt: parseApiDate(contract.signedAt)
     };
   });
 };

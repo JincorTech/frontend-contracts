@@ -19,6 +19,11 @@
   color: #666;
 }
 
+[type='radio']:checked:disabled + label,
+[type='radio']:not(:checked):disabled + label {
+  cursor: default;
+}
+
 [type='radio']:checked + label::before,
 [type='radio']:not(:checked) + label::before {
   content: '';

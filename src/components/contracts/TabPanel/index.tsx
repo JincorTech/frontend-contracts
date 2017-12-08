@@ -9,6 +9,7 @@ export type Props = {
   filtering: FilteringType
   changeSorting: (sorting: SortingType) => void
   changeFiltering: (filtering: FilteringType) => void
+  showFilterByName: boolean
 };
 
 const TabPanel: SFC<Props> = (props) => {
@@ -16,7 +17,8 @@ const TabPanel: SFC<Props> = (props) => {
     sorting,
     filtering,
     changeSorting,
-    changeFiltering
+    changeFiltering,
+    showFilterByName
   } = props;
 
   const isFilteringActive = filtering === FilteringType.Unsigned;
@@ -24,9 +26,11 @@ const TabPanel: SFC<Props> = (props) => {
   return (
     <div styleName="tabs">
       <Tab name={'Latest'} onSelect={() => changeSorting(SortingType.ByDate)}
-        isActive={sorting === SortingType.ByDate}/>
-      <Tab name={'Sort by name'} onSelect={() => changeSorting(SortingType.ByName)}
-        isActive={sorting === SortingType.ByName}/>
+        isActive={sorting === SortingType.ByDate} />
+      {showFilterByName ?
+        <Tab name={'Sort by name'} onSelect={() => changeSorting(SortingType.ByName)}
+          isActive={sorting === SortingType.ByName} /> : null
+      }
       <Tab name={'Unsigned contracts'} onSelect={() => changeFiltering(isFilteringActive ? FilteringType.All : FilteringType.Unsigned)}
         isActive={isFilteringActive}/>
     </div>

@@ -28,7 +28,7 @@ export type Contract = {
   userName: string
   userAvatar: string
   createdAt: Date
-  signedAt: boolean
+  signedAt: Date
 };
 
 /**

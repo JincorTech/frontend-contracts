@@ -18,9 +18,14 @@
   color: #222;
 }
 
-.date {
-  margin: 10px 0;
+.date-container {
   height: 16px;
+  margin: 10px 0;
+}
+
+.date {
+  display: inline;
+  margin-right: 10px;
   font-size: 14px;
   text-align: left;
   color: #6e7987;

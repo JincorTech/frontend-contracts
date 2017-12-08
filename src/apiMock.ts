@@ -137,7 +137,7 @@ const getMock = (path: string) => {
               'fullName': 'Simon Slow'
             },
             'createdAt': '02/10/2017',
-            'signedAt': '02/10/2017'
+            'signedAt': null
           },
           {
             'contractId': '242a8d1e4a58e9741b6e8f509cb3d63abb8540bb',
@@ -358,13 +358,13 @@ const getMock = (path: string) => {
             'amount': '300'
           },
           'dayOfPayments': '25',
-          'additionalClauses': '',
+          'additionalClauses': 'Some additional information',
           'isSignedByEmployee': true,
           'createdAt': '01/10/2017',
           'signedAt': '01/10/2017',
           'wallets': {
             'personal': {
-              'address': '0x345f81e0135c896873b6526674ea2ef57e1ca111'
+              'address': '0x345f81e0135c896873b6526674ea2ef57e1ca370'
             },
             'corporate': {
               'address': '0x345f81e0135c896873b6526674ea2ef57e1ca777'
@@ -383,9 +383,9 @@ const getMock = (path: string) => {
           'jobTitle': 'Graphics Designer',
           'jobDescription': 'Design of all graphics materials for company',
           'typeOfEmployment': 'full',
-          'periodOfAgreement': 'fixed',
-          'periodStartDate': '10/21/2017',
-          'periodEndDate': '10/21/2018',
+          'periodOfAgreement': 'permanent',
+          'periodStartDate': null,
+          'periodEndDate': null,
           'compensation': '',
           'salaryAmount': {
             'currency': 'ETH',
@@ -398,7 +398,7 @@ const getMock = (path: string) => {
           'signedAt': '',
           'wallets': {
             'personal': {
-              'address': '0x345f81e0135c896873b6526674ea2ef57e1ca111'
+              'address': '0x345f81e0135c896873b6526674ea2ef57e1ca372'
             },
             'corporate': {
               'address': '0x345f81e0135c896873b6526674ea2ef57e1ca777'
