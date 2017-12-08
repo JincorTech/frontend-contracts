@@ -44,6 +44,7 @@ class ContractsPage extends Component<Props, {}> {
   public render() {
     const {
       contracts,
+      spinner,
       sorting,
       filtering,
       changeSorting,
@@ -59,7 +60,7 @@ class ContractsPage extends Component<Props, {}> {
       }
     };
 
-    if (!contracts) {
+    if (spinner) {
       return <Spinner/>;
     }
 
