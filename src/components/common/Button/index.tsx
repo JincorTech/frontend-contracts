@@ -57,7 +57,7 @@ const Button: SFC<Props> = (props) => {
     if (isSubmit) {
       return (
         spinner ?
-        <div styleName={getClass()}>
+        <div styleName={getClass()} {...restProps}>
           <Spinner button={true}/>
         </div> :
         <input type="submit"

@@ -65,7 +65,7 @@ class CardChangePassword extends Component<Props, {}> {
 
           <div styleName="form-buttons">
             <Button styleName="form-cancel-button" onClick={onCancel}>{t('cancel')}</Button>
-            <Button isSubmit={true} styleName="form-submit-button" disabled={invalid} spinner={spinner}>{t('save')}</Button>
+            <Button isSubmit={true} styleName="form-submit-button" disabled={invalid} spinner={spinner} value={t('save')}/>
           </div>
         </form>
       </div>

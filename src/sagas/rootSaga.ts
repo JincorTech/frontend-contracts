@@ -1,5 +1,6 @@
 import { SagaIterator } from 'redux-saga';
 import { fork } from 'redux-saga/effects';
+import { formActionSaga } from 'redux-form-saga';
 
 import appSaga from './app/app';
 import appWrapperSaga from './app/appWrapper';
@@ -11,6 +12,7 @@ import verification from './verification/verification';
 
 export default function*(): SagaIterator {
   yield [
+    fork(formActionSaga),
     fork(appSaga),
     fork(appWrapperSaga),
     fork(contractsPageSaga),

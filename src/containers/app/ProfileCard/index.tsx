@@ -32,6 +32,7 @@ export type DispatchProps = {
   changeView: (view: BottomViewProps) => void
   logout: () => void
   updateProfile: () => void
+  changePassword: () => void
   fetchProfile: () => void
 };
 
