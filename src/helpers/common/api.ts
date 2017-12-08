@@ -10,7 +10,7 @@ export const PersonalWalletType = 'personal';
 export const CorporateWalletType = 'corporate';
 
 export const parseAppDate = (date: string): Date => {
-  if (!date || date === '') {
+  if (!date) {
     return null;
   }
 
@@ -18,7 +18,7 @@ export const parseAppDate = (date: string): Date => {
 };
 
 export const parseApiDate = (date: string): Date => {
-  if (!date || date === '') {
+  if (!date) {
     return null;
   }
 
