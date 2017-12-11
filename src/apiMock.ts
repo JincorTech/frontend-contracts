@@ -352,23 +352,20 @@ const getMock = (path: string) => {
           'periodOfAgreement': 'fixed',
           'periodStartDate': '10/21/2017',
           'periodEndDate': '10/21/2018',
-          'compensation': '',
-          'salaryAmount': {
-            'currrency': 'ETH',
-            'amount': '300'
+          'compensation': {
+            'salaryAmount': {
+              'currency': 'ETH',
+              'amount': '300'
+            },
+            'dayOfPayments': '25'
           },
-          'dayOfPayments': '25',
           'additionalClauses': 'Some additional information',
           'isSignedByEmployee': true,
           'createdAt': '01/10/2017',
           'signedAt': '01/10/2017',
           'wallets': {
-            'personal': {
-              'address': '0x345f81e0135c896873b6526674ea2ef57e1ca370'
-            },
-            'corporate': {
-              'address': '0x345f81e0135c896873b6526674ea2ef57e1ca777'
-            }
+            'employee': '0x345f81e0135c896873b6526674ea2ef57e1ca370',
+            'employer': '0x345f81e0135c896873b6526674ea2ef57e1ca777'
           }
         }
       };
@@ -386,23 +383,20 @@ const getMock = (path: string) => {
           'periodOfAgreement': 'permanent',
           'periodStartDate': null,
           'periodEndDate': null,
-          'compensation': '',
-          'salaryAmount': {
-            'currrency': 'ETH',
-            'amount': '300'
+          'compensation': {
+            'salaryAmount': {
+              'currency': 'ETH',
+              'amount': '300'
+            },
+            'dayOfPayments': '25'
           },
-          'dayOfPayments': '25',
           'additionalClauses': '',
           'isSignedByEmployee': false,
           'createdAt': '01/10/2017',
           'signedAt': '',
           'wallets': {
-            'personal': {
-              'address': '0x345f81e0135c896873b6526674ea2ef57e1ca372'
-            },
-            'corporate': {
-              'address': '0x345f81e0135c896873b6526674ea2ef57e1ca777'
-            }
+            'employee': '0x345f81e0135c896873b6526674ea2ef57e1ca372',
+            'employer': '0x345f81e0135c896873b6526674ea2ef57e1ca777'
           }
         }
       };

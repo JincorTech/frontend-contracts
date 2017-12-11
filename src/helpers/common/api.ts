@@ -77,14 +77,14 @@ export const transformContractBodyGet = (data) => {
     agreementPeriod: data.periodOfAgreement,
     startAgreementDate: formatDate(data.periodStartDate),
     endAgreementDate: formatDate(data.periodEndDate),
-    salaryAmount: data.salaryAmount.amount,
-    paymentsDay: data.dayOfPayments,
+    salaryAmount: data.compensation.salaryAmount.amount,
+    paymentsDay: data.compensation.dayOfPayments,
     additionalClauses: data.additionalClauses,
     isSignedByEmployee: data.isSignedByEmployee,
     createdAt: formatDate(data.createdAt),
     signedAt: formatDate(data.signedAt),
-    companyWalletAddress: data.wallets.corporate.address,
-    employeeWalletAddress: data.wallets.personal.address
+    companyWalletAddress: data.wallets.employer,
+    employeeWalletAddress: data.wallets.employee
   };
 };
 
@@ -122,7 +122,7 @@ export const transformContractBodyPost = (data) => {
     result['additionalClauses'] = data.additionalClauses;
   }
 
-  if (data.jobDescription) {
+  if (data.roleDescription) {
     result['jobDescription'] = data.roleDescription;
   }
 
