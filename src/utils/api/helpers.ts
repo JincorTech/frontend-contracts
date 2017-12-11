@@ -5,6 +5,8 @@ export type ErrorData = {
   message: string
   status_code: number
   errors?: ErrorMessages
+  error?: string
+  statusCode?: number
 };
 
 export type ErrorMessages = {
@@ -16,10 +18,10 @@ export class RequestError extends Error {
   errors: ErrorMessages;
 
   constructor(error: ErrorData) {
-    super(error.message);
+    super(error.message || error.error);
 
     this.errors = error.errors;
-    this.status = error.status_code;
+    this.status = error.status_code || error.statusCode;
   }
 }
 
