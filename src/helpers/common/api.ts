@@ -9,6 +9,9 @@ export const EthCurrencyName = 'ETH';
 export const PersonalWalletType = 'personal';
 export const CorporateWalletType = 'corporate';
 
+export const FixedAgreementPeriodType = 'fixed';
+export const PermanentAgreementPeriodType = 'permanent';
+
 export const parseAppDate = (date: string): Date => {
   if (!date) {
     return null;
@@ -40,7 +43,7 @@ export const transformContracts = (data): Contract[] => {
 
 export const transformEmployeesGet = (data): Employee[] => {
   const filteredEmployees = data.active.filter((employee) => {
-    return employee.wallets.find((wallet) => wallet.currency === EthCurrencyName && wallet.type === PersonalWalletType);
+    return employee.wallets.find((wallet) => wallet.currrency === EthCurrencyName && wallet.type === PersonalWalletType);
   });
 
   return filteredEmployees.map((employee) => {
@@ -49,7 +52,12 @@ export const transformEmployeesGet = (data): Employee[] => {
       name: employee.profile.name,
       email: employee.contacts.email,
       avatar: employee.profile.avatar,
-      wallets: employee.wallets
+      wallets: employee.wallets.map((wallet) => {
+        return {
+          currency: wallet.currrency,
+          ...wallet
+        }
+      })
     };
   });
 };
@@ -85,21 +93,38 @@ export const transformContractBodyPost = (data) => {
     return moment(date, AppDateFormat).format(ApiDateFormat);
   };
 
-  return {
+  const result = {
     employeeId: data.employeeId,
     startDate: formatDate(data.contractDate),
-    contractNumber: data.contractNumber,
+    contractNumber: +data.contractNumber,
     jobTitle: data.jobTitle,
-    jobDescription: data.roleDescription,
     typeOfEmployment: data.employmentType,
     periodOfAgreement: data.agreementPeriod,
-    periodStartDate: formatDate(data.startAgreementDate),
-    periodEndDate: formatDate(data.endAgreementDate),
-    salaryAmount: {
-      currency: EthCurrencyName,
-      amount: data.salaryAmount
+    compensation: {
+      dayOfPayments: +data.paymentsDay,
+      salaryAmount: {
+        currency: EthCurrencyName,
+        amount: data.salaryAmount
+      }
     },
-    dayOfPayments: data.paymentsDay,
-    additionalClauses: data.additionalClauses
-  };
+    wallets: {
+      employer: data.companyWalletAddress,
+      employee: data.employeeWalletAddress
+    }
+  }
+
+  if (data.agreementPeriod !== PermanentAgreementPeriodType) {
+    result['periodStartDate'] = formatDate(data.startAgreementDate);
+    result['periodEndDate'] = formatDate(data.endAgreementDate);
+  }
+
+  if (data.additionalClauses) {
+    result['additionalClauses'] = data.additionalClauses;
+  }
+
+  if (data.jobDescription) {
+    result['jobDescription'] = data.roleDescription;
+  }
+
+  return result;
 };

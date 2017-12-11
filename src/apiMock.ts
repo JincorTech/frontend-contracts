@@ -195,7 +195,7 @@ const getMock = (path: string) => {
                   'type': 'personal',
                   'address': '0x345f81e0135c896873b6526674ea2ef57e1ca371',
                   'balance': 0,
-                  'currency': 'ETH',
+                  'currrency': 'ETH',
                   'created_at': 1512043628,
                   'transactions': []
                 },
@@ -203,7 +203,7 @@ const getMock = (path: string) => {
                   'type': 'personal',
                   'address': '0x3f97db8c9b9c4097044628d614fc4afd52cd6cea',
                   'balance': 0,
-                  'currency': 'JCR',
+                  'currrency': 'JCR',
                   'created_at': 1512043628,
                   'transactions': []
                 }
@@ -230,7 +230,7 @@ const getMock = (path: string) => {
                   'type': 'personal',
                   'address': '0x345f81e0135c896873b6526674ea2ef57e1ca371',
                   'balance': 0,
-                  'currency': 'ETH',
+                  'currrency': 'ETH',
                   'created_at': 1512043628,
                   'transactions': []
                 },
@@ -238,7 +238,7 @@ const getMock = (path: string) => {
                   'type': 'personal',
                   'address': '0x3f97db8c9b9c4097044628d614fc4afd52cd6cea',
                   'balance': 0,
-                  'currency': 'JCR',
+                  'currrency': 'JCR',
                   'created_at': 1512043628,
                   'transactions': []
                 }
@@ -265,7 +265,7 @@ const getMock = (path: string) => {
                   'type': 'personal',
                   'address': '0x345f81e0135c896873b6526674ea2ef57e1ca370',
                   'balance': 0,
-                  'currency': 'ETH',
+                  'currrency': 'ETH',
                   'created_at': 1512043628,
                   'transactions': []
                 },
@@ -273,7 +273,7 @@ const getMock = (path: string) => {
                   'type': 'personal',
                   'address': '0x3f97db8c9b9c4097044628d614fc4afd52cd6cea',
                   'balance': 0,
-                  'currency': 'JCR',
+                  'currrency': 'JCR',
                   'created_at': 1512043628,
                   'transactions': []
                 }
@@ -300,7 +300,7 @@ const getMock = (path: string) => {
                   'type': 'personal',
                   'address': '0x345f81e0135c896873b6526674ea2ef57e1ca372',
                   'balance': 0,
-                  'currency': 'ETH',
+                  'currrency': 'ETH',
                   'created_at': 1512043628,
                   'transactions': []
                 },
@@ -308,7 +308,7 @@ const getMock = (path: string) => {
                   'type': 'personal',
                   'address': '0x3f97db8c9b9c4097044628d614fc4afd52cd6cea',
                   'balance': 0,
-                  'currency': 'JCR',
+                  'currrency': 'JCR',
                   'created_at': 1512043628,
                   'transactions': []
                 }
@@ -354,7 +354,7 @@ const getMock = (path: string) => {
           'periodEndDate': '10/21/2018',
           'compensation': '',
           'salaryAmount': {
-            'currency': 'ETH',
+            'currrency': 'ETH',
             'amount': '300'
           },
           'dayOfPayments': '25',
@@ -388,7 +388,7 @@ const getMock = (path: string) => {
           'periodEndDate': null,
           'compensation': '',
           'salaryAmount': {
-            'currency': 'ETH',
+            'currrency': 'ETH',
             'amount': '300'
           },
           'dayOfPayments': '25',
@@ -407,80 +407,77 @@ const getMock = (path: string) => {
         }
       };
     case '/wallets/':
-      return {
-        'status': 200,
-        'data': [
-          {
-            'type': 'personal',
-            'address': '0xa9eebb32a1d459eb1eb5078c543427c34da44313',
-            'balance': 120,
-            'currency': 'ETH',
-            'created_at': 1511693723,
-            'transactions': [
-              {
-                'id': '0x386202fde7ffd84f6f4f7c2baa98ff69fd13db4d2150bb8fc61c15f7c29d1efc',
-                'employee': {
-                  'id': '',
-                  'wallet': '0xa9eebb32a1d459eb1eb5078c543427c34da44313',
-                  'firstName': 'John',
-                  'lastName': 'Doe',
-                  'avatar': 'http://i.imgur.com/n613Ki4.jpg'
-                },
-                'status': 'pending || success || failure',
-                'amount': -100,
-                'currency': 'ETH',
-                'date': 1511693723
-              }
-            ]
-          },
-          {
-            'type': 'corporate',
-            'address': '0xa9eebb32a1d459eb1eb5078c543427c34da44313',
-            'balance': 120,
-            'currency': 'ETH',
-            'created_at': 1511693723,
-            'transactions': [
-              {
-                'id': '0x386202fde7ffd84f6f4f7c2baa98ff69fd13db4d2150bb8fc61c15f7c29d1efc',
-                'employee': {
-                  'id': '',
-                  'wallet': '0xa9eebb32a1d459eb1eb5078c543427c34da44313',
-                  'firstName': 'John',
-                  'lastName': 'Doe',
-                  'avatar': 'http://i.imgur.com/n613Ki4.jpg'
-                },
-                'status': 'pending || success || failure',
-                'amount': -100,
-                'currency': 'ETH',
-                'date': 1511693723
-              }
-            ]
-          },
-          {
-            'type': 'corporate',
-            'address': '0xa9eebb32a1d459eb1eb5078c543427c34da44313',
-            'balance': 120,
-            'currency': 'JCR',
-            'created_at': 1511693723,
-            'transactions': [
-              {
-                'id': '0x00c80a636ccad3c477f1406580f1fa9600d3678a0d317da7dcf3661206c4c4c4',
-                'employee': {
-                  'id': '',
-                  'wallet': '0x949c9b8dff9b264cad57f69cd98eca1338f05b39',
-                  'firstName': 'Jane',
-                  'lastName': 'Doe',
-                  'avatar': 'http://i.imgur.com/n613Ki4.jpg'
-                },
-                'status': 'pending || success || failure',
-                'amount': 10,
-                'currency': 'ETH',
-                'date': 1511693723
-              }
-            ]
-          }
-        ]
-      };
+      return [
+        {
+          'type': 'personal',
+          'address': '0xa9eebb32a1d459eb1eb5078c543427c34da44313',
+          'balance': 120,
+          'currrency': 'ETH',
+          'created_at': 1511693723,
+          'transactions': [
+            {
+              'id': '0x386202fde7ffd84f6f4f7c2baa98ff69fd13db4d2150bb8fc61c15f7c29d1efc',
+              'employee': {
+                'id': '',
+                'wallet': '0xa9eebb32a1d459eb1eb5078c543427c34da44313',
+                'firstName': 'John',
+                'lastName': 'Doe',
+                'avatar': 'http://i.imgur.com/n613Ki4.jpg'
+              },
+              'status': 'pending || success || failure',
+              'amount': -100,
+              'currrency': 'ETH',
+              'date': 1511693723
+            }
+          ]
+        },
+        {
+          'type': 'corporate',
+          'address': '0xa9eebb32a1d459eb1eb5078c543427c34da44313',
+          'balance': 120,
+          'currrency': 'ETH',
+          'created_at': 1511693723,
+          'transactions': [
+            {
+              'id': '0x386202fde7ffd84f6f4f7c2baa98ff69fd13db4d2150bb8fc61c15f7c29d1efc',
+              'employee': {
+                'id': '',
+                'wallet': '0xa9eebb32a1d459eb1eb5078c543427c34da44313',
+                'firstName': 'John',
+                'lastName': 'Doe',
+                'avatar': 'http://i.imgur.com/n613Ki4.jpg'
+              },
+              'status': 'pending || success || failure',
+              'amount': -100,
+              'currrency': 'ETH',
+              'date': 1511693723
+            }
+          ]
+        },
+        {
+          'type': 'corporate',
+          'address': '0xa9eebb32a1d459eb1eb5078c543427c34da44313',
+          'balance': 120,
+          'currrency': 'JCR',
+          'created_at': 1511693723,
+          'transactions': [
+            {
+              'id': '0x00c80a636ccad3c477f1406580f1fa9600d3678a0d317da7dcf3661206c4c4c4',
+              'employee': {
+                'id': '',
+                'wallet': '0x949c9b8dff9b264cad57f69cd98eca1338f05b39',
+                'firstName': 'Jane',
+                'lastName': 'Doe',
+                'avatar': 'http://i.imgur.com/n613Ki4.jpg'
+              },
+              'status': 'pending || success || failure',
+              'amount': 10,
+              'currrency': 'ETH',
+              'date': 1511693723
+            }
+          ]
+        }
+      ];
     case '/company/my/':
       return {
         'status': 200,
@@ -568,7 +565,7 @@ const postMock = (path: string, body: any) => {
   }
 };
 
-export const get = (path: string) => {
+export const get = (basePath: string, path: string) => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(getMock(path));
@@ -576,7 +573,7 @@ export const get = (path: string) => {
   });
 };
 
-export const post = (path: string, body: any) => {
+export const post = (basePath: string, path: string, body: any) => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(postMock(path, body));

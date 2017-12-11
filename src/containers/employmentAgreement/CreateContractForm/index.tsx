@@ -39,7 +39,7 @@ import {
 } from '../../../redux/modules/app/appWrapper';
 import { getEmployeeById } from '../../../helpers/common/store';
 import InputCaption from '../../../components/common/InputCaption';
-import { EthCurrencyName } from '../../../helpers/common/api';
+import { EthCurrencyName, AppDateFormat, PermanentAgreementPeriodType, FixedAgreementPeriodType } from '../../../helpers/common/api';
 import DatePickerPopup from '../../../components/employmentAgreement/CreateContractForm/DatePickerPopup';
 import { parseAppDate } from '../../../helpers/common/api';
 
@@ -135,10 +135,9 @@ class CreateContractForm extends React.Component<Props, any> {
   }
 
   handleDateSelect(date) {
-    const DateFormat = 'DD.MM.YYYY';
     const inputName = this.getActiveDateInputName();
 
-    this.props.change({name: inputName, value: moment(date).format(DateFormat)});
+    this.props.change({name: inputName, value: moment(date).format(AppDateFormat)});
     this.props.closeDatePopup();
   }
 
@@ -214,7 +213,7 @@ class CreateContractForm extends React.Component<Props, any> {
     };
 
     const defaultValidate = (value) => value && value !== '';
-    const periodIsPermanent = () => fields.agreementPeriod === 'permanent';
+    const periodIsPermanent = () => fields.agreementPeriod === PermanentAgreementPeriodType;
 
     const validateAgreementPeriod = () => {
       return !!(periodIsPermanent() || (fields.startAgreementDate && fields.endAgreementDate));
@@ -291,7 +290,7 @@ class CreateContractForm extends React.Component<Props, any> {
           <li styleName={getFilledStyle(5)}>
             <Caption text={'Period of agreement'} />
             <div styleName="period-radio-group">
-              <RadioGroup disabled={!this.canEdit()} name={'agreementPeriod'} value={fields.agreementPeriod} onChange={this.handleChange} groupId={'period-of-agreement'} values={['fixed', 'permanent']} labels={['Fixed period', 'Permanent agreement']} />
+              <RadioGroup disabled={!this.canEdit()} name={'agreementPeriod'} value={fields.agreementPeriod} onChange={this.handleChange} groupId={'period-of-agreement'} values={[FixedAgreementPeriodType, PermanentAgreementPeriodType]} labels={['Fixed period', 'Permanent agreement']} />
             </div>
             <div styleName="spacer" />
             {!periodIsPermanent() ?

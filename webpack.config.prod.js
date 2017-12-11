@@ -35,8 +35,8 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production'),
-        API_PREFIX: JSON.stringify(process.env.API_PREFIX || ''),
-        API_HOST: JSON.stringify(process.env.API_HOST || ''),
+        COMPANIES_API_PATH: JSON.stringify(process.env.COMPANIES_API_PATH || ''),
+        WALLETS_API_PATH: JSON.stringify(process.env.WALLETS_API_PATH || ''),
         __DEV__: false
       }
     }),

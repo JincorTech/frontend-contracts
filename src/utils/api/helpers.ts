@@ -1,8 +1,6 @@
 import config from '../../config';
 import { isAuth, getToken } from '../auth';
 
-const { apiPrefix, apiHost } = config;
-
 export type ErrorData = {
   message: string
   status_code: number
@@ -28,13 +26,12 @@ export class RequestError extends Error {
 /**
  * Create full path for backend api endpoints
  *
- * @param   path - api endpoint
+ * @param   endpoint - api endpoint path
  * @return         full path, including api host and version
  */
-export function pathCreator(path: string): string {
-  const correctPath = path[0] === '/' ? path : `/${path}`;
-
-  return `${apiHost}${apiPrefix}${correctPath}`;
+export function pathCreator(basePath: string, endpoint: string): string {
+  const correctPath = endpoint[0] === '/' ? endpoint : `/${endpoint}`;
+  return `${basePath}${correctPath}`;
 }
 
 /**
