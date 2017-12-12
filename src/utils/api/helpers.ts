@@ -1,4 +1,3 @@
-import config from '../../config';
 import { isAuth, getToken } from '../auth';
 
 export type ErrorData = {

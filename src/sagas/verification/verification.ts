@@ -20,7 +20,7 @@ function* verifyContractIterator({ payload }): SagaIterator {
       verificationId: verificationId,
       verificationCode: payload
     });
-    
+
     yield put(verifyContract.success(statusCode));
   } catch (e) {
     yield put(verifyContract.failure(e));

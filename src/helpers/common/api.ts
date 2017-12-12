@@ -39,13 +39,13 @@ export const transformContracts = (data, employees: Employee[]): Contract[] => {
       userName: 'User not found',
       createdAt: new Date(contract.createdAt),
       signedAt: parseApiDate(contract.signedAt)
-    }
-    
+    };
+
     if (employee) {
       resultContract.userAvatar = employee.avatar;
       resultContract.userName = employee.name;
     }
-    
+
     return resultContract;
   });
 };
@@ -65,7 +65,7 @@ export const transformEmployeesGet = (data): Employee[] => {
         return {
           currency: wallet.currrency,
           ...wallet
-        }
+        };
       })
     };
   });
@@ -120,7 +120,7 @@ export const transformContractBodyPost = (data) => {
       employer: data.companyWalletAddress,
       employee: data.employeeWalletAddress
     }
-  }
+  };
 
   if (data.agreementPeriod !== PermanentAgreementPeriodType) {
     result['periodStartDate'] = formatDate(data.startAgreementDate);

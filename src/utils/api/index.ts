@@ -1,6 +1,6 @@
 import 'whatwg-fetch';
 import { pathCreator, checkHttpStatus, parseJSON, authHeader } from './helpers';
-import * as i18n from 'i18next';
+// import * as i18n from 'i18next';
 
 /**
  * Fetch wrapper function
