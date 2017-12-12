@@ -71,81 +71,49 @@ const getMock = (path: string) => {
         'data': [
           {
             'contractId': '6174b0f53573874343a4d915d4f5b6876a9a1515',
-            'employee': {
-              'id': '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf577',
-              'avatar': null,
-              'fullName': 'Maxim Brook'
-            },
+            'employeeId': '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf577',
             'createdAt': '01/09/2017',
             'signedAt': '01/09/2017'
           },
           {
             'contractId': 'a6a0c6e7ee5f1536d66dab3db3462596864a8db1',
-            'employee': {
-              'id': '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf578',
-              'avatar': null,
-              'fullName': 'Mike Jefferson'
-            },
+            'employeeId': '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf578',
             'createdAt': '01/10/2017',
             'signedAt': null
           },
           {
             'contractId': '6174b0f53573874343a4d915d4f5b6876a9a15e5',
-            'employee': {
-              'id': '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf579',
-              'avatar': null,
-              'fullName': 'Claudia Bullock'
-            },
+            'employeeId': '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf579',
             'createdAt': '05/10/2017',
             'signedAt': '05/10/2017'
           },
           {
             'contractId': 'a0738f01bd8b6bb9b60a72194cabfefa87812cbd',
-            'employee': {
-              'id': '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf579',
-              'avatar': null,
-              'fullName': 'Alexander Nepomeluev'
-            },
+            'employeeId': '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf579',
             'createdAt': '01/11/2017',
             'signedAt': null
           },
           {
             'contractId': 'e167606ad8125bef29755c6265f601f896c977c3',
-            'employee': {
-              'id': '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf579',
-              'avatar': null,
-              'fullName': 'Ernest Berlin'
-            },
+            'employeeId': '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf579',
             'createdAt': '01/10/2017',
             'signedAt': '01/10/2017'
           },
           {
             'contractId': '4cece768b4d791d6f86c6da0b1b1fa01538b604a',
-            'employee': {
-              'id': '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf579',
-              'avatar': null,
-              'fullName': 'Henry McKinsey'
-            },
+            'employeeId': '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf579',
             'createdAt': '01/10/2017',
             'signedAt': '01/10/2017'
           },
           {
             'contractId': '6174b0f53573874343a4d915d4f5b6876a9a1535',
-            'employee': {
-              'id': '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf579',
-              'avatar': 'https://s3.eu-west-2.amazonaws.com/jincor-test/a3cbe21c-bab6-4c72-9d2e-8907f9a56898/avatars/pic_58f05129ba5cd.png',
-              'fullName': 'Simon Slow'
-            },
+            'employeeId': '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf519',
             'createdAt': '02/10/2017',
             'signedAt': null
           },
           {
             'contractId': '242a8d1e4a58e9741b6e8f509cb3d63abb8540bb',
-            'employee': {
-              'id': '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf579',
-              'avatar': null,
-              'fullName': 'Vlad Belousov'
-            },
+            'employeeId': '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf579',
             'createdAt': '01/10/2017',
             'signedAt': '01/10/2017'
           }
