@@ -1,6 +1,7 @@
+import * as moment from 'moment';
 import { Contract } from '../../redux/modules/contracts/contractsPage';
 import { Employee } from '../../redux/modules/employmentAgreement/employmentAgreement';
-import * as moment from 'moment';
+import { getEmployeeById } from '../../helpers/common/store';
 
 export const AppDateFormat = 'DD.MM.YYYY';
 export const ApiDateFormat = 'MM/DD/YYYY';
@@ -28,16 +29,24 @@ export const parseApiDate = (date: string): Date => {
   return moment(date, ApiDateFormat).toDate();
 };
 
-export const transformContracts = (data): Contract[] => {
+export const transformContracts = (data, employees: Employee[]): Contract[] => {
   return data.map((contract) => {
-    return {
+    const employee = getEmployeeById(employees, contract.employeeId);
+    let resultContract = {
       id: contract.contractId,
-      userId: contract.employee.id,
-      userAvatar: contract.employee.avatar,
-      userName: contract.employee.fullName,
+      userId: contract.employeeId,
+      userAvatar: '',
+      userName: 'User not found',
       createdAt: new Date(contract.createdAt),
       signedAt: parseApiDate(contract.signedAt)
-    };
+    }
+    
+    if (employee) {
+      resultContract.userAvatar = employee.avatar;
+      resultContract.userName = employee.name;
+    }
+    
+    return resultContract;
   });
 };
 
