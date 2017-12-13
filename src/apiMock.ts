@@ -139,7 +139,25 @@ const getMock = (path: string) => {
             'meta': {
               'status': 'active',
               'registeredAt': '2017-06-13T05:57:21+0000'
-            }
+            },
+            'wallets': [
+              {
+                'type': 'personal',
+                'address': '0x345f81e0135c896873b6526674ea2ef57e1ca372',
+                'balance': 0,
+                'currrency': 'ETH',
+                'created_at': 1512043628,
+                'transactions': []
+              },
+              {
+                'type': 'personal',
+                'address': '0x3f97db8c9b9c4097044628d614fc4afd52cd6cea',
+                'balance': 0,
+                'currrency': 'JCR',
+                'created_at': 1512043628,
+                'transactions': []
+              }
+            ]
           },
           'active': [
             {
