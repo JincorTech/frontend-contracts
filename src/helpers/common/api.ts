@@ -50,25 +50,27 @@ export const transformContracts = (data, employees: Employee[]): Contract[] => {
   });
 };
 
+const transformEmployee = (employeeData): Employee => {
+  return {
+    id: employeeData.id,
+    name: employeeData.profile.name,
+    email: employeeData.contacts.email,
+    avatar: employeeData.profile.avatar,
+    wallets: employeeData.wallets.map((wallet) => {
+      return {
+        currency: wallet.currrency,
+        ...wallet
+      };
+    })
+  }
+}
+
 export const transformEmployeesGet = (data): Employee[] => {
   const filteredEmployees = data.active.filter((employee) => {
     return employee.wallets.find((wallet) => wallet.currrency === EthCurrencyName && wallet.type === PersonalWalletType);
   });
 
-  return filteredEmployees.map((employee) => {
-    return {
-      id: employee.id,
-      name: employee.profile.name,
-      email: employee.contacts.email,
-      avatar: employee.profile.avatar,
-      wallets: employee.wallets.map((wallet) => {
-        return {
-          currency: wallet.currrency,
-          ...wallet
-        };
-      })
-    };
-  });
+  return filteredEmployees.map((employee) => transformEmployee(employee)).concat(transformEmployee(data.self));
 };
 
 export const transformContractBodyGet = (data) => {
