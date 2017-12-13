@@ -62,8 +62,8 @@ const transformEmployee = (employeeData): Employee => {
         ...wallet
       };
     })
-  }
-}
+  };
+};
 
 export const transformEmployeesGet = (data): Employee[] => {
   const filteredEmployees = data.active.filter((employee) => {

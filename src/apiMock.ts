@@ -543,7 +543,7 @@ const postMock = (path: string, body: any) => {
       return {
         'statusCode': 200,
         'error': ''
-      }
+      };
   }
 };
 
