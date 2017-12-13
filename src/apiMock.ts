@@ -505,12 +505,12 @@ const postMock = (path: string, body: any) => {
         }
       };
     case '/contracts/6174b0f53573874343a4d915d4f5b6876a9a1535/actions/verify/':
-      console.log('!!! POST VERIFY. BODY:', body);
+      console.log('!!! POST DEPLOY VERIFY. BODY:', body);
       return {
         'statusCode': 200,
         'error': ''
       };
-    case '/contracts/6174b0f53573874343a4d915d4f5b6876a9a1535/actions/sign/':
+    case '/contracts/6174b0f53573874343a4d915d4f5b6876a9a1535/actions/sign/initiate/':
       console.log('!!! POST SIGN. BODY:', body);
       return {
         'status': 200,
@@ -520,6 +520,12 @@ const postMock = (path: string, body: any) => {
           'verificationId': '1c7d2871-8af6-4e2d-a9a5-b5e7ab41a53e'
         }
       };
+    case '/contracts/6174b0f53573874343a4d915d4f5b6876a9a1535/actions/sign/verify/':
+      console.log('!!! POST SIGN VERIFY. BODY:', body);
+      return {
+        'statusCode': 200,
+        'error': ''
+      }
   }
 };
 

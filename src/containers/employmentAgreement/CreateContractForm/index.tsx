@@ -42,6 +42,7 @@ import InputCaption from '../../../components/common/InputCaption';
 import { EthCurrencyName, AppDateFormat, PermanentAgreementPeriodType, FixedAgreementPeriodType } from '../../../helpers/common/api';
 import DatePickerPopup from '../../../components/employmentAgreement/CreateContractForm/DatePickerPopup';
 import { parseAppDate } from '../../../helpers/common/api';
+import { VerifyType } from '../../../redux/modules/verification/verification';
 
 export type StateProps = CommonStateProps & AppStateProps & { fields: FormStateProps };
 
@@ -113,7 +114,13 @@ class CreateContractForm extends React.Component<Props, any> {
   }
 
   canSign() {
-    return !this.canEdit() && this.props.fields.employeeId === this.props.user.id;
+    return !this.canEdit()
+      && this.props.fields.employeeId === this.props.user.id
+      && !this.props.fields.isSignedByEmployee;
+  }
+
+  getVerifyType() {
+    return this.canSign() ? VerifyType.SignContract : VerifyType.DeployContract;
   }
 
   handleChange(event) {
@@ -343,7 +350,7 @@ class CreateContractForm extends React.Component<Props, any> {
         }
 
         <ChooseEmployeePopup open={popupIsOpened} onClose={closePopup} employees={employees} spinner={employeesWaiting} onSelect={chooseEmployee}/>
-        <VerificationPopup isOpen={verifyPopupIsOpened} onClose={closeVerifyPopup} contractId={contractId}/>
+        <VerificationPopup isOpen={verifyPopupIsOpened} onClose={closeVerifyPopup} contractId={contractId} type={this.getVerifyType()}/>
         <DatePickerPopup open={activeDatePopup !== null} onClose={closeDatePopup} onSelect={this.handleDateSelect} startDate={parseAppDate(getMinDate())} endDate={parseAppDate(getMaxDate())}/>
       </form>
     );

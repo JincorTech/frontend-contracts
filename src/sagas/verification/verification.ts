@@ -18,7 +18,7 @@ const getApiPath = (contractId: string, type: VerifyType) => {
   if (type === VerifyType.DeployContract) {
     return `/contracts/${contractId}/actions/verify/`;
   } else if (type === VerifyType.SignContract) {
-    return `/contracts/${contractId}/actions/sign/verify`;
+    return `/contracts/${contractId}/actions/sign/verify/`;
   } else {
     return '';
   }
@@ -27,12 +27,12 @@ const getApiPath = (contractId: string, type: VerifyType) => {
 function* verifyIterator({ payload }): SagaIterator {
   try {
     const { verificationId, contractId } = yield select(getContractState);
-    const { statusCode } = yield call(post, BasePath.WalletsApiPath, getApiPath(contractId, payload.type), {
+    const { status } = yield call(post, BasePath.WalletsApiPath, getApiPath(contractId, payload.type), {
       verificationId: verificationId,
       verificationCode: payload.code
     });
 
-    yield put(verify.success(statusCode));
+    yield put(verify.success(status));
   } catch (e) {
     yield put(verify.failure(e));
   }

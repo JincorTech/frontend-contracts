@@ -130,11 +130,19 @@ export default createReducer<State>({
     state.merge({ verifyPopupIsOpened: true, waiting: false, ...payload })
   ),
 
-  [signContract.REQUEST]: (state: State, {}: Action<void>): State => (
+  [postContract.FAILURE]: (state: State, { payload }: Action<any>): State => (
+    state.merge({ waiting: false })
+  ),
+
+  [signContract.REQUEST]: (state: State, { payload }: Action<any>): State => (
     state.merge({ waiting: true })
   ),
 
-  [signContract.SUCCESS]: (state: State, {}: Action<void>): State => (
+  [signContract.SUCCESS]: (state: State, { payload }: Action<any>): State => (
+    state.merge({ verifyPopupIsOpened: true, waiting: false, ...payload })
+  ),
+
+  [signContract.FAILURE]: (state: State, {}: Action<void>): State => (
     state.merge({ waiting: false })
   ),
 

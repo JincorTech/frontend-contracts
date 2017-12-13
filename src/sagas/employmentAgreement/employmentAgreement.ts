@@ -58,9 +58,8 @@ function* postContractSaga(): SagaIterator {
  */
 function* signContractIterator({ payload }): SagaIterator {
   try {
-    const { data } = yield call(post, BasePath.WalletsApiPath, `/contracts/${payload}/actions/sign/`, {});
+    const { data } = yield call(post, BasePath.WalletsApiPath, `/contracts/${payload}/actions/sign/initiate/`, {});
     yield put(signContract.success(data));
-    yield put(fetchContract(payload));
   } catch (e) {
     yield put(signContract.failure(e));
   }
