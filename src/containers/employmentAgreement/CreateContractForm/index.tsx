@@ -39,10 +39,16 @@ import {
 } from '../../../redux/modules/app/appWrapper';
 import { getEmployeeById } from '../../../helpers/common/store';
 import InputCaption from '../../../components/common/InputCaption';
-import { EthCurrencyName, AppDateFormat, PermanentAgreementPeriodType, FixedAgreementPeriodType } from '../../../helpers/common/api';
+import {
+  EthCurrencyName,
+  AppDateFormat,
+  PermanentAgreementPeriodType,
+  FixedAgreementPeriodType
+} from '../../../helpers/common/api';
 import DatePickerPopup from '../../../components/employmentAgreement/CreateContractForm/DatePickerPopup';
 import { parseAppDate } from '../../../helpers/common/api';
 import { VerifyType } from '../../../redux/modules/verification/verification';
+import { ContractStatus } from '../../../redux/modules/contracts/contractsPage';
 
 export type StateProps = CommonStateProps & AppStateProps & { fields: FormStateProps };
 
@@ -116,7 +122,7 @@ class CreateContractForm extends React.Component<Props, any> {
   canSign() {
     return !this.canEdit()
       && this.props.fields.employeeId === this.props.user.id
-      && !this.props.fields.isSignedByEmployee;
+      && this.props.fields.status === ContractStatus.Deployed;
   }
 
   getVerifyType() {
@@ -255,7 +261,15 @@ class CreateContractForm extends React.Component<Props, any> {
     };
 
     const getSignCaption = () => {
-      return fields.isSignedByEmployee ? `Signed by ${getEmployeeName()}` : 'Unsigned';
+      switch (fields.status) {
+        case ContractStatus.Deployed: return 'Unsigned';
+        case ContractStatus.DeployPending: return 'Deploy pending...';
+        case ContractStatus.DeployFailed: return 'Deploy failed';
+        case ContractStatus.Signed: return `Signed by ${getEmployeeName()}`;
+        case ContractStatus.SignPending: return 'Sign pending...';
+        case ContractStatus.SignFailed: return 'Sign failed';
+        default: return '';
+      }
     };
 
     if (!getEmployeeId() || !isWalletsAddressesExists()) {
@@ -328,12 +342,12 @@ class CreateContractForm extends React.Component<Props, any> {
             <Caption text={'Signatures'} />
             <span styleName="section-description">To sign contract you need to request code from Google Authentificator. After your signing request for the signing of the contract will be sent to your employee.</span>
 
-            {fields.isSignedByEmployee ?
+            {fields.status === ContractStatus.Signed ?
               <img styleName="signed-icon" src={require('../../../assets/images/signed.svg')}/> : null
             }
 
             <span styleName="sign-status">{getSignCaption()}</span>
-            <span styleName="sign-description">Employer signature</span>
+            <span styleName="sign-description">Contract status</span>
           </li>
         </ol>
 

@@ -354,7 +354,6 @@ const getMock = (path: string) => {
             'dayOfPayments': '25'
           },
           'additionalClauses': 'Some additional information',
-          'isSignedByEmployee': true,
           'createdAt': '01/10/2017',
           'signedAt': '01/10/2017',
           'wallets': {
@@ -386,7 +385,6 @@ const getMock = (path: string) => {
             'dayOfPayments': '25'
           },
           'additionalClauses': '',
-          'isSignedByEmployee': false,
           'createdAt': '01/10/2017',
           'signedAt': '',
           'wallets': {

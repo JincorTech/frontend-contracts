@@ -23,6 +23,16 @@ export type StateMap = {
   filtering: FilteringType
 };
 
+export enum ContractStatus {
+  Draft,
+  DeployPending,
+  DeployFailed,
+  Deployed,
+  SignPending,
+  SignFailed,
+  Signed
+}
+
 export type Contract = {
   id: string
   userId: string
@@ -30,6 +40,7 @@ export type Contract = {
   userAvatar: string
   createdAt: Date
   signedAt: Date
+  status: ContractStatus
 };
 
 /**

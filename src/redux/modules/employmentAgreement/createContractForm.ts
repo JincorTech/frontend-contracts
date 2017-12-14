@@ -1,6 +1,7 @@
 import { createReducer, createAction, createAsyncAction, Action } from '../../../utils/actions';
 import { from, ImmutableObject } from 'seamless-immutable';
 import { FixedAgreementPeriodType } from '../../../helpers/common/api';
+import { ContractStatus } from '../contracts/contractsPage';
 
 /**
  * Types
@@ -24,7 +25,8 @@ export type StateMap = {
   createdAt: string,
   signedAt: string,
   companyWalletAddress: string,
-  employeeWalletAddress: string
+  employeeWalletAddress: string,
+  status: ContractStatus
 };
 
 /**
@@ -63,7 +65,8 @@ const initialState: State = from<StateMap>({
   createdAt: '',
   signedAt: '',
   companyWalletAddress: '',
-  employeeWalletAddress: ''
+  employeeWalletAddress: '',
+  status: ContractStatus.Draft
 });
 
 export default createReducer<State>({

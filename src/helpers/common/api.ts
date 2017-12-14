@@ -1,5 +1,5 @@
 import * as moment from 'moment';
-import { Contract } from '../../redux/modules/contracts/contractsPage';
+import { Contract, ContractStatus } from '../../redux/modules/contracts/contractsPage';
 import { Employee } from '../../redux/modules/employmentAgreement/employmentAgreement';
 import { getEmployeeById } from '../../helpers/common/store';
 
@@ -12,6 +12,18 @@ export const CorporateWalletType = 'corporate';
 
 export const FixedAgreementPeriodType = 'fixed';
 export const PermanentAgreementPeriodType = 'permanent';
+
+export const getContractStatus = (status: string): ContractStatus => {
+  switch (status) {
+    case 'draft': return ContractStatus.Draft;
+    case 'deployPending': return ContractStatus.DeployPending;
+    case 'deployFailed': return ContractStatus.DeployFailed;
+    case 'deployed': return ContractStatus.Deployed;
+    case 'signPending': return ContractStatus.SignPending;
+    case 'signFailed': return ContractStatus.SignFailed;
+    case 'signed': return ContractStatus.Signed;
+  }
+}
 
 export const parseAppDate = (date: string): Date => {
   if (!date) {
@@ -38,7 +50,8 @@ export const transformContracts = (data, employees: Employee[]): Contract[] => {
       userAvatar: '',
       userName: 'User not found',
       createdAt: new Date(contract.createdAt),
-      signedAt: parseApiDate(contract.signedAt)
+      signedAt: parseApiDate(contract.signedAt),
+      status: getContractStatus(contract.status)
     };
 
     if (employee) {
@@ -95,7 +108,8 @@ export const transformContractBodyGet = (data) => {
     createdAt: formatDate(data.createdAt),
     signedAt: formatDate(data.signedAt),
     companyWalletAddress: data.wallets.employer,
-    employeeWalletAddress: data.wallets.employee
+    employeeWalletAddress: data.wallets.employee,
+    status: getContractStatus(data.status)
   };
 };
 
