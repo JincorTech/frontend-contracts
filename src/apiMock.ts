@@ -73,49 +73,57 @@ const getMock = (path: string) => {
             'contractId': '6174b0f53573874343a4d915d4f5b6876a9a1515',
             'employeeId': '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf577',
             'createdAt': '01/09/2017',
-            'signedAt': '01/09/2017'
+            'signedAt': '01/09/2017',
+            'status': 'signed'
           },
           {
             'contractId': 'a6a0c6e7ee5f1536d66dab3db3462596864a8db1',
             'employeeId': '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf578',
             'createdAt': '01/10/2017',
-            'signedAt': null
+            'signedAt': null,
+            'status': 'deployed'
           },
           {
             'contractId': '6174b0f53573874343a4d915d4f5b6876a9a15e5',
             'employeeId': '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf579',
             'createdAt': '05/10/2017',
-            'signedAt': '05/10/2017'
+            'signedAt': '05/10/2017',
+            'status': 'signed'
           },
           {
             'contractId': 'a0738f01bd8b6bb9b60a72194cabfefa87812cbd',
             'employeeId': '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf579',
             'createdAt': '01/11/2017',
-            'signedAt': null
+            'signedAt': null,
+            'status': 'deployed'
           },
           {
             'contractId': 'e167606ad8125bef29755c6265f601f896c977c3',
             'employeeId': '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf579',
             'createdAt': '01/10/2017',
-            'signedAt': '01/10/2017'
+            'signedAt': '01/10/2017',
+            'status': 'signed'
           },
           {
             'contractId': '4cece768b4d791d6f86c6da0b1b1fa01538b604a',
             'employeeId': '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf579',
             'createdAt': '01/10/2017',
-            'signedAt': '01/10/2017'
+            'signedAt': '01/10/2017',
+            'status': 'signed'
           },
           {
             'contractId': '6174b0f53573874343a4d915d4f5b6876a9a1535',
             'employeeId': '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf519',
             'createdAt': '02/10/2017',
-            'signedAt': null
+            'signedAt': null,
+            'status': 'deployed'
           },
           {
             'contractId': '242a8d1e4a58e9741b6e8f509cb3d63abb8540bb',
             'employeeId': '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf579',
             'createdAt': '01/10/2017',
-            'signedAt': '01/10/2017'
+            'signedAt': '01/10/2017',
+            'status': 'signed'
           }
         ]
       };
@@ -352,7 +360,8 @@ const getMock = (path: string) => {
           'wallets': {
             'employee': '0x345f81e0135c896873b6526674ea2ef57e1ca370',
             'employer': '0x345f81e0135c896873b6526674ea2ef57e1ca777'
-          }
+          },
+          'status': 'signed'
         }
       };
     case '/contracts/6174b0f53573874343a4d915d4f5b6876a9a1535/':
@@ -383,7 +392,8 @@ const getMock = (path: string) => {
           'wallets': {
             'employee': '0x345f81e0135c896873b6526674ea2ef57e1ca372',
             'employer': '0x345f81e0135c896873b6526674ea2ef57e1ca777'
-          }
+          },
+          'status': 'deployed'
         }
       };
     case '/wallets/':
