@@ -55,7 +55,7 @@ class ContractsPage extends Component<Props, {}> {
 
     const getNotDraftContracts = (contracts: Contract[]) => {
       return contracts.filter((contract: Contract) => contract.status !== ContractStatus.Draft);
-    }
+    };
 
     const getFilteredContracts = (contracts: Contract[], filtering: FilteringType) => {
       const notDraftContracts = getNotDraftContracts(contracts);
