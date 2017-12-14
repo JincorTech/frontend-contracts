@@ -23,7 +23,7 @@ export const getContractStatus = (status: string): ContractStatus => {
     case 'signFailed': return ContractStatus.SignFailed;
     case 'signed': return ContractStatus.Signed;
   }
-}
+};
 
 export const parseAppDate = (date: string): Date => {
   if (!date) {
