@@ -99,7 +99,7 @@ class VerificationPopup extends Component<Props, {}> {
     const renderFailedMessage = () => {
       return (
         <div>
-          <img styleName="verified-icon" src={require('../../../assets/images/signed.svg')} />
+          <img styleName="verified-icon" src={require('../../../assets/images/failed.svg')} />
           <span styleName="verified-message">Verification failed</span>
           <span styleName="verify-error">{verifyError}</span>
           <Button onClick={resetState}>Retry</Button>
