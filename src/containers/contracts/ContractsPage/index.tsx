@@ -86,7 +86,7 @@ class ContractsPage extends Component<Props, {}> {
             + Add contract
           </Button>
           <div styleName="contracts-number">
-            <span styleName="number">{contracts.length}</span>
+            <span styleName="number">{getNotDraftContracts(contracts).length}</span>
             <span styleName="caption">Number of contracts</span>
           </div>
         </section>
