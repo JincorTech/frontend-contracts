@@ -302,7 +302,10 @@ class CreateContractForm extends React.Component<Props, any> {
             <div styleName="job-text-input-container">
               <Input disabled={!this.canEdit()} name={'jobTitle'} value={fields.jobTitle} maxLength={100} onChange={this.handleChange} styleName="text-input" placeholder={'Job title'} />
             </div>
-            <Input disabled={!this.canEdit()} name={'roleDescription'} value={fields.roleDescription} maxLength={100} onChange={this.handleChange} styleName="small-text-input" placeholder={'Role desription'} />
+            {this.canEdit() || fields.roleDescription
+              ? <Input disabled={!this.canEdit()} name={'roleDescription'} value={fields.roleDescription} maxLength={100} onChange={this.handleChange} styleName="small-text-input" placeholder={'Role description'} />
+              : null
+            }
           </li>
           <li styleName={getFilledStyle(4)}>
             <Caption text={'Type of employment'} />
@@ -334,7 +337,7 @@ class CreateContractForm extends React.Component<Props, any> {
           </li>
           <li styleName={getFilledStyle(7)}>
             <Caption text={'Additional сlauses'} />
-            {this.canEdit() || fields.additionalClauses !== ''
+            {this.canEdit() || fields.additionalClauses
               ? <Input disabled={!this.canEdit()} name={'additionalClauses'} value={fields.additionalClauses} maxLength={100} onChange={this.handleChange} styleName="small-text-input" placeholder={'Place for additional text'} />
               : null
             }
