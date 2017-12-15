@@ -1,6 +1,7 @@
-import { Contract } from '../../redux/modules/contracts/contractsPage';
-import { Employee } from '../../redux/modules/employmentAgreement/employmentAgreement';
 import * as moment from 'moment';
+import { Contract, ContractStatus } from '../../redux/modules/contracts/contractsPage';
+import { Employee } from '../../redux/modules/employmentAgreement/employmentAgreement';
+import { getEmployeeById } from '../../helpers/common/store';
 
 export const AppDateFormat = 'DD.MM.YYYY';
 export const ApiDateFormat = 'MM/DD/YYYY';
@@ -8,6 +9,21 @@ export const ApiDateFormat = 'MM/DD/YYYY';
 export const EthCurrencyName = 'ETH';
 export const PersonalWalletType = 'personal';
 export const CorporateWalletType = 'corporate';
+
+export const FixedAgreementPeriodType = 'fixed';
+export const PermanentAgreementPeriodType = 'permanent';
+
+export const getContractStatus = (status: string): ContractStatus => {
+  switch (status) {
+    case 'draft': return ContractStatus.Draft;
+    case 'deployPending': return ContractStatus.DeployPending;
+    case 'deployFailed': return ContractStatus.DeployFailed;
+    case 'deployed': return ContractStatus.Deployed;
+    case 'signPending': return ContractStatus.SignPending;
+    case 'signFailed': return ContractStatus.SignFailed;
+    case 'signed': return ContractStatus.Signed;
+  }
+};
 
 export const parseAppDate = (date: string): Date => {
   if (!date) {
@@ -25,33 +41,49 @@ export const parseApiDate = (date: string): Date => {
   return moment(date, ApiDateFormat).toDate();
 };
 
-export const transformContracts = (data): Contract[] => {
+export const transformContracts = (data, employees: Employee[]): Contract[] => {
   return data.map((contract) => {
-    return {
+    const employee = getEmployeeById(employees, contract.employeeId);
+    let resultContract = {
       id: contract.contractId,
-      userId: contract.employee.id,
-      userAvatar: contract.employee.avatar,
-      userName: contract.employee.fullName,
+      userId: contract.employeeId,
+      userAvatar: '',
+      userName: 'User not found',
       createdAt: new Date(contract.createdAt),
-      signedAt: parseApiDate(contract.signedAt)
+      signedAt: parseApiDate(contract.signedAt),
+      status: getContractStatus(contract.status)
     };
+
+    if (employee) {
+      resultContract.userAvatar = employee.avatar;
+      resultContract.userName = employee.name;
+    }
+
+    return resultContract;
   });
+};
+
+const transformEmployee = (employeeData): Employee => {
+  return {
+    id: employeeData.id,
+    name: employeeData.profile.name,
+    email: employeeData.contacts.email,
+    avatar: employeeData.profile.avatar,
+    wallets: employeeData.wallets.map((wallet) => {
+      return {
+        currency: wallet.currrency,
+        ...wallet
+      };
+    })
+  };
 };
 
 export const transformEmployeesGet = (data): Employee[] => {
   const filteredEmployees = data.active.filter((employee) => {
-    return employee.wallets.find((wallet) => wallet.currency === EthCurrencyName && wallet.type === PersonalWalletType);
+    return employee.wallets.find((wallet) => wallet.currrency === EthCurrencyName && wallet.type === PersonalWalletType);
   });
 
-  return filteredEmployees.map((employee) => {
-    return {
-      id: employee.id,
-      name: employee.profile.name,
-      email: employee.contacts.email,
-      avatar: employee.profile.avatar,
-      wallets: employee.wallets
-    };
-  });
+  return filteredEmployees.map((employee) => transformEmployee(employee)).concat(transformEmployee(data.self));
 };
 
 export const transformContractBodyGet = (data) => {
@@ -69,14 +101,15 @@ export const transformContractBodyGet = (data) => {
     agreementPeriod: data.periodOfAgreement,
     startAgreementDate: formatDate(data.periodStartDate),
     endAgreementDate: formatDate(data.periodEndDate),
-    salaryAmount: data.salaryAmount.amount,
-    paymentsDay: data.dayOfPayments,
+    salaryAmount: data.compensation.salaryAmount.amount,
+    paymentsDay: data.compensation.dayOfPayments,
     additionalClauses: data.additionalClauses,
     isSignedByEmployee: data.isSignedByEmployee,
     createdAt: formatDate(data.createdAt),
     signedAt: formatDate(data.signedAt),
-    companyWalletAddress: data.wallets.corporate.address,
-    employeeWalletAddress: data.wallets.personal.address
+    companyWalletAddress: data.wallets.employer,
+    employeeWalletAddress: data.wallets.employee,
+    status: getContractStatus(data.status)
   };
 };
 
@@ -85,21 +118,38 @@ export const transformContractBodyPost = (data) => {
     return moment(date, AppDateFormat).format(ApiDateFormat);
   };
 
-  return {
+  const result = {
     employeeId: data.employeeId,
     startDate: formatDate(data.contractDate),
-    contractNumber: data.contractNumber,
+    contractNumber: +data.contractNumber,
     jobTitle: data.jobTitle,
-    jobDescription: data.roleDescription,
     typeOfEmployment: data.employmentType,
     periodOfAgreement: data.agreementPeriod,
-    periodStartDate: formatDate(data.startAgreementDate),
-    periodEndDate: formatDate(data.endAgreementDate),
-    salaryAmount: {
-      currency: EthCurrencyName,
-      amount: data.salaryAmount
+    compensation: {
+      dayOfPayments: +data.paymentsDay,
+      salaryAmount: {
+        currency: EthCurrencyName,
+        amount: data.salaryAmount
+      }
     },
-    dayOfPayments: data.paymentsDay,
-    additionalClauses: data.additionalClauses
+    wallets: {
+      employer: data.companyWalletAddress,
+      employee: data.employeeWalletAddress
+    }
   };
+
+  if (data.agreementPeriod !== PermanentAgreementPeriodType) {
+    result['periodStartDate'] = formatDate(data.startAgreementDate);
+    result['periodEndDate'] = formatDate(data.endAgreementDate);
+  }
+
+  if (data.additionalClauses) {
+    result['additionalClauses'] = data.additionalClauses;
+  }
+
+  if (data.roleDescription) {
+    result['jobDescription'] = data.roleDescription;
+  }
+
+  return result;
 };

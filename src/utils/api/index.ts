@@ -1,6 +1,6 @@
 import 'whatwg-fetch';
 import { pathCreator, checkHttpStatus, parseJSON, authHeader } from './helpers';
-import * as i18n from 'i18next';
+// import * as i18n from 'i18next';
 
 /**
  * Fetch wrapper function
@@ -9,12 +9,12 @@ import * as i18n from 'i18next';
  * @param   options - fetch options
  * @returns         - promise
  */
-function apiFetch(path: string, options: RequestInit = {}): Promise<Response> {
-  return fetch(pathCreator(path), {
+function apiFetch(basePath: string, path: string, options: RequestInit = {}): Promise<Response> {
+  return fetch(pathCreator(basePath, path), {
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
-      'Locale': i18n.language,
+      // 'Locale': i18n.language,
       ...authHeader()
     },
     ...options
@@ -29,8 +29,8 @@ function apiFetch(path: string, options: RequestInit = {}): Promise<Response> {
  * @param  path - endpoint
  * @return      - promise
  */
-export function get(path: string): Promise<Response> {
-  return apiFetch(path, {
+export function get(basePath: string, path: string): Promise<Response> {
+  return apiFetch(basePath, path, {
     method: 'GET'
   });
 }
@@ -42,8 +42,8 @@ export function get(path: string): Promise<Response> {
  * @param body - POST request body
  * @return     - promise
  */
-export function post<T>(path: string, body: T): Promise<Response> {
-  return apiFetch(path, {
+export function post<T>(basePath: string, path: string, body: T): Promise<Response> {
+  return apiFetch(basePath, path, {
     method: 'POST',
     body: JSON.stringify(body)
   });
@@ -56,8 +56,8 @@ export function post<T>(path: string, body: T): Promise<Response> {
  * @param  body - PUT request body
  * @return      - promise
  */
-export function put<T>(path: string, body: T): Promise<Response> {
-  return apiFetch(path, {
+export function put<T>(basePath: string, path: string, body: T): Promise<Response> {
+  return apiFetch(basePath, path, {
     method: 'PUT',
     body: JSON.stringify(body)
   });
@@ -69,8 +69,8 @@ export function put<T>(path: string, body: T): Promise<Response> {
  * @param  path - endpoint
  * @return      - promise
  */
-export function del(path: string): Promise<Response> {
-  return apiFetch(path, {
+export function del(basePath: string, path: string): Promise<Response> {
+  return apiFetch(basePath, path, {
     method: 'DELETE'
   });
 }

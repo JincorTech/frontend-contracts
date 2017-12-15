@@ -12,7 +12,8 @@ import {
   StateMap as ContractsStateProps,
   SortingType,
   Contract,
-  FilteringType
+  FilteringType,
+  ContractStatus
 } from '../../../redux/modules/contracts/contractsPage';
 import {
   StateMap as AppStateProps
@@ -52,11 +53,17 @@ class ContractsPage extends Component<Props, {}> {
       admin
     } = this.props;
 
+    const getNotDraftContracts = (contracts: Contract[]) => {
+      return contracts.filter((contract: Contract) => contract.status !== ContractStatus.Draft);
+    };
+
     const getFilteredContracts = (contracts: Contract[], filtering: FilteringType) => {
+      const notDraftContracts = getNotDraftContracts(contracts);
+
       if (filtering === FilteringType.Unsigned) {
-        return contracts.filter((contract: Contract) => !contract.signedAt);
+        return notDraftContracts.filter((contract: Contract) => contract.status !== ContractStatus.Signed);
       } else {
-        return contracts;
+        return notDraftContracts;
       }
     };
 
@@ -79,7 +86,7 @@ class ContractsPage extends Component<Props, {}> {
             + Add contract
           </Button>
           <div styleName="contracts-number">
-            <span styleName="number">{contracts.length}</span>
+            <span styleName="number">{getNotDraftContracts(contracts).length}</span>
             <span styleName="caption">Number of contracts</span>
           </div>
         </section>

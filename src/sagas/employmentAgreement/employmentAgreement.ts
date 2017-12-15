@@ -3,6 +3,7 @@ import { takeLatest, call, put, fork, select } from 'redux-saga/effects';
 import { Action } from '../../utils/actions';
 import { get, post } from '../../utils/api';
 import { transformContractBodyPost, transformEmployeesGet } from '../../helpers/common/api';
+import BasePath from '../../config';
 
 import {
   fetchEmployees,
@@ -19,7 +20,7 @@ import {
  */
 function* fetchEmployeesIterator(): SagaIterator {
   try {
-    const { data } = yield call(get, '/employee/colleagues/');
+    const { data } = yield call(get, BasePath.CompaniesApiPath, '/employee/colleagues/');
     yield put(fetchEmployees.success(transformEmployeesGet(data)));
   } catch (e) {
     yield put(fetchEmployees.failure(e));
@@ -38,7 +39,7 @@ function* fetchEmployeesSaga(): SagaIterator {
  */
 function* postContractIterator({ payload }): SagaIterator {
   try {
-    const { data } = yield call(post, '/contracts/', transformContractBodyPost(payload));
+    const { data } = yield call(post, BasePath.WalletsApiPath, '/contracts/', transformContractBodyPost(payload));
     yield put(postContract.success(data));
   } catch (e) {
     yield put(postContract.failure(e));
@@ -57,9 +58,8 @@ function* postContractSaga(): SagaIterator {
  */
 function* signContractIterator({ payload }): SagaIterator {
   try {
-    const { data } = yield call(post, `/contracts/${payload}/actions/sign/`, {});
+    const { data } = yield call(post, BasePath.WalletsApiPath, `/contracts/${payload}/actions/sign/initiate/`, {});
     yield put(signContract.success(data));
-    yield put(fetchContract(payload));
   } catch (e) {
     yield put(signContract.failure(e));
   }

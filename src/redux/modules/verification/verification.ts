@@ -13,18 +13,23 @@ export type StateMap = {
   inProgress: boolean
 };
 
+export enum VerifyType {
+  DeployContract,
+  SignContract
+}
+
 /**
  * Constants
  */
 export const CHANGE_VERIFICATION_CODE = 'verification/verification/CHANGE_VERIFICATION_CODE';
-export const VERIFY_CONTRACT = 'verification/verification/VERIFY_CONTRACT';
+export const VERIFY = 'verification/verification/VERIFY';
 export const RESET_STATE = 'verification/verification/RESET_STATE';
 
 /**
  * Action creators
  */
 export const changeVerificationCode = createAction<string>(CHANGE_VERIFICATION_CODE);
-export const verifyContract = createAsyncAction<any, void>(VERIFY_CONTRACT);
+export const verify = createAsyncAction<{ code: string, type: VerifyType }, void>(VERIFY);
 export const resetState = createAction<string>(RESET_STATE);
 
 /**
@@ -42,15 +47,15 @@ export default createReducer<State>({
     state.merge({ verificationCode: payload })
   ),
 
-  [verifyContract.REQUEST]: (state: State, {}: Action<void>): State => (
+  [verify.REQUEST]: (state: State, {}: Action<{ code: string, type: VerifyType }>): State => (
     state.merge({ inProgress: true })
   ),
 
-  [verifyContract.SUCCESS]: (state: State, {}: Action<void>): State => (
+  [verify.SUCCESS]: (state: State, {}: Action<void>): State => (
     state.merge({ verificationFinished: true, verifyError: '', inProgress: false })
   ),
 
-  [verifyContract.FAILURE]: (state: State, { payload }: Action<Error>): State => (
+  [verify.FAILURE]: (state: State, { payload }: Action<Error>): State => (
     state.merge({ verificationFinished: true, verifyError: payload.message, inProgress: false })
   ),
 

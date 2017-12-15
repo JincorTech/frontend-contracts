@@ -2,38 +2,46 @@ import { SagaIterator } from 'redux-saga';
 import { takeLatest, call, put, fork, select } from 'redux-saga/effects';
 import { Action } from '../../utils/actions';
 import { post } from '../../utils/api';
+import BasePath from '../../config';
 
 import {
-  verifyContract
+  verify,
+  VerifyType
 } from '../../redux/modules/verification/verification';
 
 /**
- * Verify contract
+ * Verify
  */
 const getContractState = (state) => state.employmentAgreement.employmentAgreement;
 
-function* verifyContractIterator({ payload }): SagaIterator {
+const getApiPath = (contractId: string, type: VerifyType) => {
+  if (type === VerifyType.DeployContract) {
+    return `/contracts/${contractId}/actions/verify/`;
+  } else if (type === VerifyType.SignContract) {
+    return `/contracts/${contractId}/actions/sign/verify/`;
+  } else {
+    return '';
+  }
+};
+
+function* verifyIterator({ payload }): SagaIterator {
   try {
     const { verificationId, contractId } = yield select(getContractState);
-    const { status, data } = yield call(post, `/contracts/${contractId}/actions/verify/`, {
+    const { status } = yield call(post, BasePath.WalletsApiPath, getApiPath(contractId, payload.type), {
       verificationId: verificationId,
-      verificationCode: payload
+      verificationCode: payload.code
     });
 
-    if (status !== 200) {
-      throw new Error('Wrong verification code');
-    }
-
-    yield put(verifyContract.success(data));
+    yield put(verify.success(status));
   } catch (e) {
-    yield put(verifyContract.failure(e));
+    yield put(verify.failure(e));
   }
 }
 
-function* verifyContractSaga(): SagaIterator {
+function* verifySaga(): SagaIterator {
   yield takeLatest(
-    verifyContract.REQUEST,
-    verifyContractIterator
+    verify.REQUEST,
+    verifyIterator
   );
 }
 
@@ -42,6 +50,6 @@ function* verifyContractSaga(): SagaIterator {
  */
 export default function*(): SagaIterator {
   yield [
-    fork(verifyContractSaga)
+    fork(verifySaga)
   ];
 }
