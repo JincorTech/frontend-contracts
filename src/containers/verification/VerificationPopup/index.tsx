@@ -83,8 +83,8 @@ class VerificationPopup extends Component<Props, {}> {
       if (contractId) {
         setTimeout(() => {
           // React-router hack to remounting component
-          browserHistory.push(`/ctr/`);
-          browserHistory.push(`/ctr/app/contract/${contractId}`);
+          browserHistory.push(`/contracts/`);
+          browserHistory.push(`/contracts/app/contract/${contractId}`);
         }, RedirectPeriod);
       }
 

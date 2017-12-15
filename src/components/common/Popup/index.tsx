@@ -1,6 +1,9 @@
 import * as React from 'react';
 import { Component, HTMLProps } from 'react';
 import * as CSSModules from 'react-css-modules';
+import * as classnames from 'classnames';
+
+const { popup } = require('./styles.css');
 
 export type Props = HTMLProps<HTMLDivElement> & ComponentProps;
 
@@ -8,6 +11,7 @@ export type ComponentProps = {
   title: string
   open: boolean
   close: () => void
+  styleName?: string
 };
 
 class Popup extends Component<Props, {}> {
@@ -40,12 +44,13 @@ class Popup extends Component<Props, {}> {
       title,
       children,
       open,
-      close
+      close,
+      className
     } = this.props;
 
     const renderPopup = () => (
       <div styleName="background" onClick={this._handleBackdropClick}>
-        <div styleName="popup" ref={(popup) => { this.popup = popup; }}>
+        <div className={classnames(popup, className)} ref={(popup) => { this.popup = popup; }}>
           {title && <div styleName="title">{title}</div>}
           <div>{children}</div>
           <div styleName="footer">

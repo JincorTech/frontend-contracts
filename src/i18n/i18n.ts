@@ -1,11 +1,13 @@
 import * as i18n from 'i18next';
 
 const ru = {
-  common: require('../locales/ru/common.json')
+  common: require('../locales/ru/common.json'),
+  app: require('../locales/ru/app.json')
 };
 
 const en = {
-  common: require('../locales/en/common.json')
+  common: require('../locales/en/common.json'),
+  app: require('../locales/en/app.json')
 };
 
 export const config = {
@@ -19,10 +21,12 @@ export const config = {
   },
   resources: {
     en: {
-      common: en.common
+      common: en.common,
+      app: en.app
     },
     ru: {
-      common: ru.common
+      common: ru.common,
+      app: ru.app
     }
   },
   ns: ['common'],

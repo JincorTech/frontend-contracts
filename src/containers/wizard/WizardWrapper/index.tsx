@@ -7,15 +7,18 @@ import { Link } from 'react-router';
 import Avatar from '../../../components/common/Avatar';
 import { StateMap as WizardStateProps, prevStep } from '../../../redux/modules/wizard/employmentAgreementWizard';
 import { StateMap as AppStateProps } from '../../../redux/modules/app/appWrapper';
+import ProfileCard from '../../app/ProfileCard';
+import { StateMap as ProfileStateProps, openProfileCard } from '../../../redux/modules/app/profileCard';
 
 export type ComponentProps = {
 };
 
 export type DispatchProps = {
   prevStep: () => void
+  openProfileCard: () => void
 };
 
-export type StateProps = WizardStateProps & AppStateProps;
+export type StateProps = WizardStateProps & AppStateProps & ProfileStateProps;
 
 export type Props = RouteComponentProps<{}, {}> & ComponentProps & DispatchProps & StateProps;
 
@@ -24,7 +27,8 @@ const WizardWrapper: SFC<Props> = (props) => {
     currentStep,
     prevStep,
     children,
-    user
+    user,
+    openProfileCard
   } = props;
 
   const renderBackButtonBody = () => {
@@ -42,7 +46,7 @@ const WizardWrapper: SFC<Props> = (props) => {
     <div styleName="layout">
       <div styleName="header">
         {currentStep === 0 ?
-          <Link styleName="back" to={'/ctr/app/contracts/list'}>
+          <Link styleName="back" to={'/contracts/app/contracts/list'}>
             {renderBackButtonBody()}
           </Link> :
           <div styleName="back" onClick={prevStep}>
@@ -50,12 +54,14 @@ const WizardWrapper: SFC<Props> = (props) => {
           </div>
         }
         <div styleName="avatar">
-          <Avatar src={user.profile.avatar} fullName={user.profile.name} id={user.id}/>
+          <Avatar styleName="avatar-icon" src={user.profile.avatar} fullName={user.profile.name} id={user.id}
+          onClick={openProfileCard} />
         </div>
       </div>
       <div>
         <div>{children}</div>
       </div>
+      <ProfileCard user={user}/>
     </div>
   );
 };
@@ -66,10 +72,12 @@ export default connect<StateProps, DispatchProps, Props>(
   (state) => {
     return {
       ...state.app.appWrapper,
+      ...state.app.profileCard,
       ...state.wizard.employmentAgreementWizard
     };
   },
   {
-    prevStep
+    prevStep,
+    openProfileCard
   }
 )(styledComponent);

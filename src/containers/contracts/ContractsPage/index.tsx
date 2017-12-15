@@ -82,7 +82,7 @@ class ContractsPage extends Component<Props, {}> {
           <EmptyContracts />
         }
         <section styleName="add-contract">
-          <Button disabled={!admin} to="/ctr/app/create/new">
+          <Button disabled={!admin} to="/contracts/app/create/new">
             + Add contract
           </Button>
           <div styleName="contracts-number">

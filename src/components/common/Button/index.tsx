@@ -13,6 +13,7 @@ export type Props = {
   isSubmit?: boolean
   onClick?: () => void
   value?: string
+  styleName?: string
 };
 
 const Button: SFC<Props> = (props) => {
@@ -56,7 +57,7 @@ const Button: SFC<Props> = (props) => {
     if (isSubmit) {
       return (
         spinner ?
-        <div styleName={getClass()}>
+        <div styleName={getClass()} {...restProps}>
           <Spinner button={true}/>
         </div> :
         <input type="submit"
