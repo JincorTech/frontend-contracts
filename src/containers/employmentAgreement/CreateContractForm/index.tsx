@@ -272,7 +272,7 @@ class CreateContractForm extends React.Component<Props, any> {
       }
     };
 
-    if (!getEmployeeId() || !isWalletsAddressesExists()) {
+    if (!getEmployee() || !isWalletsAddressesExists()) {
       return <div styleName="spinner"><Spinner/></div>;
     }
 
