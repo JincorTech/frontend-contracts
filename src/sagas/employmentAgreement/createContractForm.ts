@@ -4,6 +4,7 @@ import { Action } from '../../utils/actions';
 import { get, post } from '../../utils/api';
 import { transformContractBodyGet, EthCurrencyName, CorporateWalletType } from '../../helpers/common/api';
 import { getEmployeeById } from '../../helpers/common/store';
+import BasePath from '../../config';
 
 import {
   fetchContract,
@@ -15,7 +16,7 @@ import {
  */
 function* fetchContractIterator({ payload }): SagaIterator {
   try {
-    const { data } = yield call(get, `/contracts/${payload}/`);
+    const { data } = yield call(get, BasePath.WalletsApiPath, `/contracts/${payload}/`);
     yield put(fetchContract.success(transformContractBodyGet(data)));
   } catch (e) {
     yield put(fetchContract.failure(e));
@@ -37,9 +38,9 @@ const getContractState = (state) => state.employmentAgreement.employmentAgreemen
 function* fetchWalletsIterator({ payload }): SagaIterator {
   try {
     // get corporate wallet
-    const { data } = yield call(get, `/wallets/`);
+    const data = yield call(get, BasePath.WalletsApiPath, `/wallets/`);
     const corporateEthWallet = data.find((wallet) => {
-      return wallet.type === CorporateWalletType && wallet.currency === EthCurrencyName;
+      return wallet.type === CorporateWalletType && wallet.currrency === EthCurrencyName;
     });
 
     // get employee wallet

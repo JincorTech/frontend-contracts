@@ -6,12 +6,18 @@ import Popup from '../../../components/common/Popup';
 import Input from '../../../components/common/Input';
 import EmployeesList from '../../../components/employmentAgreement/EmployeesList';
 import { Employee } from '../../../redux/modules/employmentAgreement/employmentAgreement';
-import { StateMap as StateProps, changeSearchText } from '../../../redux/modules/employmentAgreement/chooseEmployeePopup';
+import { StateMap as PopupStateProps, changeSearchText } from '../../../redux/modules/employmentAgreement/chooseEmployeePopup';
+import { StateMap as AppStateProps } from '../../../redux/modules/app/appWrapper';
+import EmptyEmployees from '../../../components/employmentAgreement/EmptyEmployees';
+import Spinner from '../../../components/common/Spinner';
+
+export type StateProps = PopupStateProps & AppStateProps;
 
 export type Props = StateProps & DispatchProps & ComponentProps;
 
 export type ComponentProps = {
   open: boolean
+  spinner: boolean
   onClose: () => void
   employees: Employee[]
   onSelect: (id: string) => void
@@ -28,7 +34,9 @@ const ChooseEmployeePopup: SFC<Props> = (props) => {
     employees,
     onSelect,
     searchText,
-    changeSearchText
+    changeSearchText,
+    spinner,
+    user
   } = props;
 
   const handleChangeSearchText = (e) => {
@@ -37,9 +45,33 @@ const ChooseEmployeePopup: SFC<Props> = (props) => {
 
   const getFilteredEmployees = () => {
     return employees.filter((employee) => {
+      if (employee.id === user.id) {
+        return false;
+      }
+
       return employee.name.toUpperCase().includes(searchText.toUpperCase())
               || employee.email.toUpperCase().includes(searchText.toUpperCase());
     });
+  };
+
+  const renderList = () => {
+    if (spinner) {
+      return (
+        <div styleName="empty">
+          <Spinner />
+        </div>
+      );
+    } else if (!employees.length) {
+      return (
+        <div styleName="empty">
+          <EmptyEmployees />
+        </div>
+      );
+    } else {
+      return (
+        <EmployeesList employees={getFilteredEmployees()} onSelect={onSelect} />
+      );
+    }
   };
 
   return (
@@ -48,11 +80,11 @@ const ChooseEmployeePopup: SFC<Props> = (props) => {
       open={open}
       close={onClose}>
       <div>
-        <Input styleName="input" placeholder="Search" value={searchText} onChange={handleChangeSearchText}/>
+        <Input styleName="input" placeholder="Search" value={searchText} onChange={handleChangeSearchText} />
         <div styleName="header">
           Employees
         </div>
-        <EmployeesList employees={getFilteredEmployees()} onSelect={onSelect}/>
+        {renderList()}
       </div>
     </Popup>
   );
@@ -61,7 +93,12 @@ const ChooseEmployeePopup: SFC<Props> = (props) => {
 const StyledComponent = CSSModules(ChooseEmployeePopup, require('./styles.css'));
 
 export default connect<StateProps, DispatchProps, ComponentProps>(
-  (state) => state.employmentAgreement.chooseEmployeePopup,
+  (state) => {
+    return {
+      ...state.employmentAgreement.chooseEmployeePopup,
+      ...state.app.appWrapper
+    };
+  },
   {
     changeSearchText
   }

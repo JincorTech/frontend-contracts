@@ -12,7 +12,7 @@ const ContractsList: SFC<Props> = (props) => (
     {props.contracts.map((contract, index) => {
       return <ContractsItem key={index} id={contract.id}
                 userName={contract.userName} userId={contract.userId} userAvatar={contract.userAvatar}
-                date={contract.createdAt} />;
+                date={contract.createdAt} status={contract.status} />;
     })}
   </div>
 );

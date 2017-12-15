@@ -14,6 +14,7 @@ export enum FormDates {
 
 export type StateMap = {
   employees: Employee[]
+  employeesWaiting: boolean
   popupIsOpened: boolean
   activeDatePopup: FormDates
   chosenEmployeeId: string
@@ -77,6 +78,7 @@ export const resetState = createAction<void>(RESET_STATE);
  */
 const initialState: State = from<StateMap>({
   employees: [],
+  employeesWaiting: false,
   popupIsOpened: false,
   activeDatePopup: null,
   chosenEmployeeId: null,
@@ -104,8 +106,16 @@ export default createReducer<State>({
     state.merge({ activeDatePopup: null })
   ),
 
+  [fetchEmployees.REQUEST]: (state: State, { payload }: Action<any>): State => (
+    state.merge({ employeesWaiting: true })
+  ),
+
   [fetchEmployees.SUCCESS]: (state: State, { payload }: Action<Employee[]>): State => (
-    state.merge({ employees: payload })
+    state.merge({ employees: payload, employeesWaiting: false })
+  ),
+
+  [fetchEmployees.FAILURE]: (state: State, { payload }: Action<any>): State => (
+    state.merge({ employeesWaiting: false })
   ),
 
   [CHOOSE_EMPLOYEE]: (state: State, { payload }: Action<string>): State => (
@@ -120,11 +130,19 @@ export default createReducer<State>({
     state.merge({ verifyPopupIsOpened: true, waiting: false, ...payload })
   ),
 
-  [signContract.REQUEST]: (state: State, {}: Action<void>): State => (
+  [postContract.FAILURE]: (state: State, { payload }: Action<any>): State => (
+    state.merge({ waiting: false })
+  ),
+
+  [signContract.REQUEST]: (state: State, { payload }: Action<any>): State => (
     state.merge({ waiting: true })
   ),
 
-  [signContract.SUCCESS]: (state: State, {}: Action<void>): State => (
+  [signContract.SUCCESS]: (state: State, { payload }: Action<any>): State => (
+    state.merge({ verifyPopupIsOpened: true, waiting: false, ...payload })
+  ),
+
+  [signContract.FAILURE]: (state: State, {}: Action<void>): State => (
     state.merge({ waiting: false })
   ),
 

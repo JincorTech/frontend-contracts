@@ -1,12 +1,11 @@
-import config from '../../config';
 import { isAuth, getToken } from '../auth';
-
-const { apiPrefix, apiHost } = config;
 
 export type ErrorData = {
   message: string
   status_code: number
   errors?: ErrorMessages
+  error?: string
+  statusCode?: number
 };
 
 export type ErrorMessages = {
@@ -18,23 +17,22 @@ export class RequestError extends Error {
   errors: ErrorMessages;
 
   constructor(error: ErrorData) {
-    super(error.message);
+    super(error.message || error.error);
 
     this.errors = error.errors;
-    this.status = error.status_code;
+    this.status = error.status_code || error.statusCode;
   }
 }
 
 /**
  * Create full path for backend api endpoints
  *
- * @param   path - api endpoint
+ * @param   endpoint - api endpoint path
  * @return         full path, including api host and version
  */
-export function pathCreator(path: string): string {
-  const correctPath = path[0] === '/' ? path : `/${path}`;
-
-  return `${apiHost}${apiPrefix}${correctPath}`;
+export function pathCreator(basePath: string, endpoint: string): string {
+  const correctPath = endpoint[0] === '/' ? endpoint : `/${endpoint}`;
+  return `${basePath}${correctPath}`;
 }
 
 /**

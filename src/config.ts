@@ -1,8 +1,6 @@
-const { API_HOST, API_PREFIX } = process.env;
+const { COMPANIES_API_PATH, WALLETS_API_PATH } = process.env;
 
 export default {
-  apiPrefix: API_PREFIX || '/api/v1',
-  // apiHost: API_HOST || 'http://localhost:8080'
-  // apiHost: API_HOST || 'http://139.162.132.212:8080'
-  apiHost: API_HOST || 'https://companies-api.jincor.com'
+  CompaniesApiPath: COMPANIES_API_PATH || 'https://companies-api.jincor.com/api/v1',
+  WalletsApiPath: WALLETS_API_PATH || 'https://wallets-api.jincor.com'
 };

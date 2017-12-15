@@ -39,9 +39,16 @@ import {
 } from '../../../redux/modules/app/appWrapper';
 import { getEmployeeById } from '../../../helpers/common/store';
 import InputCaption from '../../../components/common/InputCaption';
-import { EthCurrencyName } from '../../../helpers/common/api';
+import {
+  EthCurrencyName,
+  AppDateFormat,
+  PermanentAgreementPeriodType,
+  FixedAgreementPeriodType
+} from '../../../helpers/common/api';
 import DatePickerPopup from '../../../components/employmentAgreement/CreateContractForm/DatePickerPopup';
 import { parseAppDate } from '../../../helpers/common/api';
+import { VerifyType } from '../../../redux/modules/verification/verification';
+import { ContractStatus } from '../../../redux/modules/contracts/contractsPage';
 
 export type StateProps = CommonStateProps & AppStateProps & { fields: FormStateProps };
 
@@ -113,7 +120,13 @@ class CreateContractForm extends React.Component<Props, any> {
   }
 
   canSign() {
-    return !this.canEdit() && this.props.fields.employeeId === this.props.user.id;
+    return !this.canEdit()
+      && this.props.fields.employeeId === this.props.user.id
+      && this.props.fields.status === ContractStatus.Deployed;
+  }
+
+  getVerifyType() {
+    return this.canSign() ? VerifyType.SignContract : VerifyType.DeployContract;
   }
 
   handleChange(event) {
@@ -135,10 +148,9 @@ class CreateContractForm extends React.Component<Props, any> {
   }
 
   handleDateSelect(date) {
-    const DateFormat = 'DD.MM.YYYY';
     const inputName = this.getActiveDateInputName();
 
-    this.props.change({name: inputName, value: moment(date).format(DateFormat)});
+    this.props.change({name: inputName, value: moment(date).format(AppDateFormat)});
     this.props.closeDatePopup();
   }
 
@@ -158,7 +170,8 @@ class CreateContractForm extends React.Component<Props, any> {
       signContract,
       openDatePopup,
       closeDatePopup,
-      activeDatePopup
+      activeDatePopup,
+      employeesWaiting
     } = this.props;
 
     const getEmployeeId = () => {
@@ -213,7 +226,7 @@ class CreateContractForm extends React.Component<Props, any> {
     };
 
     const defaultValidate = (value) => value && value !== '';
-    const periodIsPermanent = () => fields.agreementPeriod === 'permanent';
+    const periodIsPermanent = () => fields.agreementPeriod === PermanentAgreementPeriodType;
 
     const validateAgreementPeriod = () => {
       return !!(periodIsPermanent() || (fields.startAgreementDate && fields.endAgreementDate));
@@ -248,10 +261,19 @@ class CreateContractForm extends React.Component<Props, any> {
     };
 
     const getSignCaption = () => {
-      return fields.isSignedByEmployee ? `Signed by ${getEmployeeName()}` : 'Unsigned';
+      switch (fields.status) {
+        case ContractStatus.Draft: return 'Draft';
+        case ContractStatus.Deployed: return 'Unsigned';
+        case ContractStatus.DeployPending: return 'Deploy pending...';
+        case ContractStatus.DeployFailed: return 'Deploy failed';
+        case ContractStatus.Signed: return `Signed by ${getEmployeeName()}`;
+        case ContractStatus.SignPending: return 'Sign pending...';
+        case ContractStatus.SignFailed: return 'Sign failed';
+        default: return '';
+      }
     };
 
-    if (!getEmployeeId() || !isWalletsAddressesExists()) {
+    if (!getEmployee() || !isWalletsAddressesExists()) {
       return <div styleName="spinner"><Spinner/></div>;
     }
 
@@ -290,13 +312,14 @@ class CreateContractForm extends React.Component<Props, any> {
           <li styleName={getFilledStyle(5)}>
             <Caption text={'Period of agreement'} />
             <div styleName="period-radio-group">
-              <RadioGroup disabled={!this.canEdit()} name={'agreementPeriod'} value={fields.agreementPeriod} onChange={this.handleChange} groupId={'period-of-agreement'} values={['fixed', 'permanent']} labels={['Fixed period', 'Permanent agreement']} />
+              <RadioGroup disabled={!this.canEdit()} name={'agreementPeriod'} value={fields.agreementPeriod} onChange={this.handleChange} groupId={'period-of-agreement'} values={[FixedAgreementPeriodType, PermanentAgreementPeriodType]} labels={['Fixed period', 'Permanent agreement']} />
             </div>
             <div styleName="spacer" />
-            <div styleName="period-dates">
-              <DateInput disabled={periodIsPermanent() || !this.canEdit()} name={'startAgreementDate'} value={fields.startAgreementDate} onClick={() => openDatePopup(FormDates.StartDate)} description={'Start date'} buttonText={'Pick start date'} />
-              <DateInput disabled={periodIsPermanent() || !this.canEdit()} name={'endAgreementDate'} value={fields.endAgreementDate} onClick={() => openDatePopup(FormDates.EndDate)} description={'End date'} buttonText={'Pick end date'} />
-            </div>
+            {!periodIsPermanent() ?
+              <div styleName="period-dates">
+                <DateInput disabled={!this.canEdit()} name={'startAgreementDate'} value={fields.startAgreementDate} onClick={() => openDatePopup(FormDates.StartDate)} description={'Start date'} buttonText={'Pick start date'} />
+                <DateInput disabled={!this.canEdit()} name={'endAgreementDate'} value={fields.endAgreementDate} onClick={() => openDatePopup(FormDates.EndDate)} description={'End date'} buttonText={'Pick end date'} />
+              </div> : null}
             <div styleName="spacer" />
           </li>
           <li styleName={getFilledStyle(6)}>
@@ -311,18 +334,21 @@ class CreateContractForm extends React.Component<Props, any> {
           </li>
           <li styleName={getFilledStyle(7)}>
             <Caption text={'Additional сlauses'} />
-            <Input disabled={!this.canEdit()} name={'additionalClauses'} value={fields.additionalClauses} maxLength={100} onChange={this.handleChange} styleName="small-text-input" placeholder={'Place for additional text'} />
+            {this.canEdit() || fields.additionalClauses !== ''
+              ? <Input disabled={!this.canEdit()} name={'additionalClauses'} value={fields.additionalClauses} maxLength={100} onChange={this.handleChange} styleName="small-text-input" placeholder={'Place for additional text'} />
+              : null
+            }
           </li>
           <li styleName={getFilledStyle(8)}>
             <Caption text={'Signatures'} />
             <span styleName="section-description">To sign contract you need to request code from Google Authentificator. After your signing request for the signing of the contract will be sent to your employee.</span>
 
-            {fields.isSignedByEmployee ?
+            {fields.status === ContractStatus.Signed ?
               <img styleName="signed-icon" src={require('../../../assets/images/signed.svg')}/> : null
             }
 
             <span styleName="sign-status">{getSignCaption()}</span>
-            <span styleName="sign-description">Employer signature</span>
+            <span styleName="sign-description">Contract status</span>
           </li>
         </ol>
 
@@ -338,8 +364,8 @@ class CreateContractForm extends React.Component<Props, any> {
           </div> : null
         }
 
-        <ChooseEmployeePopup open={popupIsOpened} onClose={closePopup} employees={employees} onSelect={chooseEmployee}/>
-        <VerificationPopup isOpen={verifyPopupIsOpened} onClose={closeVerifyPopup} contractId={contractId}/>
+        <ChooseEmployeePopup open={popupIsOpened} onClose={closePopup} employees={employees} spinner={employeesWaiting} onSelect={chooseEmployee}/>
+        <VerificationPopup isOpen={verifyPopupIsOpened} onClose={closeVerifyPopup} contractId={contractId} type={this.getVerifyType()}/>
         <DatePickerPopup open={activeDatePopup !== null} onClose={closeDatePopup} onSelect={this.handleDateSelect} startDate={parseAppDate(getMinDate())} endDate={parseAppDate(getMaxDate())}/>
       </form>
     );

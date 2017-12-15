@@ -12,12 +12,14 @@ import {
   StateMap as ContractsStateProps,
   SortingType,
   Contract,
-  FilteringType
+  FilteringType,
+  ContractStatus
 } from '../../../redux/modules/contracts/contractsPage';
 import {
   StateMap as AppStateProps
 } from '../../../redux/modules/app/app';
 import Spinner from '../../../components/common/Spinner';
+import EmptyContracts from '../../../components/contracts/EmptyContracts';
 
 /**
  * Types
@@ -43,6 +45,7 @@ class ContractsPage extends Component<Props, {}> {
   public render() {
     const {
       contracts,
+      spinner,
       sorting,
       filtering,
       changeSorting,
@@ -50,30 +53,40 @@ class ContractsPage extends Component<Props, {}> {
       admin
     } = this.props;
 
+    const getNotDraftContracts = (contracts: Contract[]) => {
+      return contracts.filter((contract: Contract) => contract.status !== ContractStatus.Draft);
+    };
+
     const getFilteredContracts = (contracts: Contract[], filtering: FilteringType) => {
+      const notDraftContracts = getNotDraftContracts(contracts);
+
       if (filtering === FilteringType.Unsigned) {
-        return contracts.filter((contract: Contract) => !contract.signedAt);
+        return notDraftContracts.filter((contract: Contract) => contract.status !== ContractStatus.Signed);
       } else {
-        return contracts;
+        return notDraftContracts;
       }
     };
 
-    if (!contracts.length) {
+    if (spinner) {
       return <Spinner/>;
     }
 
     return (
       <div>
-        <section styleName="list">
-          <TabPanel sorting={sorting} filtering={filtering} changeSorting={changeSorting} changeFiltering={changeFiltering}/>
-          <ContractsList contracts={getFilteredContracts(contracts, filtering)}/>
-        </section>
+        {contracts.length ?
+          <section styleName="list">
+            <TabPanel sorting={sorting} filtering={filtering} changeSorting={changeSorting}
+                      changeFiltering={changeFiltering} showFilterByName={admin}/>
+            <ContractsList contracts={getFilteredContracts(contracts, filtering)} />
+          </section> :
+          <EmptyContracts />
+        }
         <section styleName="add-contract">
           <Button disabled={!admin} to="/contracts/app/create/new">
             + Add contract
           </Button>
           <div styleName="contracts-number">
-            <span styleName="number">{contracts.length}</span>
+            <span styleName="number">{getNotDraftContracts(contracts).length}</span>
             <span styleName="caption">Number of contracts</span>
           </div>
         </section>

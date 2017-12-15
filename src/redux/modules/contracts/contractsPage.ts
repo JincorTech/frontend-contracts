@@ -18,9 +18,20 @@ export enum FilteringType {
 
 export type StateMap = {
   contracts: Contract[]
+  spinner: boolean
   sorting: SortingType
   filtering: FilteringType
 };
+
+export enum ContractStatus {
+  Draft,
+  DeployPending,
+  DeployFailed,
+  Deployed,
+  SignPending,
+  SignFailed,
+  Signed
+}
 
 export type Contract = {
   id: string
@@ -28,7 +39,8 @@ export type Contract = {
   userName: string
   userAvatar: string
   createdAt: Date
-  signedAt: boolean
+  signedAt: Date
+  status: ContractStatus
 };
 
 /**
@@ -50,6 +62,7 @@ export const changeFiltering = createAction<FilteringType>(CHANGE_FILTERING);
  */
 const initialState: State = from<StateMap>({
   contracts: [],
+  spinner: false,
   sorting: SortingType.ByDate,
   filtering: FilteringType.All
 });
@@ -67,8 +80,16 @@ const getSortedContracts = (contracts: Contract[], sorting: SortingType) => {
 };
 
 export default createReducer<State>({
+  [fetchContracts.REQUEST]: (state: State, { payload }: Action<any>): State => (
+    state.merge({ spinner: true })
+  ),
+
   [fetchContracts.SUCCESS]: (state: State, { payload }: Action<Contract[]>): State => (
-    state.merge({ contracts: getSortedContracts(payload, SortingType.ByDate) })
+    state.merge({ contracts: getSortedContracts(payload, SortingType.ByDate), spinner: false })
+  ),
+
+  [fetchContracts.FAILURE]: (state: State, { payload }: Action<any>): State => (
+    state.merge({ spinner: false })
   ),
 
   [CHANGE_SORTING]: (state: State, { payload }: Action<SortingType>): State => (
