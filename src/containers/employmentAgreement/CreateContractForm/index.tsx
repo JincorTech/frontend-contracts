@@ -262,6 +262,7 @@ class CreateContractForm extends React.Component<Props, any> {
 
     const getSignCaption = () => {
       switch (fields.status) {
+        case ContractStatus.Draft: return 'Draft';
         case ContractStatus.Deployed: return 'Unsigned';
         case ContractStatus.DeployPending: return 'Deploy pending...';
         case ContractStatus.DeployFailed: return 'Deploy failed';
