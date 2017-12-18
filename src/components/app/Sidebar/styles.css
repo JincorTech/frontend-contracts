@@ -21,7 +21,6 @@
   color: #6e7987;
   text-decoration: none;
   cursor: pointer;
-  transition: 0.1s linear all;
 
   &:hover {
     color: #0080ff;
