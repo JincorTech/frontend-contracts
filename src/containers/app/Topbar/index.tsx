@@ -18,7 +18,7 @@ export type StateProps = ProfileCardState & AppState;
 
 export type DispatchProps = {
   openProfileCard: () => void
-}
+};
 
 const Topbar: SFC<Props> = (props) => {
   const {

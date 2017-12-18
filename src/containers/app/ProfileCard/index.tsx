@@ -5,12 +5,10 @@ import * as CSSModules from 'react-css-modules';
 
 import { StateMap as StateProps, BottomView as BottomViewProps } from '../../../redux/modules/app/profileCard';
 import { User as UserProps } from '../../../redux/modules/app/appWrapper';
-import { Props as PopupProps } from '../../../components/common/Popup';
 
 import { closeProfileCard, changeView, fetchProfile, changePassword, updateProfile, logout } from '../../../redux/modules/app/profileCard';
 
 import Popup from '../../../components/common/Popup';
-import CompanyLogo from '../../../components/profile/CompanyLogo';
 import CardAvatar from '../../../components/app/CardAvatar';
 import CardButtonsView from '../../../components/app/CardButtonsView';
 import CardChangePassword from '../../../components/app/CardChangePassword';

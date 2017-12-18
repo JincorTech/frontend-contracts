@@ -2,7 +2,7 @@ import { SagaIterator } from 'redux-saga';
 import { takeLatest, takeEvery, call, put, select, fork } from 'redux-saga/effects';
 import { initialize } from 'redux-form';
 import { Action } from '../../utils/actions';
-import { get, put as putFunc } from '../../utils/api';
+import { put as putFunc } from '../../utils/api';
 import BasePath from '../../config';
 
 import {
