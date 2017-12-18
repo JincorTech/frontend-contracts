@@ -225,6 +225,10 @@ class CreateContractForm extends React.Component<Props, any> {
       }
     };
 
+    const getSelectedDate = () => {
+      return parseAppDate(fields[this.getActiveDateInputName()]);
+    };
+
     const defaultValidate = (value) => value && value !== '';
     const periodIsPermanent = () => fields.agreementPeriod === PermanentAgreementPeriodType;
 
@@ -366,7 +370,8 @@ class CreateContractForm extends React.Component<Props, any> {
 
         <ChooseEmployeePopup open={popupIsOpened} onClose={closePopup} employees={employees} spinner={employeesWaiting} onSelect={chooseEmployee}/>
         <VerificationPopup isOpen={verifyPopupIsOpened} onClose={closeVerifyPopup} contractId={contractId} type={this.getVerifyType()}/>
-        <DatePickerPopup open={activeDatePopup !== null} onClose={closeDatePopup} onSelect={this.handleDateSelect} startDate={parseAppDate(getMinDate())} endDate={parseAppDate(getMaxDate())}/>
+        <DatePickerPopup open={activeDatePopup !== null} onClose={closeDatePopup} onSelect={this.handleDateSelect}
+                          startDate={parseAppDate(getMinDate())} endDate={parseAppDate(getMaxDate())} selectedDate={getSelectedDate()}/>
       </form>
     );
   }

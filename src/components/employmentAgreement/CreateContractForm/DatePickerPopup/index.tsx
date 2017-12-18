@@ -11,6 +11,7 @@ export type ComponentProps = {
   onSelect?: (date: string) => void
   startDate?: Date
   endDate?: Date
+  selectedDate?: Date
 };
 
 export type DispatchProps = {
@@ -22,7 +23,8 @@ const DatePickerPopup: SFC<Props> = (props) => {
     onClose,
     onSelect,
     startDate,
-    endDate
+    endDate,
+    selectedDate
   } = props;
 
   return (
@@ -33,7 +35,7 @@ const DatePickerPopup: SFC<Props> = (props) => {
       <InfiniteCalendar
         width={400}
         height={600}
-        selected={startDate}
+        selected={selectedDate || startDate}
         min={startDate || new Date()}
         max={endDate || new Date(2050, 11, 31)}
         minDate={startDate || new Date()}
