@@ -1,0 +1,22 @@
+.topbar {
+  display: block;
+  padding: 40px 0;
+}
+
+.title {
+  font-size: 26px;
+  color: #444;
+  display: inline-block;
+  vertical-align: middle;
+  width: calc(100% - 200px);
+}
+
+.avatar {
+  position: absolute;
+  right: 0;
+  margin: -36px 40px 0 0;
+}
+
+.avatar-icon {
+  cursor: pointer;
+}
