@@ -52,13 +52,28 @@
   margin: 0px auto 30px;
 }
 
+.success-container {
+  display: inline-block;
+  width: 100%;
+  margin-top: 125px;
+}
+
+.failed-container {
+  display: inline-block;
+  width: 100%;
+  margin: 125px 0 67px;
+}
+
 .verified-icon {
   display: block;
   margin: 0 auto 20px;
 }
 
 .verified-message {
-  composes: header;
+  font-size: 26px;
+  line-height: 1.46;
+  text-align: center;
+  color: #000;
   display: block;
   margin: 0 auto;
 }

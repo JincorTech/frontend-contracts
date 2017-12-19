@@ -89,7 +89,7 @@ class VerificationPopup extends Component<Props, {}> {
       }
 
       return (
-        <div>
+        <div styleName="success-container">
           <img styleName="verified-icon" src={require('../../../assets/images/signed.svg')} />
           <span styleName="verified-message">Successfully verified!</span>
         </div>
@@ -99,10 +99,12 @@ class VerificationPopup extends Component<Props, {}> {
     const renderFailedMessage = () => {
       return (
         <div>
-          <img styleName="verified-icon" src={require('../../../assets/images/failed.svg')} />
-          <span styleName="verified-message">Verification failed</span>
-          <span styleName="verify-error">{verifyError}</span>
-          <Button onClick={resetState}>Retry</Button>
+          <div styleName="failed-container">
+            <img styleName="verified-icon" src={require('../../../assets/images/failed.svg')} />
+            <span styleName="verified-message">Verification failed</span>
+            <span styleName="verify-error">{verifyError}</span>
+          </div>
+          <Button styleName="button" onClick={resetState}>Retry</Button>
         </div>
       );
     };
