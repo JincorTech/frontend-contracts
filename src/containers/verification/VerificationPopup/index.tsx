@@ -102,7 +102,7 @@ class VerificationPopup extends Component<Props, {}> {
           <div styleName="failed-container">
             <img styleName="verified-icon" src={require('../../../assets/images/failed.svg')} />
             <span styleName="verified-message">Verification failed</span>
-            <span styleName="verify-error">{verifyError}</span>
+            <span styleName="verify-error">{verifyError || 'Unknown error'}</span>
           </div>
           <Button styleName="button" onClick={resetState}>Retry</Button>
         </div>
