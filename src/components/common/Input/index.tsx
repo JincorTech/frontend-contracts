@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Component, HTMLProps } from 'react';
 import * as CSSModules from 'react-css-modules';
+import { isNumeric } from '../../../helpers/common/format';
 
 export type Props = HTMLProps<HTMLInputElement> & {
   invalid?: boolean
@@ -14,10 +15,6 @@ export class Input extends Component<Props, {}> {
 
   public render(): JSX.Element {
     const { invalid, caption, placeholder, onChange, type, captionText, ...inputProps } = this.props;
-
-    const isNumeric = (n) => {
-      return !isNaN(parseFloat(n)) && isFinite(n);
-    };
 
     const handleChange = (event) => {
       const target = event.target;
