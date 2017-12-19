@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Component, HTMLProps } from 'react';
 import * as CSSModules from 'react-css-modules';
-import { isNumeric } from '../../../helpers/common/format';
+import { isNumeric, isInteger } from '../../../helpers/common/format';
 
 export type Props = HTMLProps<HTMLInputElement> & {
   invalid?: boolean
@@ -14,21 +14,25 @@ export class Input extends Component<Props, {}> {
   public inputElement: HTMLInputElement;
 
   public render(): JSX.Element {
+    const NumberType = 'number';
+    const IntegerType = 'integer';
+
     const { invalid, caption, placeholder, onChange, type, captionText, ...inputProps } = this.props;
 
     const handleChange = (event) => {
       const target = event.target;
       const value = target.type === 'checkbox' ? target.checked : target.value;
 
-      if (type === 'number') {
-        const isValidNumber = value === '' || isNumeric(value);
-        if (!isValidNumber) {
+      if (type === NumberType || type === IntegerType) {
+        const isValidNumber = type === NumberType ? isNumeric(value) : isInteger(value);
+
+        if (value !== '' && !isValidNumber) {
           event.target.value = '';
           return;
         }
 
         const isInRegion = +value <= +target.max && (!target.min || +value >= +target.min);
-        if (!isInRegion) {
+        if (value !== '' && !isInRegion) {
           event.target.value = '';
           return;
         }

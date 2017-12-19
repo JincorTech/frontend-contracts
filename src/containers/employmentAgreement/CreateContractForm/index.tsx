@@ -290,7 +290,7 @@ class CreateContractForm extends React.Component<Props, any> {
             <DateInput disabled={!this.canEdit()} name={'contractDate'} caption={true} value={fields.contractDate} onClick={() => openDatePopup(FormDates.ContractDate)} description={'Contract date'} buttonText={'Pick date'} />
           </li>
           <li styleName={getFilledStyle(1)}>
-            <Input disabled={!this.canEdit()} name={'contractNumber'} caption={true} type="number" max={999999} value={fields.contractNumber} onChange={this.handleChange} styleName="text-input" placeholder={'Contract number'} />
+            <Input disabled={!this.canEdit()} name={'contractNumber'} caption={true} type="integer" max={999999} value={fields.contractNumber} onChange={this.handleChange} styleName="text-input" placeholder={'Contract number'} />
           </li>
           <li styleName={getFilledStyle(2)}>
             <Caption text={'Wallets'} />
@@ -330,7 +330,7 @@ class CreateContractForm extends React.Component<Props, any> {
                 <InputCaption text="Monthly"/>
               </div>
             </div>
-            <Input disabled={!this.canEdit()} name={'paymentsDay'} caption={true} type="number" min={1} max={31} value={fields.paymentsDay} onChange={this.handleChange} styleName="text-input" placeholder={'Day of payments'} />
+            <Input disabled={!this.canEdit()} name={'paymentsDay'} caption={true} type="integer" min={1} max={31} value={fields.paymentsDay} onChange={this.handleChange} styleName="text-input" placeholder={'Day of payments'} />
           </li>
           <li styleName={getFilledStyle(7)}>
             <Caption text={'Additional сlauses'} />
