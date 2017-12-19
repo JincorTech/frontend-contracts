@@ -9,7 +9,7 @@ import {
   fetchEmployees,
   chooseEmployee
 } from '../../../redux/modules/employmentAgreement/employmentAgreement';
-import SelectInput from '../../../components/employmentAgreement/createContractForm/SelectInput';
+import SelectInput from '../../../components/employmentAgreement/CreateContractForm/SelectInput';
 import ChooseEmployeePopup from '../../../containers/employmentAgreement/ChooseEmployeePopup';
 import { getEmployeeById } from '../../../helpers/common/store';
 
