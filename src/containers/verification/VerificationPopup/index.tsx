@@ -15,7 +15,7 @@ import {
   resetState,
   VerifyType
 } from '../../../redux/modules/verification/verification';
-import { isNumeric } from '../../../helpers/common/format';
+import { isInteger } from '../../../helpers/common/format';
 
 export type Props = StateProps & DispatchProps & ComponentProps;
 
@@ -58,7 +58,7 @@ class VerificationPopup extends Component<Props, {}> {
 
     const handleChange = (e) => {
       const value = getSourceVerificationCode(e.target.value);
-      if (value && (value.length > VerificationCodeLength || !isNumeric(value))) {
+      if (value && (value.length > VerificationCodeLength || !isInteger(value))) {
         return;
       }
 
