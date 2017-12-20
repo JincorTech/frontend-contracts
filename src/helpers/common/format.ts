@@ -9,5 +9,5 @@ export const isNumeric = (n: string) => {
 };
 
 export const isInteger = (n: string) => {
-  return isNumeric(n) && !n.includes('.'); 
-}
+  return isNumeric(n) && !n.includes('.');
+};

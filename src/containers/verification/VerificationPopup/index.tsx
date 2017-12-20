@@ -56,6 +56,10 @@ class VerificationPopup extends Component<Props, {}> {
       type
     } = this.props;
 
+    const getSourceVerificationCode = ( formattedCode: string): string => {
+      return formattedCode.replace(' ', '');
+    };
+
     const handleChange = (e) => {
       const value = getSourceVerificationCode(e.target.value);
       if (value && (value.length > VerificationCodeLength || !isInteger(value))) {
@@ -70,11 +74,7 @@ class VerificationPopup extends Component<Props, {}> {
         return code;
       }
       return `${code.substring(0, VerificationCodePartLength)} ${code.substring(VerificationCodePartLength)}`;
-    }
-
-    const getSourceVerificationCode = ( formattedCode: string): string => {
-      return formattedCode.replace(' ', '');
-    }
+    };
 
     const validateCode = (): boolean => {
       return verificationCode.length === VerificationCodeLength;
