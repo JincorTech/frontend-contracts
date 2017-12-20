@@ -325,7 +325,10 @@ class CreateContractForm extends React.Component<Props, any> {
           <li styleName={getFilledStyle(6)}>
             <Caption text={'Compensation'} />
             <div styleName="salary-text-input-container">
-              <Input disabled={!this.canEdit()} name={'salaryAmount'} caption={true} captionText={EthCurrencyName} type="number" max={9999999999} value={fields.salaryAmount} onChange={this.handleChange} styleName="text-input" placeholder={'Salary amount'} />
+              <Input disabled={!this.canEdit()} name={'salaryAmount'} caption={true}
+                    captionText={EthCurrencyName} type="number" max={9999999999} precision={6}
+                    value={fields.salaryAmount} onChange={this.handleChange} styleName="text-input"
+                    placeholder={'Salary amount'} />
               <div styleName="salary-input-caption">
                 <InputCaption text="Monthly"/>
               </div>

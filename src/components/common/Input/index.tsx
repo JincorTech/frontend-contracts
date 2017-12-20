@@ -7,6 +7,7 @@ export type Props = HTMLProps<HTMLInputElement> & {
   invalid?: boolean
   caption?: boolean
   captionText?: string
+  precision?: number
   onChange?: (e) => void
 };
 
@@ -17,7 +18,7 @@ export class Input extends Component<Props, {}> {
     const NumberType = 'number';
     const IntegerType = 'integer';
 
-    const { invalid, caption, placeholder, onChange, type, captionText, ...inputProps } = this.props;
+    const { invalid, caption, placeholder, onChange, type, captionText, precision, ...inputProps } = this.props;
 
     const handleChange = (event) => {
       const target = event.target;
@@ -26,13 +27,20 @@ export class Input extends Component<Props, {}> {
       if (type === NumberType || type === IntegerType) {
         const isValidNumber = type === NumberType ? isNumeric(value) : isInteger(value);
 
-        if (value !== '' && !isValidNumber) {
+        if (value && !isValidNumber) {
           event.target.value = '';
           return;
         }
 
         const isInRegion = +value <= +target.max && (!target.min || +value >= +target.min);
-        if (value !== '' && !isInRegion) {
+        if (value && !isInRegion) {
+          event.target.value = '';
+          return;
+        }
+
+        const pointIndex = value.indexOf('.');
+        if (type === NumberType && value && pointIndex !== -1
+            && value.length - pointIndex - 1 > precision) {
           event.target.value = '';
           return;
         }
