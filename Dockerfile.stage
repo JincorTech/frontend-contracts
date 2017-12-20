@@ -2,7 +2,7 @@ FROM node:8.0.0-alpine
 
 WORKDIR /usr/src/app
 
-ARG COMPANIESAPI=http://companies-api.stage.jincor.com
+ARG COMPANIESAPI=http://companies-api.stage.jincor.com/api/v1
 ARG WALLETSAPI=http://wallets-api.stage.jincor.com
 
 ENV COMPANIES_API_PATH=$COMPANIESAPI
