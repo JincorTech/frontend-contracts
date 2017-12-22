@@ -257,7 +257,7 @@ class CreateContractForm extends React.Component<Props, any> {
     // Render
 
     const getFilledStyle = (step: number) => {
-      if (fields.isSignedByEmployee) {
+      if (fields.status === ContractStatus.Signed) {
         return 'signed-item';
       }
 
