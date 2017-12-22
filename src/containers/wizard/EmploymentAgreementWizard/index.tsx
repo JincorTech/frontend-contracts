@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { StateMap as StateProps, nextStep, Step } from '../../../redux/modules/wizard/employmentAgreementWizard';
 
 import ContractTypesForm from '../../../components/wizard/ContractTypesForm';
-import ChooseEmployeeForm from '../../../containers/employmentAgreement/ChooseEmployeeForm';
 import CreateContractForm from '../../../containers/employmentAgreement/CreateContractForm';
 
 /**
@@ -29,7 +28,6 @@ class EmploymentAgreementWizard extends Component<Props, {}> {
       case Step.ChooseContractType:
         return <ContractTypesForm onNext={nextStep}/>;
       case Step.ChooseEmployeeForm:
-        return <ChooseEmployeeForm onNext={nextStep}/>;
       case Step.CreateContractForm:
         return <CreateContractForm/>;
       default:

@@ -91,9 +91,10 @@ class CreateContractForm extends React.Component<Props, any> {
   }
 
   componentDidMount() {
+    this.props.fetchEmployees();
+    
     // Check readonly mode
     if (this.props.routeParams) {
-      this.props.fetchEmployees();
       this.props.fetchContract(this.props.routeParams.contractId);
     } else {
       this.props.fetchWallets();
@@ -277,12 +278,18 @@ class CreateContractForm extends React.Component<Props, any> {
       }
     };
 
-    if (!getEmployee() || !isWalletsAddressesExists()) {
+    if (getEmployee() && !isWalletsAddressesExists()) {
       return <div styleName="spinner"><Spinner/></div>;
     }
 
     return (
       <form onSubmit={this.handleSubmit} styleName="form">
+        <img styleName="image" src={require('../../../assets/images/smart.png')} />
+        <span styleName="caption">Hey ya!</span>
+        <span styleName="description">
+          This is smart contract creation interface. To start creating new contract,
+          choose the employee and tap next button.
+        </span>
         <div styleName="avatar">
           <Avatar src={getEmployeeAvatar()} fullName={getEmployeeName()} id={getEmployeeId()} />
         </div>
