@@ -257,7 +257,7 @@ class CreateContractForm extends React.Component<Props, any> {
     // Render
 
     const getFilledStyle = (step: number) => {
-      if (fields.isSignedByEmployee) {
+      if (fields.status === ContractStatus.Signed) {
         return 'signed-item';
       }
 
@@ -351,7 +351,7 @@ class CreateContractForm extends React.Component<Props, any> {
           </li>
           <li styleName={getFilledStyle(8)}>
             <Caption text={'Signatures'} />
-            <span styleName="section-description">To sign contract you need to request code from Google Authentificator. After your signing request for the signing of the contract will be sent to your employee.</span>
+            <span styleName="section-description">To sign contract you need to pass verification via your email. After your signing request for the signing of the contract will be sent to your employee.</span>
 
             {fields.status === ContractStatus.Signed ?
               <img styleName="signed-icon" src={require('../../../assets/images/signed.svg')}/> : null
