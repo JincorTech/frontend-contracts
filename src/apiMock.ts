@@ -133,17 +133,17 @@ const getMock = (path: string) => {
       return {
         data: {
           'self': {
-            'id': '3e696895-ab1b-44ec-8646-86067877e38c',
+            'id': '4a516c0a-2c02-4a9f-9e2a-da6bc5ecf519',
             'profile': {
-              'name': 'Admin Company 2',
-              'firstName': 'Admin',
-              'lastName': 'Company 2',
-              'position': 'Admin',
-              'role': 'company-admin',
-              'avatar': null
+              'name': 'Simon Slow',
+              'firstName': 'Simon',
+              'lastName': 'Slow',
+              'position': 'Tester',
+              'role': 'admin',
+              'avatar': 'http://i.imgur.com/n613Ki4.jpg'
             },
             'contacts': {
-              'email': 'admin@company2.com',
+              'email': 'john@doe.com',
               'phone': null
             },
             'meta': {
