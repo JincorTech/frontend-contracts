@@ -61,7 +61,7 @@ const ChooseEmployeePopup: SFC<Props> = (props) => {
           <Spinner />
         </div>
       );
-    } else if (!employees.length) {
+    } else if (!getFilteredEmployees().length) {
       return (
         <div styleName="empty">
           <EmptyEmployees />
