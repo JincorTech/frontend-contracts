@@ -283,13 +283,17 @@ class CreateContractForm extends React.Component<Props, any> {
       return getEmployee() && !isWalletsAddressesExists();
     }
 
-    if (isWaiting() && !greetingIsActive) {
+    const getGreetingIsActive = () => {
+      return greetingIsActive && this.canEdit();
+    }
+
+    if ((!getGreetingIsActive() && (!getEmployee() || !isWalletsAddressesExists()))) {
       return <div styleName="spinner"><Spinner/></div>;
     }
 
     return (
       <form onSubmit={this.handleSubmit} styleName="form">
-        <div styleName={ greetingIsActive ? 'active-greeting' : 'hidden-greeting' }>
+        <div styleName={ getGreetingIsActive() ? 'active-greeting' : 'hidden-greeting' }>
           <img styleName="image" src={require('../../../assets/images/smart.png')} />
           <span styleName="caption">Hey ya!</span>
           <span styleName="description">
