@@ -8,8 +8,7 @@ export type State = StateMap & ImmutableObject<StateMap>;
 
 export enum Step {
   ChooseContractType,
-  ChooseEmployeeForm,
-  CreateContractForm
+  CreateContract
 }
 
 export type StateMap = {

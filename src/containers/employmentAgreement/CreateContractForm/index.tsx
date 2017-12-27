@@ -172,7 +172,8 @@ class CreateContractForm extends React.Component<Props, any> {
       openDatePopup,
       closeDatePopup,
       activeDatePopup,
-      employeesWaiting
+      employeesWaiting,
+      greetingIsActive
     } = this.props;
 
     const getEmployeeId = () => {
@@ -278,23 +279,29 @@ class CreateContractForm extends React.Component<Props, any> {
       }
     };
 
-    if (getEmployee() && !isWalletsAddressesExists()) {
+    const isWaiting = () => {
+      return getEmployee() && !isWalletsAddressesExists();
+    }
+
+    if (isWaiting() && !greetingIsActive) {
       return <div styleName="spinner"><Spinner/></div>;
     }
 
     return (
       <form onSubmit={this.handleSubmit} styleName="form">
-        <img styleName="image" src={require('../../../assets/images/smart.png')} />
-        <span styleName="caption">Hey ya!</span>
-        <span styleName="description">
-          This is smart contract creation interface. To start creating new contract,
-          choose the employee and tap next button.
-        </span>
+        <div styleName={ greetingIsActive ? 'active-greeting' : 'hidden-greeting' }>
+          <img styleName="image" src={require('../../../assets/images/smart.png')} />
+          <span styleName="caption">Hey ya!</span>
+          <span styleName="description">
+            This is smart contract creation interface. To start creating new contract,
+            choose the employee and tap next button.
+          </span>
+        </div>
         <div styleName="avatar">
           <Avatar src={getEmployeeAvatar()} fullName={getEmployeeName()} id={getEmployeeId()} />
         </div>
         <div styleName="input">
-          <SelectInput disabled={!this.canEdit()} text={getEmployeeName()} onButtonClick={openPopup}/>
+          <SelectInput spinner={isWaiting()} disabled={!this.canEdit()} text={getEmployeeName()} onButtonClick={openPopup}/>
         </div>
         <ol styleName="list">
           <li styleName={getFilledStyle(0)}>
@@ -378,7 +385,8 @@ class CreateContractForm extends React.Component<Props, any> {
           </div> : null
         }
 
-        <ChooseEmployeePopup open={popupIsOpened} onClose={closePopup} employees={employees} spinner={employeesWaiting} onSelect={chooseEmployee}/>
+        <ChooseEmployeePopup open={popupIsOpened} onClose={closePopup} employees={employees}
+                              spinner={employeesWaiting} onSelect={chooseEmployee}/>
         <VerificationPopup isOpen={verifyPopupIsOpened} onClose={closeVerifyPopup} contractId={contractId} type={this.getVerifyType()}/>
         <DatePickerPopup open={activeDatePopup !== null} onClose={closeDatePopup} onSelect={this.handleDateSelect}
                           startDate={parseAppDate(getMinDate())} endDate={parseAppDate(getMaxDate())} selectedDate={getSelectedDate()}/>

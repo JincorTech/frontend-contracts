@@ -22,7 +22,8 @@ export type StateMap = {
   verificationId: string,
   contractId: string,
   createdAt: string,
-  waiting: boolean
+  waiting: boolean,
+  greetingIsActive: boolean
 };
 
 export type Wallet = {
@@ -58,6 +59,7 @@ export const POST_CONTRACT = 'employmentAgreement/employmentAgreement/POST_CONTR
 export const SIGN_CONTRACT = 'employmentAgreement/employmentAgreement/SIGN_CONTRACT';
 export const CLOSE_VERIFY_POPUP = 'employmentAgreement/employmentAgreement/CLOSE_VERIFY_POPUP';
 export const RESET_STATE = 'employmentAgreement/employmentAgreement/RESET_STATE';
+export const HIDE_GREETING = 'employmentAgreement/employmentAgreement/HIDE_GREETING';
 
 /**
  * Action creators
@@ -72,6 +74,7 @@ export const postContract = createAsyncAction<any, any>(POST_CONTRACT);
 export const signContract = createAsyncAction<string, void>(SIGN_CONTRACT);
 export const closeVerifyPopup = createAction<void>(CLOSE_VERIFY_POPUP);
 export const resetState = createAction<void>(RESET_STATE);
+export const hideGreeting = createAction<void>(HIDE_GREETING);
 
 /**
  * Reducer
@@ -86,7 +89,8 @@ const initialState: State = from<StateMap>({
   verificationId: '',
   contractId: '',
   createdAt: '',
-  waiting: false
+  waiting: false,
+  greetingIsActive: true
 });
 
 export default createReducer<State>({
@@ -152,5 +156,9 @@ export default createReducer<State>({
 
   [RESET_STATE]: (state: State): State => (
     state.merge({ ...initialState })
+  ),
+
+  [HIDE_GREETING]: (state: State): State => (
+    state.merge({ greetingIsActive: false })
   )
 }, initialState);

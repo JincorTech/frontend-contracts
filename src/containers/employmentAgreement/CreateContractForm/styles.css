@@ -1,3 +1,11 @@
+.active-greeting {
+}
+
+.hidden-greeting {
+  position: absolute;
+  top: -600px;
+}
+
 .image {
   display: block;
   height: 224px;

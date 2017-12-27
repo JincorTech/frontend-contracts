@@ -7,13 +7,15 @@ export type Props = {
   onButtonClick?: () => void
   text?: string
   disabled?: boolean
+  spinner?: boolean
 };
 
 const SelectInput: SFC<Props> = (props) => {
   const {
     text,
     onButtonClick,
-    disabled
+    disabled,
+    spinner
   } = props;
 
   return (
@@ -22,7 +24,7 @@ const SelectInput: SFC<Props> = (props) => {
 
       {!disabled ?
         <div styleName="button">
-          <Button onClick={onButtonClick}>Choose</Button>
+          <Button onClick={onButtonClick} spinner={spinner}>Choose</Button>
         </div> : null
       }
     </div>

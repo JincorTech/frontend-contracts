@@ -27,8 +27,7 @@ class EmploymentAgreementWizard extends Component<Props, {}> {
     switch (currentStep) {
       case Step.ChooseContractType:
         return <ContractTypesForm onNext={nextStep}/>;
-      case Step.ChooseEmployeeForm:
-      case Step.CreateContractForm:
+      case Step.CreateContract:
         return <CreateContractForm/>;
       default:
         return <div/>;

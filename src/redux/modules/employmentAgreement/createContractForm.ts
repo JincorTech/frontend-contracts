@@ -83,7 +83,8 @@ export default createReducer<State>({
   ),
 
   [fetchWallets.SUCCESS]: (state: State, { payload }: Action<{companyWalletAddress: string, employeeWalletAddress: string}>): State => (
-    state.merge({ companyWalletAddress: payload.companyWalletAddress, employeeWalletAddress: payload.employeeWalletAddress })
+    state.merge({ companyWalletAddress: payload.companyWalletAddress,
+                  employeeWalletAddress: payload.employeeWalletAddress })
   ),
 
   [RESET_STATE]: (state: State, { payload }: Action<{name: string, value: string}>): State => (

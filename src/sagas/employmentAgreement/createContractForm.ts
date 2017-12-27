@@ -5,7 +5,7 @@ import { get, post } from '../../utils/api';
 import { transformContractBodyGet, EthCurrencyName, CorporateWalletType } from '../../helpers/common/api';
 import { getEmployeeById } from '../../helpers/common/store';
 import BasePath from '../../config';
-
+import { hideGreeting } from '../../redux/modules/employmentAgreement/employmentAgreement';
 import {
   fetchContract,
   fetchWallets
@@ -48,6 +48,7 @@ function* fetchWalletsIterator({ payload }): SagaIterator {
     const employee = getEmployeeById(employees, chosenEmployeeId);
     const employeeEthWallet = employee.wallets.find((wallet) => wallet.currency === EthCurrencyName);
 
+    yield put(hideGreeting());
     yield put(fetchWallets.success({companyWalletAddress: corporateEthWallet.address, employeeWalletAddress: employeeEthWallet.address}));
   } catch (e) {
     yield put(fetchWallets.failure(e));
