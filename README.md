@@ -63,15 +63,16 @@
 ## Structure
 
   The project's /src/ directory contains these parts:
-  /assets/ - stores static content
-  /components/ - react presentational components without logic
-  /containers/ - react container components that have a connection to the store and can dispatch actions
-  /helpers/ - helpers that can help to solve different kinds of tasks grouped by they purpose
-  /i18n/ - set up i18n configuration
-  /locales/ - static files with translations grouped by locales and sections of the application
-  /redux/ - reducers and store configuration
-  /sagas/ - redux sagas grouped by section of the store and root saga
-  /utils/ - utilities for different tasks such as creating actions, validators etc.
+
+  * /assets/ - stores static content
+  * /components/ - react presentational components without logic
+  * /containers/ - react container components that have a connection to the store and can dispatch actions
+  * /helpers/ - helpers that can help to solve different kinds of tasks grouped by they purpose
+  * /i18n/ - set up i18n configuration
+  * /locales/ - static files with translations grouped by locales and sections of the application
+  * /redux/ - reducers and store configuration
+  * /sagas/ - redux sagas grouped by section of the store and root saga
+  * /utils/ - utilities for different tasks such as creating actions, validators etc.
 
 ## Components and Containers
 
