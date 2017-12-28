@@ -1,7 +1,10 @@
 import * as React from 'react';
 import * as CSSModules from 'react-css-modules';
+import { InjectedCSSModuleProps } from 'react-css-modules';
 import { connect } from 'react-redux';
 import * as moment from 'moment';
+import Transition from 'react-transition-group/Transition';
+import { Motion, spring } from 'react-motion';
 import SelectInput from '../../../components/employmentAgreement/CreateContractForm/SelectInput';
 import Avatar from '../../../components/common/Avatar';
 import DateInput from '../../../components/employmentAgreement/CreateContractForm/DateInput';
@@ -60,7 +63,7 @@ export type RouterParams = {
   }
 };
 
-export type ComponentProps = RouterParams & {
+export type ComponentProps = RouterParams & InjectedCSSModuleProps & {
 };
 
 export type DispatchProps = {
@@ -88,6 +91,8 @@ class CreateContractForm extends React.Component<Props, any> {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDateSelect = this.handleDateSelect.bind(this);
+
+    this.state = {greetingIsActiveState: false};
   }
 
   componentDidMount() {
@@ -98,6 +103,13 @@ class CreateContractForm extends React.Component<Props, any> {
       this.props.fetchContract(this.props.routeParams.contractId);
     } else {
       this.props.fetchWallets();
+    }
+  }
+
+  componentDidUpdate() {
+    console.log('!!! UPDATE');
+    if (this.state.greetingIsActiveState !== this.props.greetingIsActive) {
+      this.setState({ greetingIsActiveState: this.props.greetingIsActive }); 
     }
   }
 
@@ -287,25 +299,60 @@ class CreateContractForm extends React.Component<Props, any> {
       return greetingIsActive && this.canEdit();
     }
 
-    if ((!getGreetingIsActive() && (!getEmployee() || !isWalletsAddressesExists()))) {
-      return <div styleName="spinner"><Spinner/></div>;
+    const duration = 300;
+
+    const defaultStyle = {
+      transition: `opacity ${duration}ms ease-in-out`,
+      opacity: 0,
+      padding: 20,
+      display: 'inline-block',
+      backgroundColor: '#8787d8'
     }
+    
+    const transitionStyles = {
+      entering: { opacity: 0 },
+      entered: { opacity: 1 },
+    };
+
+    const renderGreeting = () => {
+      const {
+        image,
+        caption,
+        description,
+        greeting
+      } = this.props.styles;
+      return (
+        <Transition in={this.state.greetingIsActiveState} timeout={duration}>
+          {(state) => (
+            <div className={greeting} style={{
+              ...defaultStyle,
+              ...transitionStyles[state]
+            }}>
+              <img className={image} src={require('../../../assets/images/smart.png')} />
+              <span className={caption}>Hey ya!</span>
+              <span className={description}>
+                This is smart contract creation interface. To start creating new contract,
+                choose the employee and tap next button.
+              </span>
+            </div>
+          )}
+        </Transition>
+      )
+    }
+
+    // if (!getGreetingIsActive() && (!getEmployee() || !isWalletsAddressesExists())) {
+    //   return <div styleName="spinner"><Spinner/></div>;
+    // }
 
     return (
       <form onSubmit={this.handleSubmit} styleName="form">
-        <div styleName={ getGreetingIsActive() ? 'active-greeting' : 'hidden-greeting' }>
-          <img styleName="image" src={require('../../../assets/images/smart.png')} />
-          <span styleName="caption">Hey ya!</span>
-          <span styleName="description">
-            This is smart contract creation interface. To start creating new contract,
-            choose the employee and tap next button.
-          </span>
-        </div>
+        { renderGreeting() }
+        <div styleName="content">
         <div styleName="avatar">
           <Avatar src={getEmployeeAvatar()} fullName={getEmployeeName()} id={getEmployeeId()} />
         </div>
         <div styleName="input">
-          <SelectInput spinner={isWaiting()} disabled={!this.canEdit()} text={getEmployeeName()} onButtonClick={openPopup}/>
+          <SelectInput spinner={isWaiting()} disabled={!this.canEdit()} text={getEmployeeName()} onButtonClick={openPopup} />
         </div>
         <ol styleName="list">
           <li styleName={getFilledStyle(0)}>
@@ -351,11 +398,11 @@ class CreateContractForm extends React.Component<Props, any> {
             <Caption text={'Compensation'} />
             <div styleName="salary-text-input-container">
               <Input disabled={!this.canEdit()} name={'salaryAmount'} caption={true}
-                    captionText={EthCurrencyName} type="number" max={9999999999} precision={6}
-                    value={fields.salaryAmount} onChange={this.handleChange} styleName="text-input"
-                    placeholder={'Salary amount'} />
+                captionText={EthCurrencyName} type="number" max={9999999999} precision={6}
+                value={fields.salaryAmount} onChange={this.handleChange} styleName="text-input"
+                placeholder={'Salary amount'} />
               <div styleName="salary-input-caption">
-                <InputCaption text="Monthly"/>
+                <InputCaption text="Monthly" />
               </div>
             </div>
             <Input disabled={!this.canEdit()} name={'paymentsDay'} caption={true} type="integer" min={1} max={31} value={fields.paymentsDay} onChange={this.handleChange} styleName="text-input" placeholder={'Day of payments'} />
@@ -372,7 +419,7 @@ class CreateContractForm extends React.Component<Props, any> {
             <span styleName="section-description">To sign contract you need to pass verification via your email. After your signing request for the signing of the contract will be sent to your employee.</span>
 
             {fields.status === ContractStatus.Signed ?
-              <img styleName="signed-icon" src={require('../../../assets/images/signed.svg')}/> : null
+              <img styleName="signed-icon" src={require('../../../assets/images/signed.svg')} /> : null
             }
 
             <span styleName="sign-status">{getSignCaption()}</span>
@@ -388,15 +435,16 @@ class CreateContractForm extends React.Component<Props, any> {
 
         {this.canSign() ?
           <div styleName="create-button">
-              <Button spinner={waiting} onClick={() => signContract(this.getContractIdFromRoute())}>Sign</Button>
+            <Button spinner={waiting} onClick={() => signContract(this.getContractIdFromRoute())}>Sign</Button>
           </div> : null
         }
 
         <ChooseEmployeePopup open={popupIsOpened} onClose={closePopup} employees={employees}
-                              spinner={employeesWaiting} onSelect={chooseEmployee}/>
-        <VerificationPopup isOpen={verifyPopupIsOpened} onClose={closeVerifyPopup} contractId={contractId} type={this.getVerifyType()}/>
+          spinner={employeesWaiting} onSelect={chooseEmployee} />
+        <VerificationPopup isOpen={verifyPopupIsOpened} onClose={closeVerifyPopup} contractId={contractId} type={this.getVerifyType()} />
         <DatePickerPopup open={activeDatePopup !== null} onClose={closeDatePopup} onSelect={this.handleDateSelect}
-                          startDate={parseAppDate(getMinDate())} endDate={parseAppDate(getMaxDate())} selectedDate={getSelectedDate()}/>
+          startDate={parseAppDate(getMinDate())} endDate={parseAppDate(getMaxDate())} selectedDate={getSelectedDate()} />
+          </div>
       </form>
     );
   }

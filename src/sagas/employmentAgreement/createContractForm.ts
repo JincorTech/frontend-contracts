@@ -1,5 +1,6 @@
 import { SagaIterator } from 'redux-saga';
 import { takeLatest, call, put, fork, select } from 'redux-saga/effects';
+import { delay } from 'redux-saga';
 import { Action } from '../../utils/actions';
 import { get, post } from '../../utils/api';
 import { transformContractBodyGet, EthCurrencyName, CorporateWalletType } from '../../helpers/common/api';
@@ -49,6 +50,7 @@ function* fetchWalletsIterator({ payload }): SagaIterator {
     const employeeEthWallet = employee.wallets.find((wallet) => wallet.currency === EthCurrencyName);
 
     yield put(hideGreeting());
+    yield call(delay, 1000);
     yield put(fetchWallets.success({companyWalletAddress: corporateEthWallet.address, employeeWalletAddress: employeeEthWallet.address}));
   } catch (e) {
     yield put(fetchWallets.failure(e));

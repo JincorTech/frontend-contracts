@@ -1,9 +1,10 @@
-.active-greeting {
+.greeting {
+  position: absolute;
 }
 
-.hidden-greeting {
+.content {
   position: absolute;
-  top: -600px;
+  top: 600px;
 }
 
 .image {
