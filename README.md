@@ -12,6 +12,7 @@ This frontend application can help user to solve these tasks:
     * Watch details for each of constacts
     * Create new smart contract with wizard
     * Sign a contract from another company
+    
   * For employees:
     * Watch contracts list and sign statuses for each of contracts from companies
     * Watch details for each of constacts
