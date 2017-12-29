@@ -74,9 +74,11 @@
   * /sagas/ - redux sagas grouped by section of the store and root saga
   * /utils/ - utilities for different tasks such as creating actions, validators etc.
 
-## Components and Containers
+## Refactoring
 
-For now some of the project containers contains presentational logic such as templates construction. These parts could be refactored to replace presentaional logic to the separate components.
+  * For now some of the project containers contains presentational logic such as templates construction. These parts could be refactored to replace presentaional logic to the separate components.
+  * It's would be good to change a custom solution in the containers/employmentAgreement/CreateContractForm to the redux-form.
+
 
 ---------------------------
 
