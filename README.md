@@ -4,6 +4,19 @@
 
 ----------------------------
 
+## Description
+
+This frontend application can help user to solve these tasks:
+  * For company administrators:
+    * Watch contracts list and sign statuses for each company contract
+    * Watch details for each of constacts
+    * Create new smart contract with wizard
+    * Sign a contract from another company
+  * For employees:
+    * Watch contracts list and sign statuses for each of contracts from companies
+    * Watch details for each of constacts
+    * Sign a contract from company
+
 ## Build & Run
 
 1. Install [Git](http://git-scm.com/) and [Node](http://nodejs.org/).
